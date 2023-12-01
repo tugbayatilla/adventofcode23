@@ -7,26 +7,23 @@ export function sum(input: string[]): number {
   let sum: number = 0;
 
   for (const line of input) {
-    let numberString = "";
 
-    for (const p of [...line]) {
-      if (!isNaN(Number(p))) {
-        numberString += String(p);
-        break;
-      }
-    }
-
-    for (const p of [...line].reverse()) {
-      if (!isNaN(Number(p))) {
-        numberString += String(p);
-        break;
-      }
-    }
+    let numberString = getNumberAsString([...line]);
+    numberString += getNumberAsString([...line].reverse());
 
     sum += Number(numberString);
   }
 
   return sum;
+}
+
+function getNumberAsString(line: string[]): string {
+  for (const p of line) {
+    if (!isNaN(Number(p))) {
+      return String(p);
+    }
+  }
+  throw Error('no number found')
 }
 
 
