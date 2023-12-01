@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { sum, read } from "./day1";
+import { sum, read, answer } from "./day1";
 
 describe("day1: sum of all of the calibration values", () => {
   it("should 1abc2 be 12", () => {
@@ -31,4 +31,12 @@ describe("day1: read data from file", () => {
       });
     });
 
+});
+
+
+describe("day1: finding answer", () => {
+  it("should day1.test.data return 142", () => {
+    return answer("./src/day1.test.data")
+    .then((answer) => expect(answer).to.equal(142));
+  })
 });

@@ -1,47 +1,54 @@
 export function sum(input: string[]): number {
-  const line = input[0];
-  let numberString = "";
+  
+  let sum: number = 0;
 
-  for (const p of [...line]) {
-    if(!isNaN(Number(p))){
-      numberString += String(p)
-      break;
+  for (const line of input) {
+    let numberString = "";
+    
+    for (const p of [...line]) {
+      if (!isNaN(Number(p))) {
+        numberString += String(p);
+        break;
+      }
     }
+
+    for (const p of [...line].reverse()) {
+      if (!isNaN(Number(p))) {
+        numberString += String(p);
+        break;
+      }
+    }
+
+    sum += Number(numberString);
   }
 
-  for (const p of [...line].reverse()) {
-    if(!isNaN(Number(p))){
-      numberString += String(p)
-      break;
-    }
-  }
-  
-  return Number(numberString);
-  
+  return sum;
 }
 
-import * as fs from 'fs';
-import * as readline from 'readline';
+import * as fs from "fs";
+import * as readline from "readline";
 export async function read(path: string): Promise<string[]> {
-  
   return new Promise((resolve, reject) => {
     const lines: string[] = [];
     const fileStream = fs.createReadStream(path);
 
     const rl = readline.createInterface({
       input: fileStream,
-      crlfDelay: Infinity
+      crlfDelay: Infinity,
     });
 
-    rl.on('line', (line) => {
-      if(line !== "")
-        lines.push(line);
+    rl.on("line", (line) => {
+      if (line !== "") lines.push(line);
     });
 
-    rl.on('close', () => {
+    rl.on("close", () => {
       resolve(lines);
     });
 
-    rl.on('error', reject);
+    rl.on("error", reject);
   });
+}
+
+export async function answer(filePath: string): Promise<number> {
+  return read(filePath).then((lines) => sum(lines));
 }
