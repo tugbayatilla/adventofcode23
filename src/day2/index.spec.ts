@@ -18,7 +18,7 @@ describe(`${Day}: sum of all of the calibration values`, () => {
     });
   });
 
-  describe.skip(`${Day}: finding answer`, () => {
+  describe(`${Day}: finding answer`, () => {
     it(`${Day}: should test.data return 281`, () => {
       return answer(`${SourceFolderPath}test.data`).then((answer) =>
         expect(answer).to.equal(281)
