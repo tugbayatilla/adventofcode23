@@ -18,8 +18,11 @@ describe("day1: sum of all of the calibration values", () => {
 
 describe("day1: read data from file", () => {
   it("should return empty array", () => {
-    expect(read('filepath')).to.deep.equal([]);
-  });
+    read("arbitrary").then((lines) => expect(lines).to.deep.equal([]));
+  }),
+    it("should day1.read.test.data be an array contains one string value 1abc2", () => {
+      return read("./src/day1.read.test.data").then((lines) => {
+        expect(lines).to.deep.equal(["1abc2"]);
+      });
+    });
 });
-
-
