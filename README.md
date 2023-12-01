@@ -26,3 +26,7 @@ function sum(input: string[]):number {}
 - I wrote down all test cases first this time. unfortunately there is no `it.todo` in mocha like in jest. it would be great to have such functionality right now yet it is also good enough for me now. 
 - There is `it.skip` in mocha, i will go with that one for now.
 
+- when i found the answer, i did re-arranging the files and a small refactoring. good enough for now.
+- i also spent a lot of time to write a function to read a file :) idiot...
+
+## Day 2
