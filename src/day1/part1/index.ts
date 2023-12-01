@@ -1,6 +1,7 @@
-import { read } from "../read";
+import { read } from "../../read";
 
-export const SourceFolderPath = './src/day1/'
+export const Day = "day1"; // <-- change this when you copy
+export const SourceFolderPath = `./src/${Day}/part1/`;
 
 export function sum(input: string[]): number {
   
@@ -31,5 +32,5 @@ export async function answer(filePath: string): Promise<number> {
   return read(filePath).then((lines) => sum(lines));
 }
 
-answer(`${SourceFolderPath}day1.puzzle.data`)
+answer(`${SourceFolderPath}puzzle.data`)
 .then(answer=>console.log(answer))

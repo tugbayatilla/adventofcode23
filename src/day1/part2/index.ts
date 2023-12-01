@@ -1,7 +1,7 @@
-import { read } from "../read";
+import { read } from "../../read";
 
-export const Day = "day2"; // <-- change this when you copy
-export const SourceFolderPath = `./src/${Day}/`;
+export const Day = "day1"; // <-- change this when you copy
+export const SourceFolderPath = `./src/${Day}/part2/`;
 
 export function sum(input: string[]): number {
   let sum: number = 0;
