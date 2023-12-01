@@ -4,7 +4,7 @@ export function sum(input: string[]): number {
 
   for (const line of input) {
     let numberString = "";
-    
+
     for (const p of [...line]) {
       if (!isNaN(Number(p))) {
         numberString += String(p);
@@ -52,3 +52,6 @@ export async function read(path: string): Promise<string[]> {
 export async function answer(filePath: string): Promise<number> {
   return read(filePath).then((lines) => sum(lines));
 }
+
+answer('./src/day1.puzzle.data')
+.then(answer=>console.log(answer))
