@@ -24,5 +24,11 @@ describe("day1: read data from file", () => {
       return read("./src/day1.read.test.data").then((lines) => {
         expect(lines).to.deep.equal(["1abc2"]);
       });
+    }),
+    it("should day1.test.data be an array contains 4 elements", () => {
+      return read("./src/day1.test.data").then((lines) => {
+        expect(lines.length).to.equal(4);
+      });
     });
+
 });
