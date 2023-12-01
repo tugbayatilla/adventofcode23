@@ -19,3 +19,7 @@ export function sum(input: string[]): number {
   return Number(numberString);
   
 }
+
+export function read(path: string): string[] {
+  return [];
+}

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { sum } from "./day1";
+import { sum, read } from "./day1";
 
 describe("day1: sum of all of the calibration values", () => {
   it("should 1abc2 be 12", () => {
@@ -15,3 +15,11 @@ describe("day1: sum of all of the calibration values", () => {
       expect(sum(["treb7uchet"])).to.equal(77);
     });
 });
+
+describe("day1: read data from file", () => {
+  it("should return empty array", () => {
+    expect(read('filepath')).to.deep.equal([]);
+  });
+});
+
+
