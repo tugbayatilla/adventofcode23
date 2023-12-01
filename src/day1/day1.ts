@@ -1,3 +1,7 @@
+import { read } from "../read";
+
+export const SourceFolderPath = './src/day1/'
+
 export function sum(input: string[]): number {
   
   let sum: number = 0;
@@ -25,33 +29,10 @@ export function sum(input: string[]): number {
   return sum;
 }
 
-import * as fs from "fs";
-import * as readline from "readline";
-export async function read(path: string): Promise<string[]> {
-  return new Promise((resolve, reject) => {
-    const lines: string[] = [];
-    const fileStream = fs.createReadStream(path);
-
-    const rl = readline.createInterface({
-      input: fileStream,
-      crlfDelay: Infinity,
-    });
-
-    rl.on("line", (line) => {
-      if (line !== "") lines.push(line);
-    });
-
-    rl.on("close", () => {
-      resolve(lines);
-    });
-
-    rl.on("error", reject);
-  });
-}
 
 export async function answer(filePath: string): Promise<number> {
   return read(filePath).then((lines) => sum(lines));
 }
 
-answer('./src/day1.puzzle.data')
+answer(`${SourceFolderPath}day1.puzzle.data`)
 .then(answer=>console.log(answer))
