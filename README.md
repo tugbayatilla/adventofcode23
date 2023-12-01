@@ -30,3 +30,5 @@ function sum(input: string[]):number {}
 - i also spent a lot of time to write a function to read a file :) idiot...
 
 ## Day 2
+
+- I have prepared the initial state of day2. It took little bit time to arrange. It looks like i lost time, but I feel like I have a baseline to work with for the next days. The future will tell us the situation. Now it is ready to implement.
