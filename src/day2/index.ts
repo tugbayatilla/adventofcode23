@@ -61,5 +61,5 @@ export async function answer(filePath: string): Promise<number> {
   return read(filePath).then((lines) => sum(lines));
 }
 
-answer(`${SourceFolderPath}puzzle.data`);
-// .then(answer=>console.log(answer))
+answer(`${SourceFolderPath}puzzle.data`)
+.then(answer=>console.log(answer))
