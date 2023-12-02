@@ -28,6 +28,14 @@ describe(`${Day}: parse a line`, () => {
 
   it("should the size of the result array be 3", () => {
     expect(parse(testLine).length).to.equal(3);
+  }),
+  it("should all ids be 1", () => {
+    expect(parse(testLine))
+    .to
+    .be
+    .an('array')
+    .that
+    .satisfies((arr: {id:number}[]) => (arr).every(obj => obj.id === 1));
   })
 });
 

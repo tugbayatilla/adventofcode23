@@ -15,7 +15,7 @@ export function parse(line: string): Game[] {
   let result: Game[] = [];
 
   let rawData = line.split(';');
-  rawData.forEach(p=>  result.push({} as Game));
+  rawData.forEach(p=>  result.push({id:1} as Game));
 
   return result;
 }
