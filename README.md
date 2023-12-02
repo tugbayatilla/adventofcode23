@@ -53,4 +53,7 @@ Touch Time: 1h37m
 - IMPORTANT: i have noticed that, creating a template with bunch of codes creating huge distraction, do not do that :) i create a commit for clean up
 - I also skipped some small steps because I know it will go that direction so little bit design and clever things are good as long as they are not so big. what is big? ahahaha, it is up to you, b. :)
 - Damn, with regex it is so easy. i had no time so i switch to regex in some point.
+- shit, i need to read the text much more carefully.i miss understood the condition. yet if you have a small kid, and be distracte 12 times in 1 hour, i think it is ok, and also she is the most important thing ever.
+- writing wrong test, i mean, wrong expected value. ofcourse i will spend hours for this :(
+- always work with clear mind.
 - 

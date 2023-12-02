@@ -1,12 +1,21 @@
+import { read } from "../../read";
 import { Game } from "./game";
 
 export const Day = "day2"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`;
 
 export function evaluate(game: Game): number {
-  if (game.red !== null && game.red! <= 12) return game.id;
-  if (game.green !== null && game.green! <= 13) return game.id;
-  if (game.blue !== null && game.blue! <= 14) return game.id;
+  const requiredGame: Required<Game> = {
+    id: game.id,
+    red: game.red === undefined ? 0 : game.red,
+    green: game.green === undefined ? 0 : game.green,
+    blue: game.blue === undefined ? 0 : game.blue
+  };
+  if (
+    requiredGame.red! <= 12 &&
+    requiredGame.green! <= 13 &&
+    requiredGame.blue! <= 14
+  ) { return game.id; }
 
   return 0;
 }
@@ -59,27 +68,28 @@ export function sum(lines: string[]): number {
 
   let totalSum: number = 0;
 
+
   for (const line of lines) {
     let games = parse(line);
+    let ignoredIdList: number[] = [];
 
+    // ignored id list
+    games.forEach(g => { if (evaluate(g) == 0) ignoredIdList.push(g.id) });
 
-    const consolidatedGames: Game[] = Array.from(games.reduce((acc: Map<number, Game>, item: Game) => {
-      if (!acc.has(item.id)) {
-        acc.set(item.id, { ...item });
-      } else {
-        let existingGame = acc.get(item.id);
-        existingGame!.red! += item.red ?? 0;
-        existingGame!.green! += item.green ?? 0;
-        existingGame!.blue! += item.blue ?? 0;
-      }
-      return acc;
-    }, new Map<number, Game>()).values());
+    if (ignoredIdList.indexOf(games[0].id) >= 0)
+      continue;
 
-    for (const game of consolidatedGames) {
-      totalSum += evaluate(game);
-    }
+    totalSum += games[0].id;
   }
 
   return totalSum;
 
 }
+
+
+export async function answer(filePath: string): Promise<number> {
+  return read(filePath).then((lines) => sum(lines));
+}
+
+answer(`${SourceFolderPath}puzzle.data`)
+.then(answer=>console.log(answer))

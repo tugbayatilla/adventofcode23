@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, evaluate, parse, sum  } from ".";
+import { Day, SourceFolderPath, answer, evaluate, parse, sum  } from ".";
 
 
 describe(`${Day}: evaluate parsed data`, () => {
@@ -75,4 +75,13 @@ describe(`${Day}: the sum of the IDs of those games`, () => {
     )).to.equal(1);
   })
 });
+
+describe(`${Day}: finding answer`, () => {
+  it(`${Day}: should test.data return 8`, () => {
+    return answer(`${SourceFolderPath}test.data`).then((answer) =>
+      expect(answer).to.equal(8)
+    );
+  });
+});
+
 
