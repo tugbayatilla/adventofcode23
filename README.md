@@ -40,3 +40,13 @@ function sum(input: string[]):number {}
 Touch Time: 1h37m
 
 ## Day 2
+
+### Part 1
+
+- I read the story of this part and i realised that there are 2 sections of this part.
+  - first part is parsing the data
+  - second part is evaluating the data
+- I thing parsing will be challanging for me because i have decided not to use regex so lets see what will happen. Maybe i will change my mind in an hour :)
+- I have decided to start with the evaluation part. 
+- I will structure the data with using interfaces and then make the evaluation. afterwards parsing part can create this data structure for me.
+- lets go...
