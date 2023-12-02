@@ -57,6 +57,9 @@ describe(`${Day}: parse a line`, () => {
   }),
   it("should first item have 3 blue", () => {
     expect(parse(testLine)[0].blue).to.equal(3);
+  }),
+  it("should first item have 4 red", () => {
+    expect(parse(testLine)[0].red).to.equal(4);
   })
 });
 

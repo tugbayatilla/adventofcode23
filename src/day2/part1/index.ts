@@ -26,12 +26,21 @@ export function parse(line: string): Game[] {
     let game: Game = { id: id };
 
     // find blue
-    const regex = /(\d+)\s+blue/;
-    const match = regex.exec(p);
+    const regexBlue = /(\d+)\s+blue/;
+    const matchBlue = regexBlue.exec(p);
 
-    if (match && match[1]) {
-      game.blue = parseInt(match[1], 10);
+    if (matchBlue && matchBlue[1]) {
+      game.blue = parseInt(matchBlue[1], 10);
     }
+
+    // find blue
+    const regexRed = /(\d+)\s+red/;
+    const matchRed = regexRed.exec(p);
+
+    if (matchRed && matchRed[1]) {
+      game.red = parseInt(matchRed[1], 10);
+    }
+
     result.push(game);
   });
 
