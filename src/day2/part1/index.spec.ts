@@ -1,6 +1,13 @@
 import { expect } from "chai";
-import { Day, SourceFolderPath, answer } from ".";
+import { Day, SourceFolderPath, answer, evaluate  } from ".";
 import { read } from "../../read";
+
+
+describe(`${Day}: evaluate parsed data`, () => {
+  it("should 13 red cubes reeturns 0 for impossible", () => {
+    expect(evaluate({id:1, red: 13})).to.equal(0);
+  })
+});
 
 describe.skip(`${Day}: sum of all of the calibration values`, () => {
   // it("should 1abc2 be 12", () => {
@@ -27,3 +34,5 @@ describe.skip(`${Day}: finding answer`, () => {
     .then((answer) => expect(answer).to.equal(142));
   })
 });
+
+
