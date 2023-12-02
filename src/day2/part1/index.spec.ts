@@ -3,7 +3,10 @@ import { Day, evaluate  } from ".";
 
 
 describe(`${Day}: evaluate parsed data`, () => {
-  it("should 13 red cubes reeturns 0 for impossible", () => {
+  it("should 13 red cubes returns 0 for impossible", () => {
     expect(evaluate({id:1, red: 13})).to.equal(0);
+  }),
+  it("should 12 red cubes returns the id of the game for possible", () => {
+    expect(evaluate({id:1, red: 12})).to.equal(1);
   })
 });
