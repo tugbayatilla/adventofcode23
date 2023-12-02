@@ -17,6 +17,9 @@ describe(`${Day}: evaluate parsed data`, () => {
   }),
   it("should 15 blue cubes returns 0 for impossible", () => {
     expect(evaluate({id:1, blue: 15})).to.equal(0);
+  }),
+  it("should 14 or less green cubes returns the id of the game for possible situation", () => {
+    expect(evaluate({id:1, blue: 14})).to.equal(1);
   })
 });
 
