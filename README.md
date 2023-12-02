@@ -50,3 +50,5 @@ Touch Time: 1h37m
 - I have decided to start with the evaluation part. 
 - I will structure the data with using interfaces and then make the evaluation. afterwards parsing part can create this data structure for me.
 - lets go...
+- IMPORTANT: i have noticed that, creating a template with bunch of codes creating huge distraction, do not do that :) i create a commit for clean up
+- 
