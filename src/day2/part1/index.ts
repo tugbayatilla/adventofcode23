@@ -54,3 +54,32 @@ export function parse(line: string): Game[] {
 
   return result;
 }
+
+export function sum(lines: string[]): number {
+
+  let totalSum: number = 0;
+
+  for (const line of lines) {
+    let games = parse(line);
+
+
+    const consolidatedGames: Game[] = Array.from(games.reduce((acc: Map<number, Game>, item: Game) => {
+      if (!acc.has(item.id)) {
+        acc.set(item.id, { ...item });
+      } else {
+        let existingGame = acc.get(item.id);
+        existingGame!.red! += item.red ?? 0;
+        existingGame!.green! += item.green ?? 0;
+        existingGame!.blue! += item.blue ?? 0;
+      }
+      return acc;
+    }, new Map<number, Game>()).values());
+
+    for (const game of consolidatedGames) {
+      totalSum += evaluate(game);
+    }
+  }
+
+  return totalSum;
+
+}

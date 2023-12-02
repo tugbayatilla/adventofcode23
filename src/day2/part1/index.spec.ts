@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, evaluate, parse  } from ".";
+import { Day, evaluate, parse, sum  } from ".";
 
 
 describe(`${Day}: evaluate parsed data`, () => {
@@ -63,6 +63,16 @@ describe(`${Day}: parse a line`, () => {
   }),
   it("should second item have 2 green", () => {
     expect(parse(testLine)[1].green).to.equal(2);
+  })
+});
+
+
+describe(`${Day}: the sum of the IDs of those games`, () => {
+  
+  it("should the size of the result array be 3", () => {
+    expect(sum(
+      ['Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green']
+    )).to.equal(1);
   })
 });
 
