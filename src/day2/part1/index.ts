@@ -22,7 +22,18 @@ export function parse(line: string): Game[] {
   var colonIndex = rawData[0].indexOf(':');
   var id = Number(rawData[0].substring(spaceIndex, colonIndex));
 
-  rawData.forEach(p=>  result.push({id:id} as Game));
+  rawData.forEach((p) => {
+    let game: Game = { id: id };
+
+    // find blue
+    const regex = /(\d+)\s+blue/;
+    const match = regex.exec(p);
+
+    if (match && match[1]) {
+      game.blue = parseInt(match[1], 10);
+    }
+    result.push(game);
+  });
 
   return result;
 }

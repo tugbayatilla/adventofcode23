@@ -54,6 +54,9 @@ describe(`${Day}: parse a line`, () => {
     .an('array')
     .that
     .satisfies((arr: {id:number}[]) => (arr).every(obj => obj.id === 1122));
+  }),
+  it("should first item have 3 blue", () => {
+    expect(parse(testLine)[0].blue).to.equal(3);
   })
 });
 
