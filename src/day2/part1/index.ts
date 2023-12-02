@@ -33,12 +33,20 @@ export function parse(line: string): Game[] {
       game.blue = parseInt(matchBlue[1], 10);
     }
 
-    // find blue
+    // find red
     const regexRed = /(\d+)\s+red/;
     const matchRed = regexRed.exec(p);
 
     if (matchRed && matchRed[1]) {
       game.red = parseInt(matchRed[1], 10);
+    }
+
+    // find green
+    const regexGreen = /(\d+)\s+green/;
+    const matchGreen = regexGreen.exec(p);
+
+    if (matchGreen && matchGreen[1]) {
+      game.green = parseInt(matchGreen[1], 10);
     }
 
     result.push(game);
