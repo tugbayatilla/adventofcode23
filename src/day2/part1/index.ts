@@ -15,7 +15,14 @@ export function parse(line: string): Game[] {
   let result: Game[] = [];
 
   let rawData = line.split(';');
-  rawData.forEach(p=>  result.push({id:1} as Game));
+
+  // find game id
+  // the number between space and : at the first element
+  var spaceIndex = rawData[0].indexOf(' ');
+  var colonIndex = rawData[0].indexOf(':');
+  var id = Number(rawData[0].substring(spaceIndex, colonIndex));
+
+  rawData.forEach(p=>  result.push({id:id} as Game));
 
   return result;
 }

@@ -36,6 +36,24 @@ describe(`${Day}: parse a line`, () => {
     .an('array')
     .that
     .satisfies((arr: {id:number}[]) => (arr).every(obj => obj.id === 1));
+  }),
+  it("should all ids be 2", () => {
+    const testLineOverriden = 'Game 2: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green';
+    expect(parse(testLineOverriden))
+    .to
+    .be
+    .an('array')
+    .that
+    .satisfies((arr: {id:number}[]) => (arr).every(obj => obj.id === 2));
+  }),
+  it("should all ids be 1122", () => {
+    const testLineOverriden = 'Game 1122: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green';
+    expect(parse(testLineOverriden))
+    .to
+    .be
+    .an('array')
+    .that
+    .satisfies((arr: {id:number}[]) => (arr).every(obj => obj.id === 1122));
   })
 });
 
