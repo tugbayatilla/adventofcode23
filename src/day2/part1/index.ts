@@ -10,3 +10,12 @@ export function evaluate(game: Game): number {
 
   return 0;
 }
+
+export function parse(line: string): Game[] {
+  let result: Game[] = [];
+
+  let rawData = line.split(';');
+  rawData.forEach(p=>  result.push({} as Game));
+
+  return result;
+}

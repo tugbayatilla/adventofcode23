@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, evaluate  } from ".";
+import { Day, evaluate, parse  } from ".";
 
 
 describe(`${Day}: evaluate parsed data`, () => {
@@ -20,6 +20,14 @@ describe(`${Day}: evaluate parsed data`, () => {
   }),
   it("should 14 or less green cubes returns the id of the game for possible situation", () => {
     expect(evaluate({id:1, blue: 14})).to.equal(1);
+  })
+});
+
+describe(`${Day}: parse a line`, () => {
+  const testLine = 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green';
+
+  it("should the size of the result array be 3", () => {
+    expect(parse(testLine).length).to.equal(3);
   })
 });
 
