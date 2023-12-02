@@ -51,4 +51,5 @@ Touch Time: 1h37m
 - I will structure the data with using interfaces and then make the evaluation. afterwards parsing part can create this data structure for me.
 - lets go...
 - IMPORTANT: i have noticed that, creating a template with bunch of codes creating huge distraction, do not do that :) i create a commit for clean up
+- I also skipped some small steps because I know it will go that direction so little bit design and clever things are good as long as they are not so big. what is big? ahahaha, it is up to you, b. :)
 - 
