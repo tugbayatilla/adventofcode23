@@ -32,7 +32,6 @@ export function parseLine(line: string): Game {
     const matchBlue = regexBlue.exec(p);
 
     if (matchBlue && matchBlue[1]) {
-      game.blue = parseInt(matchBlue[1], 10);
       session.blue = parseInt(matchBlue[1], 10);
     }
 
@@ -41,7 +40,6 @@ export function parseLine(line: string): Game {
     const matchRed = regexRed.exec(p);
 
     if (matchRed && matchRed[1]) {
-      game.red = parseInt(matchRed[1], 10);
       session.red = parseInt(matchRed[1], 10);
     }
 
@@ -50,7 +48,6 @@ export function parseLine(line: string): Game {
     const matchGreen = regexGreen.exec(p);
 
     if (matchGreen && matchGreen[1]) {
-      game.green = parseInt(matchGreen[1], 10);
       session.green = parseInt(matchGreen[1], 10);
     }
 
