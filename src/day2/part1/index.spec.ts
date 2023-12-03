@@ -69,7 +69,7 @@ describe(`${Day}: parse a line`, () => {
 
 describe(`${Day}: the sum of the IDs of those games`, () => {
   
-  it("should the size of the result array be 3", () => {
+  it("should the sum of the ids be 1", () => {
     expect(sum(
       ['Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green']
     )).to.equal(1);
