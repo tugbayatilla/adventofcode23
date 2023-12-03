@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, findFewest, powerOfMinimum } from ".";
+import { Day, SourceFolderPath, answer, findFewest, powerOfMinimum } from ".";
 
 import { parseLine } from "../part1";
 
@@ -32,4 +32,12 @@ describe(`${Day}: find the power of the minimum set of cubes`, () => {
     expect(powerOfMinimum(session)).to
     .equal(1560)
   })
+});
+
+describe(`${Day}: finding answer with test data`, () => {
+  it(`${Day}: should test.data return 2286`, () => {
+    return answer(`${SourceFolderPath}test.data`).then((answer) =>
+      expect(answer).to.equal(2286)
+    );
+  });
 });
