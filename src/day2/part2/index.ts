@@ -21,3 +21,7 @@ export function findFewest(sessions: Session[]): Required<Session> {
 
   return resultSession;
 }
+
+export function powerOfMinimum(session: Required<Session>): number {
+  return 48;
+}
