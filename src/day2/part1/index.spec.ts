@@ -1,27 +1,6 @@
 import { expect } from "chai";
-import { Day, SourceFolderPath, answer, evaluate, evaluateSession, parse, sum  } from ".";
+import { Day, SourceFolderPath, answer, evaluateSession, parse, sum  } from ".";
 
-
-describe(`${Day}: evaluate parsed data`, () => {
-  it("should 13 red cubes returns 0 for impossible", () => {
-    expect(evaluate({id:1, red: 13})).to.equal(0);
-  }),
-  it("should 12 red cubes returns the id of the game for possible", () => {
-    expect(evaluate({id:1, red: 12})).to.equal(1);
-  }),
-  it("should 14 green cubes returns 0 for impossible", () => {
-    expect(evaluate({id:1, green: 14})).to.equal(0);
-  }),
-  it("should 13 or less green cubes returns the id of the game for possible situation", () => {
-    expect(evaluate({id:1, green: 13})).to.equal(1);
-  }),
-  it("should 15 blue cubes returns 0 for impossible", () => {
-    expect(evaluate({id:1, blue: 15})).to.equal(0);
-  }),
-  it("should 14 or less green cubes returns the id of the game for possible situation", () => {
-    expect(evaluate({id:1, blue: 14})).to.equal(1);
-  })
-});
 
 describe(`${Day}: parse a line`, () => {
   const testLine = 'Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green';

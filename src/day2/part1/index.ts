@@ -4,23 +4,6 @@ import { Game, Session } from "./game";
 export const Day = "day2"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`;
 
-export function evaluate(game: Game): number {
-  const requiredGame: Required<Game> = {
-    id: game.id,
-    red: game.red === undefined ? 0 : game.red,
-    green: game.green === undefined ? 0 : game.green,
-    blue: game.blue === undefined ? 0 : game.blue,
-    sessions: []
-  };
-  if (
-    requiredGame.red! <= 12 &&
-    requiredGame.green! <= 13 &&
-    requiredGame.blue! <= 14
-  ) { return game.id; }
-
-  return 0;
-}
-
 export function evaluateSession(session: Session): boolean {
 
   return ((session.red === undefined) || session.red! <= 12) &&
