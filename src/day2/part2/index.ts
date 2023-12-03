@@ -41,3 +41,6 @@ export async function answer(filePath: string): Promise<number> {
     return totalSum;
   });
 }
+
+answer(`${SourceFolderPath}puzzle.data`)
+.then(answer=> console.log(`${SourceFolderPath} - ${answer}`));
