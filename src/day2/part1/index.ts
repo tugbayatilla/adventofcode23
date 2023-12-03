@@ -9,7 +9,8 @@ export function evaluate(game: Game): number {
     id: game.id,
     red: game.red === undefined ? 0 : game.red,
     green: game.green === undefined ? 0 : game.green,
-    blue: game.blue === undefined ? 0 : game.blue
+    blue: game.blue === undefined ? 0 : game.blue,
+    sessions: []
   };
   if (
     requiredGame.red! <= 12 &&
