@@ -1,5 +1,5 @@
 import { read } from "../../read";
-import { Game } from "./game";
+import { Game, Session } from "./game";
 
 export const Day = "day2"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`;
@@ -34,13 +34,15 @@ export function parse(line: string): Game[] {
 
   rawData.forEach((p) => {
     let game: Game = { id: id };
-
+    let session: Session = {};
+    
     // find blue
     const regexBlue = /(\d+)\s+blue/;
     const matchBlue = regexBlue.exec(p);
 
     if (matchBlue && matchBlue[1]) {
       game.blue = parseInt(matchBlue[1], 10);
+      session.blue = parseInt(matchBlue[1], 10);
     }
 
     // find red
@@ -49,6 +51,7 @@ export function parse(line: string): Game[] {
 
     if (matchRed && matchRed[1]) {
       game.red = parseInt(matchRed[1], 10);
+      session.red = parseInt(matchRed[1], 10);
     }
 
     // find green
@@ -57,8 +60,10 @@ export function parse(line: string): Game[] {
 
     if (matchGreen && matchGreen[1]) {
       game.green = parseInt(matchGreen[1], 10);
+      session.green = parseInt(matchGreen[1], 10);
     }
 
+    game.sessions?.push(session);
     result.push(game);
   });
 
