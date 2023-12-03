@@ -27,35 +27,28 @@ export function parseLine(line: string): Game {
 
     let session: Session = {};
 
-    // find blue
-    const regexBlue = /(\d+)\s+blue/;
-    const matchBlue = regexBlue.exec(p);
+    session = find(p, session, 'blue');
+    session = find(p, session, 'green');
+    session = find(p, session, 'red');
 
-    if (matchBlue && matchBlue[1]) {
-      session.blue = parseInt(matchBlue[1], 10);
-    }
-
-    // find red
-    const regexRed = /(\d+)\s+red/;
-    const matchRed = regexRed.exec(p);
-
-    if (matchRed && matchRed[1]) {
-      session.red = parseInt(matchRed[1], 10);
-    }
-
-    // find green
-    const regexGreen = /(\d+)\s+green/;
-    const matchGreen = regexGreen.exec(p);
-
-    if (matchGreen && matchGreen[1]) {
-      session.green = parseInt(matchGreen[1], 10);
-    }
-
-    game.sessions?.push(session);
+    game.sessions.push(session);
 
   });
 
   return game;
+}
+
+function find<T extends keyof Session>(line: string, session: Session, color: T): Session {
+  const regexExpression = `(\\d+)\\s+${color}`;
+  const regex = new RegExp(regexExpression);
+
+  const matches = line.match(regex);
+
+  if (matches && matches[1]) {
+    session[color] = parseInt(matches[1], 10);
+  }
+
+  return session;
 }
 
 export function sum(lines: string[]): number {
@@ -65,9 +58,9 @@ export function sum(lines: string[]): number {
   for (const line of lines) {
     let game = parseLine(line);
 
-    if(game.sessions?.every(s => evaluateSession(s)))
-      possibleGames.push(game); 
-        
+    if (game.sessions?.every(s => evaluateSession(s)))
+      possibleGames.push(game);
+
   }
   return possibleGames.reduce((acc, cur) => acc + cur.id, 0);
 }
