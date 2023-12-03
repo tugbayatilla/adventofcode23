@@ -21,6 +21,13 @@ export function evaluate(game: Game): number {
   return 0;
 }
 
+export function evaluateSession(session: Session): boolean {
+  
+  return ((session.red === undefined) || session.red! <= 12) &&
+    ((session.green === undefined) || session.green! <= 13) &&
+    ((session.blue === undefined) || session.blue! <= 14);
+}
+
 export function parse(line: string): Game[] {
   let result: Game[] = [];
 
@@ -35,7 +42,7 @@ export function parse(line: string): Game[] {
   rawData.forEach((p) => {
     let game: Game = { id: id };
     let session: Session = {};
-    
+
     // find blue
     const regexBlue = /(\d+)\s+blue/;
     const matchBlue = regexBlue.exec(p);
@@ -98,4 +105,4 @@ export async function answer(filePath: string): Promise<number> {
 }
 
 answer(`${SourceFolderPath}puzzle.data`)
-.then(answer=>console.log(answer))
+  .then(answer => console.log(answer))

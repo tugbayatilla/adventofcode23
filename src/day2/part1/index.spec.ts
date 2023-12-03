@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, SourceFolderPath, answer, evaluate, parse, sum  } from ".";
+import { Day, SourceFolderPath, answer, evaluate, evaluateSession, parse, sum  } from ".";
 
 
 describe(`${Day}: evaluate parsed data`, () => {
@@ -84,4 +84,25 @@ describe(`${Day}: finding answer`, () => {
   });
 });
 
+
+describe(`${Day}: evaluate session`, () => {
+  it(`${Day}: should more than 12 red cubes be false`, () => {
+    expect(evaluateSession({red:13})).to.equal(false)
+  }),
+  it(`${Day}: should more than 13 green cubes be false`, () => {
+    expect(evaluateSession({green:14})).to.equal(false)
+  }),
+  it(`${Day}: should more than 14 blue cubes be false`, () => {
+    expect(evaluateSession({blue:15})).to.equal(false)
+  }),
+  it(`${Day}: should less than 12 red cubes be false`, () => {
+    expect(evaluateSession({red:11})).to.equal(true)
+  }),
+  it(`${Day}: should less than 13 green cubes be false`, () => {
+    expect(evaluateSession({green:12})).to.equal(true)
+  }),
+  it(`${Day}: should less than 14 blue cubes be false`, () => {
+    expect(evaluateSession({blue:13})).to.equal(true)
+  })
+});
 
