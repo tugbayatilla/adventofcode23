@@ -23,5 +23,5 @@ export function findFewest(sessions: Session[]): Required<Session> {
 }
 
 export function powerOfMinimum(session: Required<Session>): number {
-  return 48;
+  return Object.keys(session).reduce((acc, key)=> acc * (session[key as keyof Session] ?? 1),1)
 }

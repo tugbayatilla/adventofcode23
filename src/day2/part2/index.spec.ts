@@ -19,5 +19,11 @@ describe(`${Day}: find the power of the minimum set of cubes`, () => {
     const session = findFewest(game1.sessions)
     expect(powerOfMinimum(session)).to
     .equal(48)
+  }),
+  it(`${Day}: find power of minimum for game 2`, () => {
+    const game2 = parseLine('Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')
+    const session = findFewest(game2.sessions)
+    expect(powerOfMinimum(session)).to
+    .equal(12)
   })
 });
