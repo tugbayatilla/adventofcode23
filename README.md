@@ -56,4 +56,10 @@ Touch Time: 1h37m
 - shit, i need to read the text much more carefully.i miss understood the condition. yet if you have a small kid, and be distracte 12 times in 1 hour, i think it is ok, and also she is the most important thing ever.
 - writing wrong test, i mean, wrong expected value. ofcourse i will spend hours for this :(
 - always work with clear mind.
-- 
+
+### Part 2
+
+- After refactoring part 1, this one is quite easy to handle.
+- Again, i would like to point out one important thing. I need clear 1 hour to concentrate, context switching is not good :)
+- I could write code more smaller yet i knew exactly, that's why i wrote directly. No idea it is a good thing or not, not to stick to smallest steps
+
