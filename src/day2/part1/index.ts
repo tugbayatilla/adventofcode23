@@ -15,13 +15,7 @@ export function parseLine(line: string): Game {
 
   let rawSessions = line.split(';');
 
-  // find game id
-  // the number between space and : at the first element
-  var spaceIndex = rawSessions[0].indexOf(' ');
-  var colonIndex = rawSessions[0].indexOf(':');
-  var id = Number(rawSessions[0].substring(spaceIndex, colonIndex));
-
-  let game: Game = { id: id, sessions: [] };
+  let game: Game = { id: findGameId(line), sessions: [] };
 
   rawSessions.forEach((p) => {
 
@@ -49,6 +43,19 @@ function find<T extends keyof Session>(line: string, session: Session, color: T)
   }
 
   return session;
+}
+
+function findGameId(line: string): number {
+  const regexExpression = /Game (\d+)/;
+  const regex = new RegExp(regexExpression);
+
+  const matches = line.match(regex);
+
+  if (matches && matches[1]) {
+    return parseInt(matches[1], 10);
+  }
+
+  throw Error('unable to find game id');
 }
 
 export function sum(lines: string[]): number {
