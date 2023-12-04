@@ -50,10 +50,13 @@ export const findNeighbor = (
     return line.substring(indexOfNumber, indexOfNumber - 1);
   }
   if (direction === "top") {
+    const topLine = lines[indexOfLine - 1];
+    if (!topLine) return "";
+
     const line = lines[indexOfLine];
     const indexOfNumber = findIndex(line, number);
-    const topLine = lines[indexOfLine-1];
-    const startIndex = indexOfNumber-1;
+
+    const startIndex = indexOfNumber - 1;
     const endIndex = indexOfNumber + String(number).length + 1;
 
     return topLine.substring(startIndex, endIndex);

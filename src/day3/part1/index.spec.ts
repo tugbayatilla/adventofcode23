@@ -25,11 +25,12 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
 
   describe(`${Day}: find neighbors of given index on the line '${allLines[0]}'`, () => {
     const indexOfLine = 0;
-    const theories: ["right" | "left", number, string][] = [
+    const theories: [Direction, number, string][] = [
       ["right", 467, "."],
       ["left", 467, ""],
       ["right", 114, "."],
       ["left", 114, "."],
+      ["top", 467, ""],
     ];
 
     theories.forEach(([direction, number, expected]) => {
