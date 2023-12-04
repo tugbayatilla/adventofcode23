@@ -27,5 +27,5 @@ export const findNumbers = (line: string): number[] => {
 
 
 export const findIndex = (line: string, num: number): number => {
-    return 0;
+    return line.indexOf(String(num))
 }
