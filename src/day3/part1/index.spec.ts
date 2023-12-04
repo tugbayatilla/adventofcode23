@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, Direction, SourceFolderPath, findIndex, findNeighbor, findNumbers } from ".";
+import { Day, Direction, SourceFolderPath, findIndex, findNeighbor, findNumbers, hasSymbol } from ".";
 import { read } from "../../read";
 
 describe(`${Day}: the sum of all of the part numbers in the engine schematic`, async () => {
@@ -64,4 +64,17 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
       });
     });
   });
+
+  describe(`${Day}: string has symbol`, () => {
+    const theories: [line:string, expected:boolean][] = [
+      ["...", false],
+    ];
+    theories.forEach(([line, expected]) => {
+      it(`should '${line}' be ${expect}`, () => {
+        expect(hasSymbol(line)).to.equal(expected);
+      });
+    });
+  });
+
+
 });

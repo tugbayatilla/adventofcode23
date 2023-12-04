@@ -76,3 +76,8 @@ export const findNeighbor = (
 
   return "";
 };
+
+
+export const hasSymbol = (line: string): boolean => {
+    return false;
+}
