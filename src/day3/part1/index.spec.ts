@@ -48,6 +48,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
     const indexOfLine = 2;
     const theories: [Direction, number, string][] = [
       ["top", 35, "..*."],
+      ["top", 633, "....."],
       
     ];
 
