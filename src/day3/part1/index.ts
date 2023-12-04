@@ -6,7 +6,7 @@ read(filePath:string): string[] -- line
 FOREACH line
     findNumbers(line:string): number[]
     FOREACH number
-        findIndex(num: number): number
+        findIndex(line: string, num: number): number
         getNeighbor('top'|'botton'|'left','right':string, index: number): string
         FOREACH neighbor - 'top'|'botton'|'left','right'
             hasSymbol(neighbor: string): boolean 
@@ -24,3 +24,8 @@ export const findNumbers = (line: string): number[] => {
 
     return []; 
 };
+
+
+export const findIndex = (line: string, num: number): number => {
+    return 0;
+}
