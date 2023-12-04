@@ -42,6 +42,12 @@ export const findNeighbor = (
         const startIndex = indexOfNumber + String(number).length;
         return line.substring(startIndex, startIndex + 1)
     }
+    if(direction === 'left'){
+      const line = lines[indexOfLine];
+      const indexOfNumber = findIndex(line, number);
+
+      return line.substring(indexOfNumber, indexOfNumber - 1)
+  }
   
     return "";
 };

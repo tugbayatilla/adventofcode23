@@ -26,7 +26,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, (
       ["right", 467, '.'],
       ["left", 467, ''],
       ["right", 114, '.'],
-     
+      ["left", 114, '.']
     ];
   
     theories.forEach(([direction, number, expected]) => {
