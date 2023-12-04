@@ -63,3 +63,9 @@ Touch Time: 1h37m
 - Again, i would like to point out one important thing. I need clear 1 hour to concentrate, context switching is not good :)
 - I could write code more smaller yet i knew exactly, that's why i wrote directly. No idea it is a good thing or not, not to stick to smallest steps
 
+## Day 3
+
+### Part 1
+
+- After i read the instructions, i have build my design template with contains what i need to do to accomplish the task
+- I am usign regex again, because it is quite easy. but dont forget tp put 'g' global at the end to get all results :)
