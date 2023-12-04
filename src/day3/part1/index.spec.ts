@@ -22,19 +22,21 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, (
       '467..114..'
     ]
     const indexOfLine = 0;
-    
-    it("should 'right' neighbor of 467 be . (dot)", () => {
-      const number = 467;
-      const direction = 'right'
-      expect(findNeighbor(allLines, indexOfLine, number, direction))
-      .to.deep.equal('.');
-    }),
-    it("should 'left' neighbor of 467 be empty string", () => {
-      const direction = 'left'
-      const number = 467;
-      expect(findNeighbor(allLines, indexOfLine, number, direction))
-      .to.deep.equal('');
+    const theories: ['right'|'left', number, string][] = [
+      ["right", 467, '.'],
+      ["left", 467, ''],
+     
+    ];
+  
+    theories.forEach(([direction, number, expected]) => {
+      it(`should '${direction}' neighbor of 114 be ${expected === '' ? 'empty string' : expected }`, () => {
+        expect(findNeighbor(allLines, indexOfLine, number, direction))
+        .to
+        .deep
+        .equal(expected);
+      });
     });
+
   });
 
 
