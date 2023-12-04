@@ -70,6 +70,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
       ["...", false],
       ["...*", true],
       ["...#", true],
+      ["...+", true],
     ];
     theories.forEach(([line, expected]) => {
       it(`should '${line}' be ${expected}`, () => {
