@@ -28,7 +28,7 @@ export const findIndex = (line: string, num: number): number => {
   return line.indexOf(String(num));
 };
 
-export type Direction = "right" | "left" | "top";
+export type Direction = "right" | "left" | "top" | 'bottom';
 
 export const findNeighbor = (
   lines: string[],
@@ -60,6 +60,18 @@ export const findNeighbor = (
     const endIndex = indexOfNumber + String(number).length + 1;
 
     return topLine.substring(startIndex, endIndex);
+  }
+  if (direction === "bottom") {
+    const bottomLine = lines[indexOfLine + 1];
+    if (!bottomLine) return "";
+
+    const line = lines[indexOfLine];
+    const indexOfNumber = findIndex(line, number);
+
+    const startIndex = indexOfNumber - 1;
+    const endIndex = indexOfNumber + String(number).length + 1;
+
+    return bottomLine.substring(startIndex, endIndex);
   }
 
   return "";
