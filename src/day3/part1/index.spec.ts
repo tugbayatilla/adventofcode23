@@ -25,6 +25,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, (
     const theories: ['right'|'left', number, string][] = [
       ["right", 467, '.'],
       ["left", 467, ''],
+      ["right", 114, '.'],
      
     ];
   
