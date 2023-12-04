@@ -15,21 +15,33 @@ FOREACH line
 */
 
 export const findNumbers = (line: string): number[] => {
-    const pattern = /\d+/g
-    const regex = new RegExp(pattern);
-    const matches = line.match(regex);
-    
-    if(matches)
-        return matches.map(Number);
+  const pattern = /\d+/g;
+  const regex = new RegExp(pattern);
+  const matches = line.match(regex);
 
-    return []; 
+  if (matches) return matches.map(Number);
+
+  return [];
 };
 
-
 export const findIndex = (line: string, num: number): number => {
-    return line.indexOf(String(num))
-}
+  return line.indexOf(String(num));
+};
 
-export const findNeighbor = (lines: string[], indexOfLine: number, direction: 'right'): string => {
-    return '';
-}
+export const findNeighbor = (
+  lines: string[],
+  indexOfLine: number,
+  number: number,
+  direction: "right"
+): string => {
+  
+    if(direction === 'right'){
+        const line = lines[indexOfLine];
+        const indexOfNumber = findIndex(line, number);
+
+        const startIndex = indexOfNumber + String(number).length;
+        return line.substring(startIndex, startIndex + 1)
+    }
+  
+    return "";
+};

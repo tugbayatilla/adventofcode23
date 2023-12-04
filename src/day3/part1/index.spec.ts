@@ -24,7 +24,8 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, (
       ]
       const indexOfLine = 0;
       const direction = 'right'
-      expect(findNeighbor(allLines, indexOfLine, direction))
+      const number = 467;
+      expect(findNeighbor(allLines, indexOfLine, number, direction))
       .to.deep.equal('.');
     });
   });
