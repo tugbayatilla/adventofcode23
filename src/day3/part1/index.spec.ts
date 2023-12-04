@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, SourceFolderPath, findIndex, findNeighbor, findNumbers } from ".";
+import { Day, Direction, SourceFolderPath, findIndex, findNeighbor, findNumbers } from ".";
 import { read } from "../../read";
 
 describe(`${Day}: the sum of all of the part numbers in the engine schematic`, async () => {
@@ -30,6 +30,24 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
       ["left", 467, ""],
       ["right", 114, "."],
       ["left", 114, "."],
+    ];
+
+    theories.forEach(([direction, number, expected]) => {
+      it(`should '${direction}' neighbor of ${number} be ${
+        expected === "" ? "empty string" : expected
+      }`, () => {
+        expect(
+          findNeighbor(allLines, indexOfLine, number, direction)
+        ).to.deep.equal(expected);
+      });
+    });
+  });
+
+  describe(`${Day}: find neighbors of given index on the line '${allLines[2]}'`, () => {
+    const indexOfLine = 2;
+    const theories: [Direction, number, string][] = [
+      ["top", 35, "..*."],
+      
     ];
 
     theories.forEach(([direction, number, expected]) => {

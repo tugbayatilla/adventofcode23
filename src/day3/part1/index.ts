@@ -28,26 +28,36 @@ export const findIndex = (line: string, num: number): number => {
   return line.indexOf(String(num));
 };
 
+export type Direction = "right" | "left" | "top";
+
 export const findNeighbor = (
   lines: string[],
   indexOfLine: number,
   number: number,
-  direction: "right" | 'left'
+  direction: Direction
 ): string => {
-  
-    if(direction === 'right'){
-        const line = lines[indexOfLine];
-        const indexOfNumber = findIndex(line, number);
+  if (direction === "right") {
+    const line = lines[indexOfLine];
+    const indexOfNumber = findIndex(line, number);
 
-        const startIndex = indexOfNumber + String(number).length;
-        return line.substring(startIndex, startIndex + 1)
-    }
-    if(direction === 'left'){
-      const line = lines[indexOfLine];
-      const indexOfNumber = findIndex(line, number);
-
-      return line.substring(indexOfNumber, indexOfNumber - 1)
+    const startIndex = indexOfNumber + String(number).length;
+    return line.substring(startIndex, startIndex + 1);
   }
-  
-    return "";
+  if (direction === "left") {
+    const line = lines[indexOfLine];
+    const indexOfNumber = findIndex(line, number);
+
+    return line.substring(indexOfNumber, indexOfNumber - 1);
+  }
+  if (direction === "top") {
+    const line = lines[indexOfLine];
+    const indexOfNumber = findIndex(line, number);
+    const topLine = lines[indexOfLine-1];
+    const startIndex = indexOfNumber-1;
+    const endIndex = indexOfNumber + String(number).length + 1;
+
+    return topLine.substring(startIndex, endIndex);
+  }
+
+  return "";
 };
