@@ -32,7 +32,7 @@ export const findNeighbor = (
   lines: string[],
   indexOfLine: number,
   number: number,
-  direction: "right"
+  direction: "right" | 'left'
 ): string => {
   
     if(direction === 'right'){

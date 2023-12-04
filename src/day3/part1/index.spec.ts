@@ -27,6 +27,16 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, (
       const number = 467;
       expect(findNeighbor(allLines, indexOfLine, number, direction))
       .to.deep.equal('.');
+    }),
+    it("should 'left' neighbor of 467 be empty string", () => {
+      const allLines: string[] = [
+        '467..114..'
+      ]
+      const indexOfLine = 0;
+      const direction = 'left'
+      const number = 467;
+      expect(findNeighbor(allLines, indexOfLine, number, direction))
+      .to.deep.equal('');
     });
   });
 
