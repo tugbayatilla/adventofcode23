@@ -79,8 +79,10 @@ export const findNeighbor = (
 
 
 export const hasSymbol = (line: string): boolean => {
-    const symbols = '\\*|\\#|\\+|\\$'
-    const regex = new RegExp(`[${symbols}]`);
+    const symbols = ['$', '*', '+', '?', '#'];
+
+    const escapedSymbols = symbols.join('|');
+    const regex = new RegExp(`[${escapedSymbols}]`);
 
     return regex.test(line);
 }
