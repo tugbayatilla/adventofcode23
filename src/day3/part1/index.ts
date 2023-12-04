@@ -1,3 +1,5 @@
+import { read } from "../../read";
+
 export const Day = "day3"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`; // <-- change this when you copy
 
@@ -86,3 +88,47 @@ export const hasSymbol = (line: string): boolean => {
 
     return regex.test(line);
 }
+
+export async function answer(filePath: string): Promise<number> {
+    return read(filePath).then((lines) => {
+      let totalSum: number = 0;
+  
+      lines.forEach((line, lineIndex)=>{
+        const numbers = findNumbers(line);
+        
+        numbers.forEach((number, idx)=>{
+
+            const leftNeighbor = findNeighbor(lines, lineIndex, number, 'left');
+            if(hasSymbol(leftNeighbor))
+            {
+                totalSum += number;
+                return;
+            }
+            
+            const rightNeighbor = findNeighbor(lines, lineIndex, number, 'right');
+            if(hasSymbol(rightNeighbor))
+            {
+                totalSum += number;
+                return;
+            }
+
+            const topNeighbor = findNeighbor(lines, lineIndex, number, 'top');
+            if(hasSymbol(topNeighbor))
+            {
+                totalSum += number;
+                return;
+            }
+
+            const bottomNeighbor = findNeighbor(lines, lineIndex, number, 'bottom');
+            if(hasSymbol(bottomNeighbor))
+            {
+                totalSum += number;
+                return;
+            }
+        });
+        
+      });
+  
+      return totalSum;
+    });
+  }
