@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Day, findIndex, findNumbers } from ".";
+import { Day, findIndex, findNeighbor, findNumbers } from ".";
 
 describe(`${Day}: the sum of all of the part numbers in the engine schematic`, () => {
   describe(`${Day}: find numbers in a string (line)`, () => {
@@ -15,6 +15,18 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, (
     it("should index of 114 be 5", () => {
       expect(findIndex("467..114..", 114)).to.deep.equal(5);
     })
+  });
+
+  describe(`${Day}: find neighbors of given index on the line`, () => {
+    it("should 'right' neighbor of 467 be . (dot)", () => {
+      const allLines: string[] = [
+        '467..114..'
+      ]
+      const indexOfLine = 0;
+      const direction = 'right'
+      expect(findNeighbor(allLines, indexOfLine, direction))
+      .to.deep.equal('.');
+    });
   });
 
 

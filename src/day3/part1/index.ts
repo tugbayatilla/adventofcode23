@@ -29,3 +29,7 @@ export const findNumbers = (line: string): number[] => {
 export const findIndex = (line: string, num: number): number => {
     return line.indexOf(String(num))
 }
+
+export const findNeighbor = (lines: string[], indexOfLine: number, direction: 'right'): string => {
+    return '';
+}
