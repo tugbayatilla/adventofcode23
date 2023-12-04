@@ -50,6 +50,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
       ["top", 35, "..*."],
       ["top", 633, "....."],
       ["bottom", 35, "...."],
+      ["bottom", 633, ".#..."],
       
     ];
 
