@@ -68,6 +68,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
   describe(`${Day}: string has symbol`, () => {
     const theories: [line:string, expected:boolean][] = [
       ["...", false],
+      ["...*", true],
     ];
     theories.forEach(([line, expected]) => {
       it(`should '${line}' be ${expect}`, () => {
