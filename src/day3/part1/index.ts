@@ -48,25 +48,19 @@ export const findNeighbor = (
   number: number,
   direction: Direction
 ): string => {
-  if (direction === "right") {
-    const line = lines[indexOfLine];
-    const indexOfNumber = findIndex(line, number);
+  const line = lines[indexOfLine];
+  const indexOfNumber = findIndex(line, number);
 
+  if (direction === "right") {
     const startIndex = indexOfNumber + String(number).length;
     return line.substring(startIndex, startIndex + 1);
   }
   if (direction === "left") {
-    const line = lines[indexOfLine];
-    const indexOfNumber = findIndex(line, number);
-
     return line.substring(indexOfNumber, indexOfNumber - 1);
   }
   if (direction === "top") {
     const topLine = lines[indexOfLine - 1];
     if (!topLine) return "";
-
-    const line = lines[indexOfLine];
-    const indexOfNumber = findIndex(line, number);
 
     const startIndex = indexOfNumber - 1;
     const endIndex = indexOfNumber + String(number).length + 1;
@@ -76,9 +70,6 @@ export const findNeighbor = (
   if (direction === "bottom") {
     const bottomLine = lines[indexOfLine + 1];
     if (!bottomLine) return "";
-
-    const line = lines[indexOfLine];
-    const indexOfNumber = findIndex(line, number);
 
     const startIndex = indexOfNumber - 1;
     const endIndex = indexOfNumber + String(number).length + 1;
@@ -174,6 +165,6 @@ function getNumberIfNeighborHasSymbol(
 answer(`${SourceFolderPath}puzzle.data`)
   .then((answer) => console.log(`${SourceFolderPath}: ${answer}`))
   .then(() => write(`${SourceFolderPath}validNumbers.out`, allNumbers));
-// 526494 - wrong
-// 527446 - right : +952
+// 526731 - wrong
+// 527446 - right : +715
 // 46,3,false,<-- ignored should NOT be ignored
