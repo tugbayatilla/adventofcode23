@@ -20,7 +20,7 @@ export const findNumbers = (line: string): number[] => {
   const pattern = /(\d+)\b/g;
   const regex = new RegExp(pattern);
   const matches = line.match(regex);
-  
+
   if (matches) return matches.map(Number);
 
   return [];
@@ -81,60 +81,46 @@ export const findNeighbor = (
 
 
 export const hasSymbol = (line: string): boolean => {
-    const symbols = ['$', '*', '+', '#', '=', '%', '&', '/', '-', '@'];
+  const symbols = ['$', '*', '+', '#', '=', '%', '&', '/', '-', '@'];
 
-    const escapedSymbols = symbols.map(symbol => `\\${symbol}`).join('|');
-    const regex = new RegExp(`[${escapedSymbols}]`);
+  const escapedSymbols = symbols.map(symbol => `\\${symbol}`).join('|');
+  const regex = new RegExp(`[${escapedSymbols}]`);
 
-    return regex.test(line);
+  return regex.test(line);
 }
 
 export async function answer(filePath: string): Promise<number> {
-    return read(filePath).then((lines) => {
-      let totalSum: number = 0;
-  
-      lines.forEach((line, lineIndex)=>{
-        const numbers = findNumbers(line);
-        
-        numbers.forEach((number, idx)=>{
+  return read(filePath).then((lines) => {
+    let totalSum: number = 0;
 
-            const leftNeighbor = findNeighbor(lines, lineIndex, number, 'left');
-            if(hasSymbol(leftNeighbor))
-            {
-                totalSum += number;
-                return;
-            }
-            
-            const rightNeighbor = findNeighbor(lines, lineIndex, number, 'right');
-            if(hasSymbol(rightNeighbor))
-            {
-                totalSum += number;
-                return;
-            }
+    lines.forEach((line, lineIndex) => {
+      const numbers = findNumbers(line);
 
-            const topNeighbor = findNeighbor(lines, lineIndex, number, 'top');
-            if(hasSymbol(topNeighbor))
-            {
-                totalSum += number;
-                return;
-            }
+      numbers.forEach((number) => {
 
-            const bottomNeighbor = findNeighbor(lines, lineIndex, number, 'bottom');
-            if(hasSymbol(bottomNeighbor))
-            {
-                totalSum += number;
-                return;
-            }
-        });
-        
+        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "left");
+        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "right");
+        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "top");
+        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "bottom");
+
       });
-  
-      return totalSum;
+
     });
+
+    return totalSum;
+  });
+}
+
+
+function addNumberIfNeighborHasSymbol(lines: string[], lineIndex: number, number: number, direction: Direction): number {
+  const leftNeighbor = findNeighbor(lines, lineIndex, number, direction);
+  if (hasSymbol(leftNeighbor)) {
+    return number;
   }
+  return 0;
+}
 
-
-  answer(`${SourceFolderPath}puzzle.data`)
+answer(`${SourceFolderPath}puzzle.data`)
   .then(answer => console.log(`${SourceFolderPath}: ${answer}`))
 // 526494 - wrong
 // 
