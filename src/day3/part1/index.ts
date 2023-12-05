@@ -17,10 +17,10 @@ FOREACH line
 */
 
 export const findNumbers = (line: string): number[] => {
-  const pattern = /\d+/g;
+  const pattern = /(\d+)\b/g;
   const regex = new RegExp(pattern);
   const matches = line.match(regex);
-
+  
   if (matches) return matches.map(Number);
 
   return [];
@@ -81,9 +81,9 @@ export const findNeighbor = (
 
 
 export const hasSymbol = (line: string): boolean => {
-    const symbols = ['$', '*', '+', '?', '#'];
+    const symbols = ['$', '*', '+', '#', '=', '%', '&', '/', '-', '@'];
 
-    const escapedSymbols = symbols.join('|');
+    const escapedSymbols = symbols.map(symbol => `\\${symbol}`).join('|');
     const regex = new RegExp(`[${escapedSymbols}]`);
 
     return regex.test(line);
@@ -132,3 +132,9 @@ export async function answer(filePath: string): Promise<number> {
       return totalSum;
     });
   }
+
+
+  answer(`${SourceFolderPath}puzzle.data`)
+  .then(answer => console.log(`${SourceFolderPath}: ${answer}`))
+// 526494 - wrong
+// 
