@@ -1,4 +1,5 @@
 import { read } from "../../read";
+import { write } from "../../write";
 
 export const Day = "day3"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`; // <-- change this when you copy
@@ -98,11 +99,16 @@ export async function answer(filePath: string): Promise<number> {
 
       numbers.forEach((number) => {
 
-        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "left");
-        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "right");
-        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "top");
-        totalSum += addNumberIfNeighborHasSymbol(lines, lineIndex, number, "bottom");
+        let partNumber = getNumberIfNeighborHasSymbol(lines, lineIndex, number, "left");
+        if (partNumber === 0)
+          partNumber = getNumberIfNeighborHasSymbol(lines, lineIndex, number, "right");
+        if (partNumber === 0)
+          partNumber = getNumberIfNeighborHasSymbol(lines, lineIndex, number, "top");
+        if (partNumber === 0)
+          partNumber = getNumberIfNeighborHasSymbol(lines, lineIndex, number, "bottom");
 
+        allNumbers.push([lineIndex + 1, number, partNumber !== 0, partNumber === 0 ? '<-- ignored' : '']);
+        totalSum += partNumber;
       });
 
     });
@@ -111,16 +117,19 @@ export async function answer(filePath: string): Promise<number> {
   });
 }
 
+let allNumbers: [index: number, number: number, isValid:boolean, info:string][] = []
 
-function addNumberIfNeighborHasSymbol(lines: string[], lineIndex: number, number: number, direction: Direction): number {
-  const leftNeighbor = findNeighbor(lines, lineIndex, number, direction);
-  if (hasSymbol(leftNeighbor)) {
-    return number;
-  }
+function getNumberIfNeighborHasSymbol(lines: string[], lineIndex: number, number: number, direction: Direction): number {
+  const neighbor = findNeighbor(lines, lineIndex, number, direction);
+  if (hasSymbol(neighbor)) return number;
   return 0;
 }
 
 answer(`${SourceFolderPath}puzzle.data`)
   .then(answer => console.log(`${SourceFolderPath}: ${answer}`))
+  .then(
+    () => write(`${SourceFolderPath}validNumbers.out`, allNumbers)
+  );
 // 526494 - wrong
 // 
+
