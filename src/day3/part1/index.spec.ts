@@ -107,5 +107,32 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
   });
 
 
+  describe(`${Day}: finding neighbor with edge cases`, () => {
+    it(`${Day}: first number in seconds line`, () => {
+
+      var lines: string[] = [
+        '4.........',
+        '123.......',
+        '5.........',
+      ]
+
+      expect(findNeighbor(lines, 1, 123, 'top')).to.be.equal('4...');
+      expect(findNeighbor(lines, 1, 123, 'bottom')).to.be.equal('5...');
+
+    }),
+    it(`${Day}: last number in seconds line`, () => {
+
+      var lines: string[] = [
+        '.........4',
+        '.......123',
+        '.........5',
+      ]
+
+      expect(findNeighbor(lines, 1, 123, 'top')).to.be.equal('...4');
+      expect(findNeighbor(lines, 1, 123, 'bottom')).to.be.equal('...5');
+
+    });
+  });
+
 
 });
