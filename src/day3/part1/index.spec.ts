@@ -39,31 +39,31 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
         expect(findNeighbor(allLines, indexOfLine, number, direction)).to.equal(expected);
       });
     });
-  });
 
-  describe(`${Day}: find neighbors of given index on the line '${allLines[2]}'`, () => {
-    const indexOfLine = 2;
-    const theories: [Direction, number, string][] = [
-      ["top", 35, "..*."],
-      ["top", 633, "....."],
-      ["bottom", 35, "...."],
-      ["bottom", 633, ".#..."],
-    ];
+    describe(`${Day}: find neighbors of given index on the line '${allLines[2]}'`, () => {
+      const indexOfLine = 2;
+      const theories: [Direction, number, string][] = [
+        ["top", 35, "..*."],
+        ["top", 633, "....."],
+        ["bottom", 35, "...."],
+        ["bottom", 633, ".#..."],
+      ];
 
-    theories.forEach(([direction, number, expected]) => {
-      it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
-        expect(findNeighbor(allLines, indexOfLine, number, direction)).to.deep.equal(expected);
+      theories.forEach(([direction, number, expected]) => {
+        it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
+          expect(findNeighbor(allLines, indexOfLine, number, direction)).to.deep.equal(expected);
+        });
       });
     });
-  });
 
-  describe(`${Day}: find neighbors of given index on the line '${allLines[2]}'`, () => {
-    const indexOfLine = 4;
-    const theories: [Direction, number, string][] = [["right", 617, "*"]];
+    describe(`${Day}: find neighbors of given index on the line '${allLines[2]}'`, () => {
+      const indexOfLine = 4;
+      const theories: [Direction, number, string][] = [["right", 617, "*"]];
 
-    theories.forEach(([direction, number, expected]) => {
-      it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
-        expect(findNeighbor(allLines, indexOfLine, number, direction)).to.deep.equal(expected);
+      theories.forEach(([direction, number, expected]) => {
+        it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
+          expect(findNeighbor(allLines, indexOfLine, number, direction)).to.deep.equal(expected);
+        });
       });
     });
   });
