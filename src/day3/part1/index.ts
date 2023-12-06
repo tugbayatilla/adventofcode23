@@ -47,10 +47,11 @@ export const findNeighbor = (lines: string[], indexOfLine: number, number: numbe
 
   let startIndex: number = 0;
   let endIndex: number = 0;
+  const numberLength = String(number).length;
 
   switch (direction) {
     case "right":
-      startIndex = indexOfNumber + String(number).length;
+      startIndex = indexOfNumber + numberLength;
       return line.substring(startIndex, startIndex + 1);
     case "left":
       return line.substring(indexOfNumber, indexOfNumber - 1);
@@ -59,7 +60,7 @@ export const findNeighbor = (lines: string[], indexOfLine: number, number: numbe
       if (!topLine) return "";
 
       startIndex = indexOfNumber - 1;
-      endIndex = indexOfNumber + String(number).length + 1;
+      endIndex = indexOfNumber + numberLength + 1;
 
       return topLine.substring(startIndex, endIndex);
     case "bottom":
@@ -67,7 +68,7 @@ export const findNeighbor = (lines: string[], indexOfLine: number, number: numbe
       if (!bottomLine) return "";
 
       startIndex = indexOfNumber - 1;
-      endIndex = indexOfNumber + String(number).length + 1;
+      endIndex = indexOfNumber + numberLength + 1;
 
       return bottomLine.substring(startIndex, endIndex);
   }
