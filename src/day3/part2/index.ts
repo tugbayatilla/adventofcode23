@@ -32,13 +32,18 @@ finding the number is the key, we need to go left and right until there is no nu
 number, or symbol
 
 */
+
 export enum CharType {
   "dot",
   "number",
+  "symbol"
 }
 
 export const identifyChar = (char: string | number): CharType => {
   if (char === ".") return CharType.dot;
+  if (typeof char === 'number') return CharType.number;
 
-  return CharType.number;
+  return CharType.symbol;
 };
+
+export const SYMBOLS: string[] = ['$', '*', '+', '#', '=', '%', '&', '/', '-', '@'];
