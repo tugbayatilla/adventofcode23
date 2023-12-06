@@ -1,7 +1,7 @@
 const Day = "day3"; // <-- change this when you copy
 const Part = "part2"; // <-- change this when you copy
-export const DayAndPart =  `${Day}(${Part[0]}${Part[Part.length-1]})`;
-export const SourceFolderPath = `./src/${Day}/${Part}/`; 
+export const DayAndPart = `${Day}(${Part[0]}${Part[Part.length - 1]})`;
+export const SourceFolderPath = `./src/${Day}/${Part}/`;
 
 /* to prevent prettier to format this section
 read(filePath:string): string[] -- line
@@ -32,8 +32,13 @@ finding the number is the key, we need to go left and right until there is no nu
 number, or symbol
 
 */
-export type Dot = '.';
-
-export const identifyChar = (char: string): Dot => {
-    return '.';
+export enum CharType {
+  "dot",
+  "number",
 }
+
+export const identifyChar = (char: string | number): CharType => {
+  if (char === ".") return CharType.dot;
+
+  return CharType.number;
+};
