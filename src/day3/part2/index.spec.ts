@@ -1,6 +1,13 @@
 import { expect } from "chai";
-import { Day } from ".";
+import { DayAndPart, identifyChar, Dot } from ".";
 
-describe(`${Day}: `, () => {
-  expect(true).to.be.equal(true);
+describe(`${DayAndPart}: identify char`, () => {
+  const dot:Dot = '.';
+
+  it(`${DayAndPart}: should dot(.) identified as dot`, () => {
+    expect(identifyChar('.')).to.be.equal(dot);
+  });
+  
+
+
 });
