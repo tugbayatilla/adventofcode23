@@ -69,3 +69,21 @@ Touch Time: 1h37m
 
 - After i read the instructions, i have build my design template with contains what i need to do to accomplish the task
 - I am usign regex again, because it is quite easy. but dont forget tp put 'g' global at the end to get all results :)
+- ooookkkeeeyy, where start. 
+  - After i build my solution, all tests were green and with test data it is totatly ok, until i run the code with puzzle data. :)))
+  - of course it did not work, otherwise it would be easy, right? :)
+  - i have created an another file to see all numbers if there are part numbers or not.
+  - then i compared the un-part numbers to with the puzzle data. 
+  - Voila! I found my first obstacle. single digit number like 3, and there is another number before this like 937. 
+  - ofcourse first i used indexOf, thats why istead of finding the 3, logic found 937 which leads me the wrong solution.
+  - I wrote the test, and implement the solution. Voila! Tests are green, yet final answer is WRONG! :)
+  - I kept searching another problematic number. Voila! I found another one. same number in the same line but one of them is part number, but the other one is not.
+  - kind of similiar issue but leading different approach.
+  - Finally i found the final answer and the job is done done. 2 times :)
+
+### Part 2
+
+- ofcourse when i read the part, i realised that my implementation is shit. Yes, do you believe that! I do, actually :)
+- then I re-design my code, which is shit. because first implementation, maybe i could use and do some refactoring but i want to see something nice at the end.
+- so it is decided, i will go for new design. Next time, maybe i can fo for refactoring. it would be nice also. there are a lot of sections to try, so let's coding...
+
