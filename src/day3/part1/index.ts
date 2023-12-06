@@ -1,7 +1,6 @@
 import { read } from "../../read";
 import { write } from "../../write";
 
-
 export const Day = "day3"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`; // <-- change this when you copy
 
@@ -28,56 +27,48 @@ export const findNumbers = (line: string): number[] => {
   return [];
 };
 
-export const findIndex = (line: string, number: number): number => {
+export const findIndex = (line: string, number: number, startingIndex: number = 0): number => {
   const numbers = findNumbers(line);
-  let startingPosition: number = 0;
 
   for (const n of numbers) {
     if (n === number) break;
-    startingPosition = line.indexOf(String(n), startingPosition) + String(n).length;
+    startingIndex = line.indexOf(String(n), startingIndex) + String(n).length;
   }
 
-  return line.indexOf(String(number), startingPosition);
+  return line.indexOf(String(number), startingIndex);
 };
 
 export type Direction = "right" | "left" | "top" | "bottom";
 
-export const findNeighbor = (
-  lines: string[],
-  indexOfLine: number,
-  number: number,
-  direction: Direction
-): string => {
+export const findNeighbor = (lines: string[], indexOfLine: number, number: number, direction: Direction, startIndex: number = 0): string => {
   const line = lines[indexOfLine];
-  const indexOfNumber = findIndex(line, number);
+  const indexOfNumber = findIndex(line, number, startIndex);
 
-  if (direction === "right") {
-    const startIndex = indexOfNumber + String(number).length;
-    return line.substring(startIndex, startIndex + 1);
+  let endIndex: number = 0;
+
+  switch (direction) {
+    case "right":
+      startIndex = indexOfNumber + String(number).length;
+      return line.substring(startIndex, startIndex + 1);
+    case "left":
+      return line.substring(indexOfNumber, indexOfNumber - 1);
+    case "top":
+      const topLine = lines[indexOfLine - 1];
+      if (!topLine) return "";
+
+      startIndex = indexOfNumber - 1;
+      endIndex = indexOfNumber + String(number).length + 1;
+
+      return topLine.substring(startIndex, endIndex);
+    case "bottom":
+      const bottomLine = lines[indexOfLine + 1];
+      if (!bottomLine) return "";
+
+      startIndex = indexOfNumber - 1;
+      endIndex = indexOfNumber + String(number).length + 1;
+
+      return bottomLine.substring(startIndex, endIndex);
   }
-  if (direction === "left") {
-    return line.substring(indexOfNumber, indexOfNumber - 1);
-  }
-  if (direction === "top") {
-    const topLine = lines[indexOfLine - 1];
-    if (!topLine) return "";
-
-    const startIndex = indexOfNumber - 1;
-    const endIndex = indexOfNumber + String(number).length + 1;
-
-    return topLine.substring(startIndex, endIndex);
-  }
-  if (direction === "bottom") {
-    const bottomLine = lines[indexOfLine + 1];
-    if (!bottomLine) return "";
-
-    const startIndex = indexOfNumber - 1;
-    const endIndex = indexOfNumber + String(number).length + 1;
-
-    return bottomLine.substring(startIndex, endIndex);
-  }
-
-  return "";
 };
 
 export const hasSymbol = (line: string): boolean => {
@@ -97,67 +88,40 @@ export async function answer(filePath: string): Promise<number> {
   });
 }
 
-export let allNumbers: [
-  index: number,
-  number: number,
-  isValid: boolean,
-  info: string
-][] = [];
+export let allNumbers: [index: number, number: number, isValid: boolean, info: string][] = [];
 
 export function sum(lines: string[]): number {
   let totalSum: number = 0;
 
   lines.forEach((line, lineIndex) => {
     const numbers = findNumbers(line);
+    let currentIndexOfNumber: number = 0;
 
+    // prettier-ignore
     numbers.forEach((number) => {
-      let partNumber = getNumberIfNeighborHasSymbol(
-        lines,
-        lineIndex,
-        number,
-        "left"
-      );
-      if (partNumber === 0)
-        partNumber = getNumberIfNeighborHasSymbol(
-          lines,
-          lineIndex,
-          number,
-          "right"
-        );
-      if (partNumber === 0)
-        partNumber = getNumberIfNeighborHasSymbol(
-          lines,
-          lineIndex,
-          number,
-          "top"
-        );
-      if (partNumber === 0)
-        partNumber = getNumberIfNeighborHasSymbol(
-          lines,
-          lineIndex,
-          number,
-          "bottom"
-        );
+      console.log(`number: ${number} -- current index: ${currentIndexOfNumber}`)
 
-      allNumbers.push([
-        lineIndex + 1,
-        number,
-        partNumber !== 0,
-        partNumber === 0 ? "<-- ignored" : "",
-      ]);
+      let partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"left", currentIndexOfNumber);
+      if (partNumber === 0)
+        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"right", currentIndexOfNumber);
+      if (partNumber === 0)
+        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"top", currentIndexOfNumber);
+      if (partNumber === 0)
+        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"bottom", currentIndexOfNumber);
+
+      if(partNumber === number)
+        currentIndexOfNumber = findIndex(line, number, currentIndexOfNumber) + String(number).length;
+      
+      allNumbers.push([lineIndex + 1,number,partNumber !== 0,partNumber === 0 ? "<-- ignored" : ""]);
       totalSum += partNumber;
     });
   });
   return totalSum;
 }
 
-function getNumberIfNeighborHasSymbol(
-  lines: string[],
-  lineIndex: number,
-  number: number,
-  direction: Direction
-): number {
-  const neighbor = findNeighbor(lines, lineIndex, number, direction);
+// prettier-ignore
+function getNumberIfNeighborHasSymbol(  lines: string[],  lineIndex: number,  number: number,  direction: Direction, startIndex: number = 0): number {
+  const neighbor = findNeighbor(lines, lineIndex, number, direction, startIndex);
   if (hasSymbol(neighbor)) return number;
   return 0;
 }
@@ -168,3 +132,4 @@ answer(`${SourceFolderPath}puzzle.data`)
 // 526731 - wrong
 // 527446 - right : +715
 // 46,3,false,<-- ignored should NOT be ignored
+

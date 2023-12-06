@@ -1,15 +1,5 @@
 import { expect } from "chai";
-import {
-  Day,
-  Direction,
-  SourceFolderPath,
-  answer,
-  findIndex,
-  findNeighbor,
-  findNumbers,
-  hasSymbol,
-  sum,
-} from ".";
+import { Day, Direction, SourceFolderPath, answer, findIndex, findNeighbor, findNumbers, hasSymbol, sum } from ".";
 import { read } from "../../read";
 
 describe(`${Day}: the sum of all of the part numbers in the engine schematic`, async () => {
@@ -23,18 +13,16 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
     it("should index of 467 be 0", () => {
       expect(findIndex("467..114..", 467)).to.deep.equal(0);
     }),
-    it("should index of 114 be 5", () => {
-      expect(findIndex("467..114..", 114)).to.deep.equal(5);
-    }),
-    it("should index of 3 be 5", () => {
-      expect(findIndex("937..3..", 3)).to.deep.equal(5);
-    });
+      it("should index of 114 be 5", () => {
+        expect(findIndex("467..114..", 114)).to.deep.equal(5);
+      }),
+      it("should index of 3 be 5", () => {
+        expect(findIndex("937..3..", 3)).to.deep.equal(5);
+      });
   });
 
   let allLines: string[] = [];
-  await read(`${SourceFolderPath}test.data`).then(
-    (lines) => (allLines = lines)
-  );
+  await read(`${SourceFolderPath}test.data`).then((lines) => (allLines = lines));
 
   describe(`${Day}: find neighbors of given index on the line '${allLines[0]}'`, () => {
     const indexOfLine = 0;
@@ -47,12 +35,8 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
     ];
 
     theories.forEach(([direction, number, expected]) => {
-      it(`should '${direction}' neighbor of ${number} be ${
-        expected === "" ? "empty string" : expected
-      }`, () => {
-        expect(findNeighbor(allLines, indexOfLine, number, direction)).to.equal(
-          expected
-        );
+      it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
+        expect(findNeighbor(allLines, indexOfLine, number, direction)).to.equal(expected);
       });
     });
   });
@@ -67,12 +51,8 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
     ];
 
     theories.forEach(([direction, number, expected]) => {
-      it(`should '${direction}' neighbor of ${number} be ${
-        expected === "" ? "empty string" : expected
-      }`, () => {
-        expect(
-          findNeighbor(allLines, indexOfLine, number, direction)
-        ).to.deep.equal(expected);
+      it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
+        expect(findNeighbor(allLines, indexOfLine, number, direction)).to.deep.equal(expected);
       });
     });
   });
@@ -82,12 +62,8 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
     const theories: [Direction, number, string][] = [["right", 617, "*"]];
 
     theories.forEach(([direction, number, expected]) => {
-      it(`should '${direction}' neighbor of ${number} be ${
-        expected === "" ? "empty string" : expected
-      }`, () => {
-        expect(
-          findNeighbor(allLines, indexOfLine, number, direction)
-        ).to.deep.equal(expected);
+      it(`should '${direction}' neighbor of ${number} be ${expected === "" ? "empty string" : expected}`, () => {
+        expect(findNeighbor(allLines, indexOfLine, number, direction)).to.deep.equal(expected);
       });
     });
   });
@@ -109,9 +85,7 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
 
   describe(`${Day}: finding answer with test data`, () => {
     it(`${Day}: should test.data return 4361`, () => {
-      return answer(`${SourceFolderPath}test.data`).then((answer) =>
-        expect(answer).to.equal(4361)
-      );
+      return answer(`${SourceFolderPath}test.data`).then((answer) => expect(answer).to.equal(4361));
     });
   });
 
@@ -144,5 +118,11 @@ describe(`${Day}: the sum of all of the part numbers in the engine schematic`, a
       });
   });
 
+  describe(`${Day}: sum of given lines`, () => {
+    it(`${Day}: should be consequtive two numbers (3...3*.) with second has a symbol`, () => {
+      var lines: string[] = [".......", "3...3*.", "..=...."];
 
+      expect(sum(lines)).to.be.equal(3);
+    });
+  });
 });

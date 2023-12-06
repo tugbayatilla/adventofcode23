@@ -560,7 +560,7 @@
 66,144,true,
 66,246,true,
 67,59,true,
-67,642,true,
+67,642,false,<-- ignored
 67,694,true,
 67,594,true,
 67,308,true,
@@ -891,7 +891,7 @@
 104,678,true,
 104,288,false,<-- ignored
 105,15,true,
-105,144,true,
+105,144,false,<-- ignored
 105,510,true,
 105,177,true,
 105,403,true,
@@ -1034,7 +1034,7 @@
 120,331,true,
 120,37,true,
 121,93,true,
-121,723,true,
+121,723,false,<-- ignored
 121,882,true,
 121,186,true,
 121,642,true,
