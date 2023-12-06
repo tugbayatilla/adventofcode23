@@ -95,26 +95,31 @@ export function sum(lines: string[]): number {
 
   lines.forEach((line, lineIndex) => {
     const numbers = findNumbers(line);
-    let currentIndexOfNumber: number = 0;
 
     // prettier-ignore
     numbers.forEach((number) => {
-      console.log(`number: ${number} -- current index: ${currentIndexOfNumber}`)
+      let partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"left");
+      if (partNumber === 0)
+        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"right");
+      if (partNumber === 0)
+        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"top");
+      if (partNumber === 0)
+        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"bottom");
 
-      let partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"left", currentIndexOfNumber);
-      if (partNumber === 0)
-        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"right", currentIndexOfNumber);
-      if (partNumber === 0)
-        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"top", currentIndexOfNumber);
-      if (partNumber === 0)
-        partNumber = getNumberIfNeighborHasSymbol(lines,lineIndex,number,"bottom", currentIndexOfNumber);
+      const numberLength = String(number).length;
+      const numberIndex = findIndex(line, number);
+      for (let index = 0; index < numberLength; index++) {
+        line = replaceCharAt(line, numberIndex + index, 'X')
+      }
+      lines[lineIndex] = line
+      console.log(line)
 
-      if(partNumber === number)
-        currentIndexOfNumber = findIndex(line, number, currentIndexOfNumber) + String(number).length;
-      
       allNumbers.push([lineIndex + 1,number,partNumber !== 0,partNumber === 0 ? "<-- ignored" : ""]);
       totalSum += partNumber;
     });
+
+   
+
   });
   return totalSum;
 }
@@ -129,7 +134,14 @@ function getNumberIfNeighborHasSymbol(  lines: string[],  lineIndex: number,  nu
 answer(`${SourceFolderPath}puzzle.data`)
   .then((answer) => console.log(`${SourceFolderPath}: ${answer}`))
   .then(() => write(`${SourceFolderPath}validNumbers.out`, allNumbers));
-// 526731 - wrong
-// 527446 - right : +715
-// 46,3,false,<-- ignored should NOT be ignored
 
+
+function replaceCharAt(originalString: string, index: number, replacement: string): string {
+  if (index < 0 || index >= originalString.length) {
+      return originalString;
+  }
+
+  return (
+      originalString.substring(0, index) + replacement + originalString.substring(index + 1)
+  );
+}
