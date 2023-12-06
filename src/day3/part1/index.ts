@@ -27,8 +27,9 @@ export const findNumbers = (line: string): number[] => {
   return [];
 };
 
-export const findIndex = (line: string, number: number, startingIndex: number = 0): number => {
+export const findIndex = (line: string, number: number): number => {
   const numbers = findNumbers(line);
+  let startingIndex: number = 0;
 
   for (const n of numbers) {
     if (n === number) break;
@@ -40,10 +41,11 @@ export const findIndex = (line: string, number: number, startingIndex: number = 
 
 export type Direction = "right" | "left" | "top" | "bottom";
 
-export const findNeighbor = (lines: string[], indexOfLine: number, number: number, direction: Direction, startIndex: number = 0): string => {
+export const findNeighbor = (lines: string[], indexOfLine: number, number: number, direction: Direction): string => {
   const line = lines[indexOfLine];
-  const indexOfNumber = findIndex(line, number, startIndex);
+  const indexOfNumber = findIndex(line, number);
 
+  let startIndex: number = 0;
   let endIndex: number = 0;
 
   switch (direction) {
@@ -112,21 +114,17 @@ export function sum(lines: string[]): number {
         line = replaceCharAt(line, numberIndex + index, 'X')
       }
       lines[lineIndex] = line
-      console.log(line)
 
       allNumbers.push([lineIndex + 1,number,partNumber !== 0,partNumber === 0 ? "<-- ignored" : ""]);
       totalSum += partNumber;
     });
 
-   
-
   });
   return totalSum;
 }
 
-// prettier-ignore
-function getNumberIfNeighborHasSymbol(  lines: string[],  lineIndex: number,  number: number,  direction: Direction, startIndex: number = 0): number {
-  const neighbor = findNeighbor(lines, lineIndex, number, direction, startIndex);
+function getNumberIfNeighborHasSymbol(  lines: string[],  lineIndex: number,  number: number,  direction: Direction): number {
+  const neighbor = findNeighbor(lines, lineIndex, number, direction);
   if (hasSymbol(neighbor)) return number;
   return 0;
 }
