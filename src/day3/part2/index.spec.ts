@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, findItem, identifyChar, SYMBOLS } from ".";
+import { DayAndPart, findItem, findNumber, identifyChar, SYMBOLS } from ".";
 import { range } from "../../range";
 
 describe(`${DayAndPart}: identify char`, () => {
@@ -61,4 +61,12 @@ describe(`${DayAndPart}: find item from char`, () => {
 });
 
 
+describe(`${DayAndPart}: find number`, () => {
+
+  it(`${DayAndPart}: should '...123...' be 123`, () => {
+    expect(findNumber('...123...')).to.be.equal(123)
+  });
+
+
+});
 

@@ -62,3 +62,19 @@ interface Item {
   value: string | number;
   length: number
 }
+
+export const findNumber = (line: string): number => {
+  let foundNumberAsString: string = '';
+
+  const lineAsArray = [...line];
+  let digitFound = false;
+  lineAsArray.forEach((char, index) => {
+    const identifiedChar = identifyChar(char);
+    if (identifiedChar[0] === 'digit') {
+      foundNumberAsString += identifiedChar[1].toString();
+      digitFound = true;
+    }
+    if(digitFound && identifiedChar[0] !== 'digit') return;
+  });
+  return Number(foundNumberAsString);
+}
