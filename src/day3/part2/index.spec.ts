@@ -47,9 +47,18 @@ describe(`${DayAndPart}: find item from char`, () => {
       const item = findItem(symbol);
       expect(item.value).to.be.equal(symbol)
       expect(item.type).to.be.equal('symbol')
+      expect(item.length).to.be.equal(1)
     });
   });
 
+  it(`${DayAndPart}: should '937' length be 3`, () => {
+    const item = findItem('937');
+
+    expect(item.length).to.be.equal(3)
+
+  });
 
 });
+
+
 

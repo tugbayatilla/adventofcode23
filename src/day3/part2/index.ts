@@ -37,7 +37,7 @@ export type ItemType = 'dot' | 'digit' | 'symbol';
 export const SYMBOLS: string[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
 
 
-export const identifyChar = (char: string): [ItemType, string|number] => {
+export const identifyChar = (char: string): [ItemType, string | number] => {
   if (char === ".") return ['dot', '.'];
   const charAsInt = parseInt(char)
   if (!isNaN(charAsInt) && typeof charAsInt === "number") return ['digit', charAsInt];
@@ -45,13 +45,13 @@ export const identifyChar = (char: string): [ItemType, string|number] => {
   return ['symbol', char];
 };
 
-
 export const findItem = (char: string): Item => {
   const [type, value] = identifyChar(char);
 
   return <Item>{
     type: type,
-    value: value
+    value: value,
+    length: String(value).length
   };
 };
 
@@ -60,4 +60,5 @@ export const findItem = (char: string): Item => {
 interface Item {
   type: ItemType;
   value: string | number;
+  length: number
 }
