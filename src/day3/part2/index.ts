@@ -33,33 +33,31 @@ number, or symbol
 
 */
 
-export enum CharType {
-  "dot",
-  "number",
-  "symbol",
-}
+export type ItemType = 'dot' | 'digit' | 'symbol';
+export const SYMBOLS: string[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
 
-export const identifyChar = (char: string | number): CharType => {
-  if (char === ".") return CharType.dot;
-  if (typeof char === "number") return CharType.number;
 
-  return CharType.symbol;
+export const identifyChar = (char: string): [ItemType, string|number] => {
+  if (char === ".") return ['dot', '.'];
+  const charAsInt = parseInt(char)
+  if (!isNaN(charAsInt) && typeof charAsInt === "number") return ['digit', charAsInt];
+
+  return ['symbol', char];
 };
 
-export const SYMBOLS: string[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
-export const DOT: DotType = '.';
 
-export const findItem = (char: string | number): Item => {
+export const findItem = (char: string): Item => {
+  const [type, value] = identifyChar(char);
+
   return <Item>{
-    type: CharType.dot,
-    value: '.'
+    type: type,
+    value: value
   };
 };
 
-type DotType = '.';
 
 
 interface Item {
-  type: CharType;
-  value: DotType;
+  type: ItemType;
+  value: string | number;
 }
