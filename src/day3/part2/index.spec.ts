@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { CharType, DayAndPart, identifyChar, SYMBOLS } from ".";
+import { CharType, DayAndPart, findItem, identifyChar, SYMBOLS } from ".";
 import { range } from "../../range";
 
 describe(`${DayAndPart}: identify char`, () => {
@@ -19,6 +19,18 @@ describe(`${DayAndPart}: identify char`, () => {
     it(`${DayAndPart}: should ${symbol} identified as symbol`, () => {
       expect(identifyChar(symbol)).to.be.equal(CharType.symbol);
     });
+  });
+
+});
+
+describe(`${DayAndPart}: find item from char`, () => {
+
+  it(`${DayAndPart}: should '.' be the Item having CharType as dot`, () => {
+    const item = findItem('.');
+    
+    expect(item.value).to.be.equal('.')
+    expect(item.type).to.be.equal(CharType.dot)
+    
   });
 
 });

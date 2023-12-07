@@ -36,14 +36,30 @@ number, or symbol
 export enum CharType {
   "dot",
   "number",
-  "symbol"
+  "symbol",
 }
 
 export const identifyChar = (char: string | number): CharType => {
   if (char === ".") return CharType.dot;
-  if (typeof char === 'number') return CharType.number;
+  if (typeof char === "number") return CharType.number;
 
   return CharType.symbol;
 };
 
-export const SYMBOLS: string[] = ['$', '*', '+', '#', '=', '%', '&', '/', '-', '@'];
+export const SYMBOLS: string[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
+export const DOT: DotType = '.';
+
+export const findItem = (char: string | number): Item => {
+  return <Item>{
+    type: CharType.dot,
+    value: '.'
+  };
+};
+
+type DotType = '.';
+
+
+interface Item {
+  type: CharType;
+  value: DotType;
+}
