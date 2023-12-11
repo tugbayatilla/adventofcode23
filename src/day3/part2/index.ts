@@ -63,7 +63,7 @@ interface Item {
   length: number
 }
 
-type Coordinate = {
+export type Coordinate = {
   startIndex: number,
   endIndex: number
 }
@@ -71,26 +71,29 @@ type Coordinate = {
 export const findNumber = (line: string): [value: number, coordinate: Coordinate] => {
   let foundNumberAsString: string = '';
   let coordinate: Coordinate = {
-    startIndex:0,
-    endIndex:0
+    startIndex: 0,
+    endIndex: 0
   }
 
   const lineAsArray = [...line];
   let digitFound = false;
   let index = 0;
   for (const char of lineAsArray) {
-    index++;
-    const identifiedChar = identifyChar(char);
-    const charType = identifiedChar[0];
-    const charValue = identifiedChar[1];
-    if (charType === 'digit') {
-      foundNumberAsString += charValue.toString();
-      digitFound = true;
-      coordinate.startIndex = index;
-    }
-    if (digitFound && charType !== 'digit') {
-      coordinate.endIndex = index;
-      break;
+    try {
+      const identifiedChar = identifyChar(char);
+      const charType = identifiedChar[0];
+      const charValue = identifiedChar[1];
+      if (charType === 'digit') {
+        foundNumberAsString += charValue.toString();
+        if (digitFound == false) coordinate.startIndex = index;
+        digitFound = true;
+      }
+      if (digitFound && charType !== 'digit') {
+        coordinate.endIndex = index - 1;
+        break;
+      }
+    } finally {
+      ++index;
     }
   }
 

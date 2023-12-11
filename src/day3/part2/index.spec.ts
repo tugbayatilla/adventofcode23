@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, findItem, findNumber, identifyChar, SYMBOLS } from ".";
+import { Coordinate, DayAndPart, findItem, findNumber, identifyChar, SYMBOLS } from ".";
 import { range } from "../../range";
 
 describe(`${DayAndPart}: identify char`, () => {
@@ -65,12 +65,19 @@ describe(`${DayAndPart}: find number`, () => {
 
   it(`${DayAndPart}: should '...123...' be 123`, () => {
     expect(findNumber('...123...')[0]).to.be.equal(123)
+    expect(findNumber('...123...')[1]).to.be.deep.equal(<Coordinate>{
+      startIndex: 3,
+      endIndex: 5
+    })
   });
 
   it(`${DayAndPart}: should '.123.456...' be 123 `, () => {
     expect(findNumber('.123.456...')[0]).to.be.equal(123)
+    expect(findNumber('.123.456...')[1]).to.be.deep.equal(<Coordinate>{
+      startIndex: 1,
+      endIndex: 3
+    })
   });
-
 
 });
 
