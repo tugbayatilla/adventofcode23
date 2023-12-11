@@ -67,6 +67,10 @@ describe(`${DayAndPart}: find number`, () => {
     expect(findNumber('...123...')).to.be.equal(123)
   });
 
+  it(`${DayAndPart}: should '.123.456...' be 123 `, () => {
+    expect(findNumber('.123.456...')).to.be.equal(123)
+  });
+
 
 });
 

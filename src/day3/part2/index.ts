@@ -37,7 +37,7 @@ export type ItemType = 'dot' | 'digit' | 'symbol';
 export const SYMBOLS: string[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
 
 
-export const identifyChar = (char: string): [ItemType, string | number] => {
+export const identifyChar = (char: string): [type: ItemType, value: string | number] => {
   if (char === ".") return ['dot', '.'];
   const charAsInt = parseInt(char)
   if (!isNaN(charAsInt) && typeof charAsInt === "number") return ['digit', charAsInt];
@@ -63,18 +63,21 @@ interface Item {
   length: number
 }
 
-export const findNumber = (line: string): number => {
+export const findNumber = (line: string, startIndex: number = 0): number => {
   let foundNumberAsString: string = '';
 
   const lineAsArray = [...line];
   let digitFound = false;
-  lineAsArray.forEach((char, index) => {
+  for (const char of lineAsArray) {
     const identifiedChar = identifyChar(char);
-    if (identifiedChar[0] === 'digit') {
-      foundNumberAsString += identifiedChar[1].toString();
+    const charType = identifiedChar[0];
+    const charValue = identifiedChar[1];
+    if (charType === 'digit') {
+      foundNumberAsString += charValue.toString();
       digitFound = true;
     }
-    if(digitFound && identifiedChar[0] !== 'digit') return;
-  });
+    if (digitFound && charType !== 'digit') break;
+  }
+
   return Number(foundNumberAsString);
 }
