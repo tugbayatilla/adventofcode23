@@ -29,4 +29,16 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
       endIndex: 2
     });
   });
+
+  it("should second item value is 114 on '467..114..' ", () => {
+    const data = [
+      '467..114..'
+    ];
+    expect(createItems(data)[1]).to.be.deep.equal(<Item>{
+      type: 'digit',
+      value: 114,
+      startIndex: 5,
+      endIndex: 7
+    });
+  });
 });
