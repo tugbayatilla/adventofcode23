@@ -63,21 +63,36 @@ interface Item {
   length: number
 }
 
-export const findNumber = (line: string, startIndex: number = 0): number => {
+type Coordinate = {
+  startIndex: number,
+  endIndex: number
+}
+
+export const findNumber = (line: string): [value: number, coordinate: Coordinate] => {
   let foundNumberAsString: string = '';
+  let coordinate: Coordinate = {
+    startIndex:0,
+    endIndex:0
+  }
 
   const lineAsArray = [...line];
   let digitFound = false;
+  let index = 0;
   for (const char of lineAsArray) {
+    index++;
     const identifiedChar = identifyChar(char);
     const charType = identifiedChar[0];
     const charValue = identifiedChar[1];
     if (charType === 'digit') {
       foundNumberAsString += charValue.toString();
       digitFound = true;
+      coordinate.startIndex = index;
     }
-    if (digitFound && charType !== 'digit') break;
+    if (digitFound && charType !== 'digit') {
+      coordinate.endIndex = index;
+      break;
+    }
   }
 
-  return Number(foundNumberAsString);
+  return [Number(foundNumberAsString), coordinate];
 }

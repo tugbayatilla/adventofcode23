@@ -64,11 +64,11 @@ describe(`${DayAndPart}: find item from char`, () => {
 describe(`${DayAndPart}: find number`, () => {
 
   it(`${DayAndPart}: should '...123...' be 123`, () => {
-    expect(findNumber('...123...')).to.be.equal(123)
+    expect(findNumber('...123...')[0]).to.be.equal(123)
   });
 
   it(`${DayAndPart}: should '.123.456...' be 123 `, () => {
-    expect(findNumber('.123.456...')).to.be.equal(123)
+    expect(findNumber('.123.456...')[0]).to.be.equal(123)
   });
 
 
