@@ -20,7 +20,7 @@ export const sum = (lines: string[]): number => {
         digitFound = true;
         digitAsString += char;
       }
-      if(digitFound && !isDigit){
+      if (digitFound && !isDigit) {
         sum += Number(digitAsString);
         digitAsString = ''
         digitFound = false;
@@ -29,4 +29,44 @@ export const sum = (lines: string[]): number => {
   });
 
   return sum;
+}
+
+export type Item = {
+  type: 'digit',
+  value: number,
+  startIndex: number,
+  endIndex: number
+}
+
+export const createItems = (lines: string[]): Item[] => {
+  let items: Item[] = [];
+
+  lines.forEach(line => {
+    const chars = [...line];
+    let digitFound: boolean = false;
+    let digitAsString: string = '';
+    let item: Item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit' };
+    chars.forEach((char, charIndex) => {
+      const charAsInt = parseInt(char)
+      const isDigit = !isNaN(charAsInt) && typeof charAsInt === "number";
+      if (isDigit) {
+        
+        if (item.startIndex < 0) item.startIndex = charIndex;
+        digitFound = true;
+        digitAsString += char;
+
+      }
+      if (digitFound && !isDigit) {
+        item.value = Number(digitAsString);
+        item.endIndex = charIndex - 1;
+        digitAsString = ''
+        digitFound = false;
+
+        items.push(item);
+        item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit' };
+      }
+    });
+  });
+
+  return items;
 }
