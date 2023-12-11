@@ -78,6 +78,16 @@ describe(`${DayAndPart}: find number`, () => {
       endIndex: 3
     })
   });
+  
+  it(`${DayAndPart}: should '.123.456...' be 456 with start index 4`, () => {
+    const number = findNumber('.123.456...', 4);
+    expect(number[0]).to.be.equal(456)
+    expect(number[1]).to.be.deep.equal(<Coordinate>{
+      startIndex: 5,
+      endIndex: 7
+    })
+  });
+
 
 });
 

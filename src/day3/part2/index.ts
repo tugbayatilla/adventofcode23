@@ -68,7 +68,7 @@ export type Coordinate = {
   endIndex: number
 }
 
-export const findNumber = (line: string): [value: number, coordinate: Coordinate] => {
+export const findNumber = (line: string, startIndex: number = 0): [value: number, coordinate: Coordinate] => {
   let foundNumberAsString: string = '';
   let coordinate: Coordinate = {
     startIndex: 0,
@@ -80,6 +80,7 @@ export const findNumber = (line: string): [value: number, coordinate: Coordinate
   let index = 0;
   for (const char of lineAsArray) {
     try {
+      if(index < startIndex) continue;
       const identifiedChar = identifyChar(char);
       const charType = identifiedChar[0];
       const charValue = identifiedChar[1];
