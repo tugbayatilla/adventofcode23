@@ -1,7 +1,9 @@
 import { expect } from "chai";
 import { DayAndPart, Item, SYMBOLS, createItems, sum } from ".";
 
+
 describe(`${DayAndPart}: Sum of number in a line`, () => {
+
   it("should sum '467..114..' be 581", () => {
     const data = [
       '467..114..'
@@ -82,6 +84,4 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
       lineIndex: 1
     });
   });
-
-
 });

@@ -10,27 +10,13 @@ export const SYMBOLS: Symbol[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "
 export const sum = (lines: string[]): number => {
   let sum: number = 0;
 
-  lines.forEach(line => {
-    const chars = [...line];
-    let digitFound: boolean = false;
-    let digitAsString: string = '';
-    chars.forEach(char => {
-      const charAsInt = parseInt(char)
-      const isDigit = !isNaN(charAsInt) && typeof charAsInt === "number";
-      if (isDigit) {
-        digitFound = true;
-        digitAsString += char;
-      }
-      if (digitFound && !isDigit) {
-        sum += Number(digitAsString);
-        digitAsString = ''
-        digitFound = false;
-      }
-    });
-  });
+  const items = createItems(lines);
+  const numbers = items.filter(p=>p.type === 'digit');
+  sum = numbers.reduce((acc, crr)=> acc + <number>crr.value, 0)
 
   return sum;
 }
+
 
 export type Item = {
   type: Char,
@@ -77,10 +63,9 @@ export const createItems = (lines: string[]): Item[] => {
         item.lineIndex = lineIndex;
         items.push(item);
       }
-
-
     });
   });
 
   return items;
 }
+
