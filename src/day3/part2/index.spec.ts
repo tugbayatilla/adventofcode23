@@ -43,4 +43,12 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
       lineIndex: 0
     });
   });
+
+  it("should line index of item contains 5 be 1", () => {
+    const data = [
+      '..1....2..',
+      '...5......'
+    ];
+    expect(createItems(data)[2].lineIndex).to.be.equal(1);
+  });
 });

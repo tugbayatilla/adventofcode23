@@ -42,7 +42,7 @@ export type Item = {
 export const createItems = (lines: string[]): Item[] => {
   let items: Item[] = [];
 
-  lines.forEach(line => {
+  lines.forEach((line, lineIndex) => {
     const chars = [...line];
     let digitFound: boolean = false;
     let digitAsString: string = '';
@@ -63,6 +63,7 @@ export const createItems = (lines: string[]): Item[] => {
         digitAsString = ''
         digitFound = false;
 
+        item.lineIndex = lineIndex;
         items.push(item);
         item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
       }
