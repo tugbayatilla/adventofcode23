@@ -35,7 +35,8 @@ export type Item = {
   type: 'digit',
   value: number,
   startIndex: number,
-  endIndex: number
+  endIndex: number,
+  lineIndex: number
 }
 
 export const createItems = (lines: string[]): Item[] => {
@@ -45,7 +46,7 @@ export const createItems = (lines: string[]): Item[] => {
     const chars = [...line];
     let digitFound: boolean = false;
     let digitAsString: string = '';
-    let item: Item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit' };
+    let item: Item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
     chars.forEach((char, charIndex) => {
       const charAsInt = parseInt(char)
       const isDigit = !isNaN(charAsInt) && typeof charAsInt === "number";
@@ -63,7 +64,7 @@ export const createItems = (lines: string[]): Item[] => {
         digitFound = false;
 
         items.push(item);
-        item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit' };
+        item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
       }
     });
   });

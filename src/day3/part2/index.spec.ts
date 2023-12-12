@@ -26,7 +26,8 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
       type: 'digit',
       value: 467,
       startIndex: 0,
-      endIndex: 2
+      endIndex: 2,
+      lineIndex: 0
     });
   });
 
@@ -38,7 +39,8 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
       type: 'digit',
       value: 114,
       startIndex: 5,
-      endIndex: 7
+      endIndex: 7,
+      lineIndex: 0
     });
   });
 });
