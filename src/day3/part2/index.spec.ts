@@ -88,7 +88,7 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
 
 describe(`${DayAndPart}: Find neighbors`, () => {
 
-  it.skip("should '467' has one neighbor '+' ", () => {
+  it("should '467' has one neighbor '+' ", () => {
     const data = [
       '467..',
       '..+..'
@@ -96,7 +96,7 @@ describe(`${DayAndPart}: Find neighbors`, () => {
     const items = createItems(data);
     const item467 = items.filter(p => p.value == 467)[0];
 
-    expect(findNeighbors(items, item467)).to.be.deep.equal([
+    expect(findNeighbors(item467, items)[0]).to.be.deep.equal(
       <Item>{
         type: 'symbol',
         value: '+',
@@ -104,7 +104,7 @@ describe(`${DayAndPart}: Find neighbors`, () => {
         endIndex: 2,
         lineIndex: 1
       }
-    ]);
+    );
   });
 
   const IsNeighborTheorie:

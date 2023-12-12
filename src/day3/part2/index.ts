@@ -69,8 +69,12 @@ export const createItems = (lines: string[]): Item[] => {
   return items;
 }
 
-export const findNeighbors = (items: Item[], item: Item): Item[] => {
-  return [];
+export const findNeighbors = (item: Item, items: Item[]): Item[] => {
+  return items
+    .filter(p => p != item)
+    .filter(
+      p => isNeighbor(item.startIndex, p.startIndex, p.endIndex)
+        || isNeighbor(item.endIndex, p.startIndex, p.endIndex));
 };
 
 export const isNeighbor = (pointIndex: number, startIndex: number, endIndex: number): boolean => {
