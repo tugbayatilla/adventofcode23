@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, Item, SYMBOLS, createItems, sum } from ".";
+import { DayAndPart, Item, SYMBOLS, createItems, findNeighbors, sum } from ".";
 
 
 describe(`${DayAndPart}: Sum of number in a line`, () => {
@@ -83,5 +83,27 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
       endIndex: 3,
       lineIndex: 1
     });
+  });
+});
+
+describe(`${DayAndPart}: Find neighbors`, () => {
+
+  it("should '467' has one neighbor '+' ", () => {
+    const data = [
+      '467..',
+      '..+..'
+    ];
+    const items = createItems(data);
+    const item467 = items.filter(p=>p.value == 467)[0];
+    
+    expect(findNeighbors(items, item467)).to.be.deep.equal([
+      <Item>{
+        type: 'symbol',
+        value: '+',
+        startIndex: 2,
+        endIndex: 2,
+        lineIndex: 1
+      }
+    ]);
   });
 });

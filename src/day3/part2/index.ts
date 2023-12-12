@@ -69,3 +69,6 @@ export const createItems = (lines: string[]): Item[] => {
   return items;
 }
 
+export const findNeighbors = (items: Item[], item: Item): Item[] => {
+  return [];
+};
