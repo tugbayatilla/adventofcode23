@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, Item, createItems, sum } from ".";
+import { DayAndPart, Item, SYMBOLS, createItems, sum } from ".";
 
 describe(`${DayAndPart}: Sum of number in a line`, () => {
   it("should sum '467..114..' be 581", () => {
@@ -58,4 +58,15 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
     ];
     expect(createItems(data)[0].type).to.be.equal('symbol');
   });
+
+
+  SYMBOLS.forEach(symbol=>{
+    it(`should '${symbol}' be a symbol`, () => {
+      const data = [
+        `..${symbol}..`
+      ];
+      expect(createItems(data)[0].type).to.be.equal('symbol');
+    });
+  });
+
 });
