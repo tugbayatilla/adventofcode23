@@ -126,4 +126,23 @@ describe(`${DayAndPart}: Find neighbors`, () => {
   });
 
 
+  it("should '+' has one neighbor '467' ", () => {
+    const data = [
+      '467..',
+      '..+..'
+    ];
+    const items = createItems(data);
+    const itemPlus = items.filter(p => p.value == '+')[0];
+
+    expect(findNeighbors(itemPlus, items)[0]).to.be.deep.equal(
+      <Item>{
+        type: 'digit',
+        value: 467,
+        startIndex: 0,
+        endIndex: 2,
+        lineIndex: 0
+      }
+    );
+  });
+
 });
