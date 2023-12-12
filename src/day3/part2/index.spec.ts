@@ -69,4 +69,19 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
     });
   });
 
+  it("should line index of item contains + be 1", () => {
+    const data = [
+      '..........',
+      '...+......'
+    ];
+    expect(createItems(data)[0]).to.be.deep.equal(<Item>{
+      type: 'symbol',
+      value: '+',
+      startIndex: 3,
+      endIndex: 3,
+      lineIndex: 1
+    });
+  });
+
+
 });

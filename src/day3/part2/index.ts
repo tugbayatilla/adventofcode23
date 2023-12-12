@@ -4,7 +4,8 @@ export const DayAndPart = `${Day}(${Part[0]}${Part[Part.length - 1]})`;
 export const SourceFolderPath = `./src/${Day}/${Part}/`;
 
 export type Char = 'dot' | 'digit' | 'symbol';
-export const SYMBOLS: string[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
+export type Symbol = "$" | "*" | "+" | "#" | "=" | "%" | "&" | "/" | "-" | "@"
+export const SYMBOLS: Symbol[] = ["$", "*", "+", "#", "=", "%", "&", "/", "-", "@"];
 
 export const sum = (lines: string[]): number => {
   let sum: number = 0;
@@ -33,7 +34,7 @@ export const sum = (lines: string[]): number => {
 
 export type Item = {
   type: Char,
-  value: number,
+  value: number | Symbol,
   startIndex: number,
   endIndex: number,
   lineIndex: number
@@ -68,8 +69,12 @@ export const createItems = (lines: string[]): Item[] => {
         item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
       }
 
-      if(SYMBOLS.includes(char)){
+      if(SYMBOLS.includes(char as Symbol)){
         item.type = 'symbol'
+        item.value = char as Symbol;
+        item.startIndex = charIndex;
+        item.endIndex = charIndex;
+        item.lineIndex = lineIndex;
         items.push(item);
       }
 
