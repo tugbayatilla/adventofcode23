@@ -11,8 +11,8 @@ export const sum = (lines: string[]): number => {
   let sum: number = 0;
 
   const items = createItems(lines);
-  const numbers = items.filter(p=>p.type === 'digit');
-  sum = numbers.reduce((acc, crr)=> acc + <number>crr.value, 0)
+  const numbers = items.filter(p => p.type === 'digit');
+  sum = numbers.reduce((acc, crr) => acc + <number>crr.value, 0)
 
   return sum;
 }
@@ -38,7 +38,7 @@ export const createItems = (lines: string[]): Item[] => {
       const charAsInt = parseInt(char)
       const isDigit = !isNaN(charAsInt) && typeof charAsInt === "number";
       if (isDigit) {
-        
+
         if (item.startIndex < 0) item.startIndex = charIndex;
         digitFound = true;
         digitAsString += char;
@@ -55,7 +55,7 @@ export const createItems = (lines: string[]): Item[] => {
         item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
       }
 
-      if(SYMBOLS.includes(char as Symbol)){
+      if (SYMBOLS.includes(char as Symbol)) {
         item.type = 'symbol'
         item.value = char as Symbol;
         item.startIndex = charIndex;
@@ -74,7 +74,7 @@ export const findNeighbors = (items: Item[], item: Item): Item[] => {
 };
 
 export const isNeighbor = (pointIndex: number, startIndex: number, endIndex: number): boolean => {
-  return isInRange(pointIndex, startIndex - 1, endIndex + 1);
+  return isInRange(pointIndex, startIndex - 1, endIndex + 1)
 };
 
 function isInRange(num: number, lowerBound: number, upperBound: number): boolean {

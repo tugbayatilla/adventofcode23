@@ -108,20 +108,22 @@ describe(`${DayAndPart}: Find neighbors`, () => {
   });
 
   const IsNeighborTheorie:
-    [[startIndex: number, endIndex: number, pointIndex: number, expected: boolean]] = [
-      [1, 2, 0, true]
+    [startIndex: number, endIndex: number, pointIndex: number, expected: boolean][] = [
+      [1, 0, 2, true],
+      [3, 0, 2, true]
     ];
 
-    IsNeighborTheorie.forEach(item => {
-      it("should be a neighbor ", () => {
-        const pointIndex = item[0];
-        const startIndex = item[1];
-        const endIndex = item[2];
-        const expected = item[3];
-        expect(isNeighbor(startIndex, endIndex, pointIndex))
+  IsNeighborTheorie.forEach(item => {
+    const pointIndex = item[0];
+    const startIndex = item[1];
+    const endIndex = item[2];
+    const expected = item[3];
+
+    it(`should ${pointIndex} in [${startIndex}:${endIndex}]${expected ? '' : 'NOT'} be a neighbor`, () => {
+      expect(isNeighbor(pointIndex, startIndex, endIndex))
         .to.be.equal(expected);
-      });
     });
+  });
 
 
 });
