@@ -32,7 +32,7 @@ export const sum = (lines: string[]): number => {
 }
 
 export type Item = {
-  type: 'digit',
+  type: Char,
   value: number,
   startIndex: number,
   endIndex: number,
@@ -67,6 +67,13 @@ export const createItems = (lines: string[]): Item[] => {
         items.push(item);
         item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
       }
+
+      if(SYMBOLS.includes(char)){
+        item.type = 'symbol'
+        items.push(item);
+      }
+
+
     });
   });
 

@@ -51,4 +51,11 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
     ];
     expect(createItems(data)[2].lineIndex).to.be.equal(1);
   });
+
+  it("should '+' be a symbol", () => {
+    const data = [
+      '..+..'
+    ];
+    expect(createItems(data)[0].type).to.be.equal('symbol');
+  });
 });
