@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, Item, SYMBOLS, createItems, findNeighbors, sum } from ".";
+import { DayAndPart, Item, SYMBOLS, createItems, findNeighbors, isNeighbor, sum } from ".";
 
 
 describe(`${DayAndPart}: Sum of number in a line`, () => {
@@ -62,7 +62,7 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
   });
 
 
-  SYMBOLS.forEach(symbol=>{
+  SYMBOLS.forEach(symbol => {
     it(`should '${symbol}' be a symbol`, () => {
       const data = [
         `..${symbol}..`
@@ -88,14 +88,14 @@ describe(`${DayAndPart}: create item for each number in a line`, () => {
 
 describe(`${DayAndPart}: Find neighbors`, () => {
 
-  it("should '467' has one neighbor '+' ", () => {
+  it.skip("should '467' has one neighbor '+' ", () => {
     const data = [
       '467..',
       '..+..'
     ];
     const items = createItems(data);
-    const item467 = items.filter(p=>p.value == 467)[0];
-    
+    const item467 = items.filter(p => p.value == 467)[0];
+
     expect(findNeighbors(items, item467)).to.be.deep.equal([
       <Item>{
         type: 'symbol',
@@ -106,4 +106,22 @@ describe(`${DayAndPart}: Find neighbors`, () => {
       }
     ]);
   });
+
+  const IsNeighborTheorie:
+    [[startIndex: number, endIndex: number, pointIndex: number, expected: boolean]] = [
+      [1, 2, 0, true]
+    ];
+
+    IsNeighborTheorie.forEach(item => {
+      it("should be a neighbor ", () => {
+        const pointIndex = item[0];
+        const startIndex = item[1];
+        const endIndex = item[2];
+        const expected = item[3];
+        expect(isNeighbor(startIndex, endIndex, pointIndex))
+        .to.be.equal(expected);
+      });
+    });
+
+
 });

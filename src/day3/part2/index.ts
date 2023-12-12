@@ -72,3 +72,11 @@ export const createItems = (lines: string[]): Item[] => {
 export const findNeighbors = (items: Item[], item: Item): Item[] => {
   return [];
 };
+
+export const isNeighbor = (pointIndex: number, startIndex: number, endIndex: number): boolean => {
+  return isInRange(pointIndex, startIndex - 1, endIndex + 1);
+};
+
+function isInRange(num: number, lowerBound: number, upperBound: number): boolean {
+  return num >= lowerBound && num <= upperBound;
+}
