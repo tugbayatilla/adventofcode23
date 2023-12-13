@@ -86,4 +86,9 @@ Touch Time: 1h37m
 - ofcourse when i read the part, i realised that my implementation is shit. Yes, do you believe that! I do, actually :)
 - then I re-design my code, which is shit. because first implementation, maybe i could use and do some refactoring but i want to see something nice at the end.
 - so it is decided, i will go for new design. Next time, maybe i can fo for refactoring. it would be nice also. there are a lot of sections to try, so let's coding...
+- Implementing the new design was fun. I made relatively bigger steps yet it is acceptable.
+- After implementing the solution, i found couple of bugs and i handle them with regression tests. Unfortunately i did not mark them in commit messages but next time i will do that.
+- Solving second part with new design took 2 min, literally 2 min. :)
+
+
 
