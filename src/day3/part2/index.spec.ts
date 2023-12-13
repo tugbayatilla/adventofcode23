@@ -159,7 +159,7 @@ describe(`${DayAndPart}: Find neighbors`, () => {
 });
 
 describe(`${DayAndPart}: using test data`, () => {
-  it.skip(`${DayAndPart}: should test.data for part 1 return 4361`, () => {
+  it(`${DayAndPart}: should test.data for part 1 return 4361`, () => {
     return answerPart1(`${SourceFolderPath}test.data`)
       .then((answer) => expect(answer).to.equal(4361));
   });
