@@ -138,3 +138,32 @@ export async function answerPart1(filePath: string): Promise<number> {
 
   });
 }
+
+
+
+export async function answer(filePath: string): Promise<number> {
+  return read(filePath).then((lines) => {
+
+    let sum: number = 0;
+
+    const items = createItems(lines);
+    const numbers = items.filter(p => p.type === 'digit');
+    const starSymbols = items.filter(p => p.type === 'symbol' && p.value === '*');
+
+    starSymbols
+      .forEach(starSymbol => {
+        const neighbors = findNeighbors(starSymbol, numbers)
+          .filter(p => p.type === 'digit');
+
+        if(neighbors.length === 2){
+          sum += neighbors.reduce((acc, crr)=> acc * <number>crr.value, 1)
+        }
+        
+      });
+    return sum;
+
+  });
+}
+
+answer(`${SourceFolderPath}puzzle.data`)
+.then((sum)=>console.log(`${DayAndPart}: ${sum}`))

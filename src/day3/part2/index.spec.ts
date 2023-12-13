@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, Item, SYMBOLS, SourceFolderPath, answerPart1, createItems, findNeighbors, isNeighbor, sum } from ".";
+import { DayAndPart, Item, SYMBOLS, SourceFolderPath, answer, answerPart1, createItems, findNeighbors, isNeighbor, sum } from ".";
 import { read } from "../../read";
 
 
@@ -176,7 +176,10 @@ describe(`${DayAndPart}: using test data`, () => {
     });
   });
 
-
+  it(`${DayAndPart}: should test.data for part 2 return 467835`, () => {
+    return answer(`${SourceFolderPath}test.data`)
+      .then((answer) => expect(answer).to.equal(467835));
+  });
 
 
 });
