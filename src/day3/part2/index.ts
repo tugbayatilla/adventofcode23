@@ -1,5 +1,4 @@
 import { read } from "../../read";
-import { write } from "../../write";
 
 const Day = "day3"; // <-- change this when you copy
 const Part = "part2"; // <-- change this when you copy
@@ -101,22 +100,7 @@ export const findNeighbors = (item: Item, items: Item[]): Item[] => {
 
   const neighbors = [...sameLineNeighbors, ...topLineNeighbors, ...bottomLineNeighbors];
 
-  //console.log('neighbors');
-  //console.log(neighbors);
   return neighbors;
-
-  // const uniqueNeighborsSet = new Set<[type: Number | Symbol, startIndex: number]>();
-  // const uniqueNeighbors = neighbors.filter(obj => {
-  //   var checkValue: [type: Number | Symbol, startIndex: number] = [obj.value, obj.startIndex];
-  //   if (!uniqueNeighborsSet.has(checkValue)) {
-  //     uniqueNeighborsSet.add(checkValue);
-  //     return true;
-  //   }
-  //   return false;
-  // });
-
-  // return uniqueNeighbors;
-
 };
 
 export const isNeighbor = (pointIndex: number, startIndex: number, endIndex: number): boolean => {
@@ -149,18 +133,8 @@ export async function answerPart1(filePath: string): Promise<number> {
             sum += <number>neighbor.value;
           }
         }
-
       });
-
     return sum;
 
   });
 }
-
-
-read(`${SourceFolderPath}test.data`).then((lines) => {
-
-  write(`${SourceFolderPath}items.out`, 
-  createItems(lines).map(p=> JSON.stringify(p) ))
-
-});
