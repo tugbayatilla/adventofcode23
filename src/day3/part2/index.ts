@@ -56,7 +56,6 @@ export const createItems = (lines: string[]): Item[] => {
         item.lineIndex = lineIndex;
         items.push(item);
         item = { startIndex: -1, endIndex: 0, value: 0, type: 'digit', lineIndex: 0 };
-        return;
       }
 
       if (SYMBOLS.includes(char as Symbol)) {
@@ -139,7 +138,6 @@ export async function answerPart1(filePath: string): Promise<number> {
 
     let calculatedItems = new Set<Item>();
     symbols
-      .filter(p => p.value === '$') //test purposes
       .forEach(symbol => {
         const neighbors = findNeighbors(symbol, numbers)
           .filter(p => p.type === 'digit');
@@ -149,7 +147,6 @@ export async function answerPart1(filePath: string): Promise<number> {
           if (!calculatedItems.has(neighbor)) {
             calculatedItems.add(neighbor);
             sum += <number>neighbor.value;
-            //console.log(`${neighbor.value} --> ${sum}`)
           }
         }
 

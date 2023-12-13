@@ -146,10 +146,20 @@ describe(`${DayAndPart}: Find neighbors`, () => {
     );
   });
 
+  it("should find two items on the same line ", () => {
+    const data = [
+      '467+.',
+    ];
+    const items = createItems(data);
+    
+    expect(items.length).to.be.equal(2);
+  });
+
+
 });
 
 describe(`${DayAndPart}: using test data`, () => {
-  it.skip(`${DayAndPart}: should test.data return 4361`, () => {
+  it.skip(`${DayAndPart}: should test.data for part 1 return 4361`, () => {
     return answerPart1(`${SourceFolderPath}test.data`)
       .then((answer) => expect(answer).to.equal(4361));
   });
@@ -164,8 +174,6 @@ describe(`${DayAndPart}: using test data`, () => {
       const neighbors = findNeighbors(dollarSymbol, numbers);
       expect(neighbors[0].value).to.be.equal(664);
     });
-
-
   });
 
 
