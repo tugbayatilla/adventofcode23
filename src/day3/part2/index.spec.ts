@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { DayAndPart, Item, SYMBOLS, createItems, findNeighbors, isNeighbor, sum } from ".";
+import { DayAndPart, Item, SYMBOLS, SourceFolderPath, answerPart1, createItems, findNeighbors, isNeighbor, sum } from ".";
+import { read } from "../../read";
 
 
 describe(`${DayAndPart}: Sum of number in a line`, () => {
@@ -144,5 +145,30 @@ describe(`${DayAndPart}: Find neighbors`, () => {
       }
     );
   });
+
+});
+
+describe(`${DayAndPart}: using test data`, () => {
+  it.skip(`${DayAndPart}: should test.data return 4361`, () => {
+    return answerPart1(`${SourceFolderPath}test.data`)
+      .then((answer) => expect(answer).to.equal(4361));
+  });
+
+  it(`${DayAndPart}: should 664 be the neighbor of $ symbol`, () => {
+    return read(`${SourceFolderPath}test.data`).then((lines) => {
+
+      const items = createItems(lines);
+      const numbers = items.filter(p => p.type === 'digit');
+      const dollarSymbol = items.filter(p => p.type === 'symbol' && p.value === '$')[0];
+
+      const neighbors = findNeighbors(dollarSymbol, numbers);
+      expect(neighbors[0].value).to.be.equal(664);
+    });
+
+
+  });
+
+
+
 
 });
