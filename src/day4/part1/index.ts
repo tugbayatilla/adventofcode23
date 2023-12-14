@@ -1,4 +1,5 @@
 import { findNumbers } from "../../day3/part1";
+import { read } from "../../read";
 
 const Day = "day4"; // <-- change this when you copy
 const Part = "part1"; // <-- change this when you copy
@@ -41,3 +42,9 @@ export const sum = (line: string): number => {
     const coefficient = len > 0 ? 1 : 0;
     return coefficient * Math.pow(2, len - 1);
 };
+
+export async function answer(filePath: string): Promise<number> {
+    return read(filePath).then((lines) => {
+        return lines.reduce((acc, crr) => acc + sum(crr), 0);
+    });
+}

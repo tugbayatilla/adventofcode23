@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, sum } from ".";
+import { DayAndPart, SourceFolderPath, answer, sum } from ".";
 
 
 describe(`${DayAndPart}: Single line worthy calculation`, () => {
@@ -20,5 +20,15 @@ describe(`${DayAndPart}: Single line worthy calculation`, () => {
       expect(sum(line)).to.be.equal(expected);
     });
   });
+
+});
+
+describe(`${DayAndPart}: using test data`, () => {
   
+  it(`${DayAndPart}: should test.data return 13`, () => {
+    return answer(`${SourceFolderPath}test.data`)
+      .then((answer) => expect(answer).to.equal(13));
+  });
+
+
 });
