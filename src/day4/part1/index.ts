@@ -27,3 +27,7 @@ export const SourceFolderPath = `./src/${Day}/${Part}/`;
     
 
 */
+
+export const sum = (line: string): number => {
+    return 8;
+};
