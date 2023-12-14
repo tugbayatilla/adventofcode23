@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, sum } from ".";
+import { DayAndPart, createCards } from ".";
 
 
 describe(`${DayAndPart}: Card creation via line`, () => {
@@ -12,7 +12,7 @@ describe(`${DayAndPart}: Card creation via line`, () => {
     const line = theory[0]
     const expected = theory[1]
     it(`should card ${index+1} creates ${expected} cards`, () => {
-      expect(sum(line)).to.be.equal(expected);
+      expect(createCards(line).length).to.be.equal(expected);
     });
   });
 
