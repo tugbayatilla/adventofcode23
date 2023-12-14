@@ -1,5 +1,4 @@
 import { read } from "../../read";
-import { write } from "../../write";
 
 export const Day = "day3"; // <-- change this when you copy
 export const SourceFolderPath = `./src/${Day}/part1/`; // <-- change this when you copy
@@ -132,7 +131,7 @@ function getNumberIfNeighborHasSymbol(  lines: string[],  lineIndex: number,  nu
 
 answer(`${SourceFolderPath}puzzle.data`)
   .then((answer) => console.log(`${SourceFolderPath}: ${answer}`))
-  .then(() => write(`${SourceFolderPath}validNumbers.out`, allNumbers));
+//  .then(() => write(`${SourceFolderPath}validNumbers.out`, allNumbers));
 
 
 function replaceCharAt(originalString: string, index: number, replacement: string): string {
