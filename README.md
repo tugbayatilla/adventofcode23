@@ -91,4 +91,13 @@ Touch Time: 1h37m
 - Solving second part with new design took 2 min, literally 2 min. :)
 
 
+## Day 4
+
+### Part 1
+
+- It is relatively easy. 
+- I made a design first and considered to go step by step but afterwards, I wanted to make a bigger step.
+- I used old function(s) to make my life easy.
+- It took nearly 30 min (touch time), ofcourse lead time is little bit longer with the distractions :)
+
 
