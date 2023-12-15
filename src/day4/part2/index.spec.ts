@@ -31,26 +31,34 @@ describe(`${DayAndPart}: Convert lines to cards`, () => {
   });
 });
 
-describe(`${DayAndPart}: process cards`, () => {
+describe(`${DayAndPart}: process cards`, async () => {
 
-  return read(`${SourceFolderPath}test.data`)
-    .then((lines) => {
+  async function getTestCards(): Promise<Card[]> {
+    return read(`${SourceFolderPath}test.data`)
+      .then((lines) => {
 
-      const cards = convertToCards(lines);
-      const processedCards = process(cards);
-      return processedCards;
-    })
-    .then(cards => {
-      write(`${SourceFolderPath}test.data.out2`, cards.map(c => JSON.stringify(c)))
-      return cards;
-    })
-    .then(cards => {
-      const cardId = 1;
-      it(`${DayAndPart}: should test.data create 1 instance of card 1`, () => {
-        const cardsWithId1 = cards.filter(p => p.id === cardId);
-        expect(cardsWithId1.length).to.equal(1);
+        const cards = convertToCards(lines);
+        const processedCards = process(cards);
+        write(`${SourceFolderPath}test.data.out2`, processedCards.map(c => JSON.stringify(c)))
+        return processedCards;
+      });
+  }
+
+  const theories: [id: number, expected: number][] = [
+    [1, 1],
+    [2, 2]
+  ];
+
+  theories.forEach((theorie) => {
+    const id = theorie[0];
+    const expected = theorie[1];
+    it(`${DayAndPart}: should test.data create ${id} instance of card ${expected}`, () => {
+      return getTestCards().then((cards) => {
+        const cardsWithId1 = cards.filter(p => p.id === id);
+        expect(cardsWithId1.length).to.equal(expected);
       });
     });
+  });
 
 });
 
