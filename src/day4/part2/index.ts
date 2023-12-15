@@ -5,12 +5,14 @@ const Part = "part2"; // <-- change this when you copy
 export const DayAndPart = `${Day}(${Part[0]}${Part[Part.length - 1]})`;
 export const SourceFolderPath = `./src/${Day}/${Part}/`;
 
-interface Card {
+export interface Card {
     id: number,
-    state: 'original' | 'copy'
+    state: 'original' | 'copy',
+    overlap: number
+    processed: boolean
 }
 
-export const createCards = (line: string): Card[] => {
+export const createCard = (line: string): Card => {
     const parts = line.split('|');
     const id: number = findNumbers(parts[0])[0];
     const winners: number[] = findNumbers(parts[0]).slice(1);
@@ -19,11 +21,10 @@ export const createCards = (line: string): Card[] => {
     const numbersSet = new Set(numbers);
     const overlappingWinners = winners.filter(number => numbersSet.has(number));
 
-    let cards: Card[] = [];
-    cards.push({ id: id, state: 'original' })
-    overlappingWinners.forEach((_, index) => {
-        cards.push({ id: id + index + 1, state: 'copy' })
-    });
-    return cards;
+    return <Card>{
+        id: id,
+        state: 'original',
+        processed: true,
+        overlap: overlappingWinners.length
+    };
 };
-

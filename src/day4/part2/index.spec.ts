@@ -1,20 +1,22 @@
 import { expect } from "chai";
-import { DayAndPart, createCards } from ".";
+import { Card, DayAndPart, createCard } from ".";
 
 
 describe(`${DayAndPart}: Card creation via line`, () => {
   
-  const theories: [line:string, expected:number][] = [
-    ['Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53', 5]
+  const theories: [line:string, expected: Partial<Card> ][] = [
+    ['Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53', 
+    { id: 1, overlap: 4 }]
   ];
   
   theories.forEach((theory, index) => {
     const line = theory[0]
     const expected = theory[1]
-    it(`should card ${index+1} creates ${expected} cards`, () => {
-      expect(createCards(line).length).to.be.equal(expected);
+    it(`should card ${index+1} creates ${expected} card (partially)`, () => {
+      expect(createCard(line)).to.be.deep.contain(expected);
     });
   });
 
 });
+
 
