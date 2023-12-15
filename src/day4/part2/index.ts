@@ -1,5 +1,6 @@
 import { findNumbers } from "../../day3/part1";
 import { read } from "../../read";
+import { write } from "../../write";
 
 
 const Day = "day4"; // <-- change this when you copy
@@ -12,7 +13,8 @@ export interface Card {
     state: 'original' | 'copy',
     overlap: number
     processed: boolean,
-    log?: string
+    log?: string,
+    copy: number
 }
 
 export const createCard = (line: string): Card => {
@@ -28,7 +30,8 @@ export const createCard = (line: string): Card => {
         id: id,
         state: 'original',
         processed: false,
-        overlap: overlappingWinners.length
+        overlap: overlappingWinners.length,
+        copy: 1
     };
 };
 
@@ -42,16 +45,14 @@ export const process = (cards: Card[]): Card[] => {
     do {
         const card = cards[i];
 
-        for (let k = 0; k < card.overlap; k++) {
-            const foundCards = cards.filter(c => !c.processed && c.id === card.id + k + 1)
-            if (foundCards.length > 0){
-                const item = <Card>{ ...foundCards[0], state: 'copy', 
-                log: `${i} - card:${card.id}` };
-                cards.push(item);
-            }
+        for (let x = 1; x <= card.copy; x++)
+        for (let k = 1; k <= card.overlap; k++) {
+            const foundCards = cards.filter(c => c.id === card.id + k)
+            if (foundCards.length > 0)
+                foundCards[0].copy += 1;
         }
         card.processed = true;
-        
+
         i++;
     } while (cards.filter(c => !c.processed).length > 0);
 
@@ -63,6 +64,7 @@ export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
         const cards = convertToCards(lines);
         const processedCards = process(cards);
-        return processedCards.length;
+        write(`${SourceFolderPath}test.out5`, processedCards.map(m=> JSON.stringify(m)))
+        return processedCards.reduce((acc, crr)=> acc + crr.copy, 0);
     });
 }

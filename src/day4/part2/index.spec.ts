@@ -54,7 +54,7 @@ describe(`${DayAndPart}: process cards`, async () => {
     it(`${DayAndPart}: should test.data create '${expected} instance of card ${id}'`, () => {
       return getTestCards().then((cards) => {
         const cardsWithId1 = cards.filter(p => p.id === id);
-        expect(cardsWithId1.length).to.equal(expected);
+        expect(cardsWithId1[0].copy).to.equal(expected);
       });
     });
   });
