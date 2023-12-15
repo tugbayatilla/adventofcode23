@@ -1,4 +1,5 @@
 import { findNumbers } from "../../day3/part1";
+import { read } from "../../read";
 
 
 const Day = "day4"; // <-- change this when you copy
@@ -54,6 +55,14 @@ export const process = (cards: Card[]): Card[] => {
         i++;
     } while (cards.filter(c => !c.processed).length > 0);
 
-
     return cards;
 };
+
+
+export async function answer(filePath: string): Promise<number> {
+    return read(filePath).then((lines) => {
+        const cards = convertToCards(lines);
+        const processedCards = process(cards);
+        return processedCards.length;
+    });
+}

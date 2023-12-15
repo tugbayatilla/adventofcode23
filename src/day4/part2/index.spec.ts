@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Card, DayAndPart, SourceFolderPath, convertToCards, createCard, process } from ".";
+import { Card, DayAndPart, SourceFolderPath, answer, convertToCards, createCard, process } from ".";
 import { read } from "../../read";
 
 
@@ -62,3 +62,10 @@ describe(`${DayAndPart}: process cards`, async () => {
 });
 
 
+describe(`${DayAndPart}: using test data`, () => {
+  
+  it(`${DayAndPart}: should test.data return 30`, () => {
+    return answer(`${SourceFolderPath}test.data`)
+      .then((answer) => expect(answer).to.equal(30));
+  });
+});
