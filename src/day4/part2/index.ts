@@ -24,7 +24,7 @@ export const createCard = (line: string): Card => {
     return <Card>{
         id: id,
         state: 'original',
-        processed: true,
+        processed: false,
         overlap: overlappingWinners.length
     };
 };
@@ -35,11 +35,19 @@ export const convertToCards = (lines: string[]): Card[] => {
 
 export const process = (cards: Card[]): Card[] => {
 
-    return [{
-        id: 1,
-        state: 'original',
-        processed: false,
-        overlap: 1
-    }];
+    let i: number = 0;
+    do {
+        const card = cards[i];
 
+        for (let k = 0; k < card.overlap; k++) {
+            const foundCards = cards.filter(c => c.state === 'original' && c.id === i + k + 2)
+            if (foundCards.length > 0)
+                cards.push({ ...foundCards[0], state: 'copy' });
+        }
+        card.processed = true;
+
+        i++;
+    } while (cards.filter(c => !c.processed).length > 0);
+
+    return cards;
 };
