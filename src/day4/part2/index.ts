@@ -28,3 +28,7 @@ export const createCard = (line: string): Card => {
         overlap: overlappingWinners.length
     };
 };
+
+export const convertToCards = (lines: string[]): Card[] => { 
+    return lines.map(line=> createCard(line));
+};
