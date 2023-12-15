@@ -68,3 +68,7 @@ export async function answer(filePath: string): Promise<number> {
         return processedCards.reduce((acc, crr)=> acc + crr.copy, 0);
     });
 }
+
+
+answer(`${SourceFolderPath}puzzle.data`)
+.then((sum)=>console.log(`${DayAndPart}: ${sum}`))
