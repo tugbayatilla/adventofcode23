@@ -29,6 +29,17 @@ export const createCard = (line: string): Card => {
     };
 };
 
-export const convertToCards = (lines: string[]): Card[] => { 
-    return lines.map(line=> createCard(line));
+export const convertToCards = (lines: string[]): Card[] => {
+    return lines.map(line => createCard(line));
+};
+
+export const process = (cards: Card[]): Card[] => {
+
+    return [{
+        id: 1,
+        state: 'original',
+        processed: false,
+        overlap: 1
+    }];
+
 };

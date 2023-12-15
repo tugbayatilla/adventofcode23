@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { Card, DayAndPart, convertToCards, createCard } from ".";
+import { Card, DayAndPart, SourceFolderPath, convertToCards, createCard, process } from ".";
+import { read } from "../../read";
 
 
 describe(`${DayAndPart}: Card creation via line`, () => {
@@ -29,6 +30,22 @@ describe(`${DayAndPart}: Convert lines to cards`, () => {
   });
 });
 
+describe(`${DayAndPart}: process cards`, () => {
 
+  it(`${DayAndPart}: should test.data create 1 instance of card 1`, () => {
+
+    return read(`${SourceFolderPath}test.data`)
+      .then((lines) => {
+        const cardId = 1;
+        const cards = convertToCards(lines);
+        const processedCards = process(cards);
+        const cardsWithId1 = processedCards.filter(p => p.id === cardId);
+
+        expect(cardsWithId1.length).to.equal(1);
+      });
+
+  });
+
+});
 
 
