@@ -101,3 +101,18 @@ Touch Time: 1h37m
 - It took nearly 30 min (touch time), ofcourse lead time is little bit longer with the distractions :)
 
 
+### Part 2
+
+- it was a disaster. what an ego. 
+- I though first i do not need design so i can implement bigger.
+- Ofcourse failed, over and over and over again.
+- then i rolled back and start small. I found the answer with test data
+- then with puzzle data, it took hours to find something. I did not wait, i just left the computer to calculate.
+- I though it might take 1-2 min and over :)
+- Then i redesigned it and simplified the approach.
+- Voila! Answer.
+- Lots of unnecessary code and shame :)
+
+
+
+
