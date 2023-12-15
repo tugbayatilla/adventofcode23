@@ -1,7 +1,6 @@
 import { expect } from "chai";
 import { Card, DayAndPart, SourceFolderPath, convertToCards, createCard, process } from ".";
 import { read } from "../../read";
-import { write } from "../../write";
 
 
 describe(`${DayAndPart}: Card creation via line`, () => {
@@ -39,20 +38,20 @@ describe(`${DayAndPart}: process cards`, async () => {
 
         const cards = convertToCards(lines);
         const processedCards = process(cards);
-        write(`${SourceFolderPath}test.data.out2`, processedCards.map(c => JSON.stringify(c)))
         return processedCards;
       });
   }
 
   const theories: [id: number, expected: number][] = [
     [1, 1],
-    [2, 2]
+    [2, 2],
+    [3, 4],
   ];
 
   theories.forEach((theorie) => {
     const id = theorie[0];
     const expected = theorie[1];
-    it(`${DayAndPart}: should test.data create ${id} instance of card ${expected}`, () => {
+    it(`${DayAndPart}: should test.data create '${expected} instance of card ${id}'`, () => {
       return getTestCards().then((cards) => {
         const cardsWithId1 = cards.filter(p => p.id === id);
         expect(cardsWithId1.length).to.equal(expected);

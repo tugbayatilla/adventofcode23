@@ -1,5 +1,6 @@
 import { findNumbers } from "../../day3/part1";
 
+
 const Day = "day4"; // <-- change this when you copy
 const Part = "part2"; // <-- change this when you copy
 export const DayAndPart = `${Day}(${Part[0]}${Part[Part.length - 1]})`;
@@ -9,7 +10,8 @@ export interface Card {
     id: number,
     state: 'original' | 'copy',
     overlap: number
-    processed: boolean
+    processed: boolean,
+    log?: string
 }
 
 export const createCard = (line: string): Card => {
@@ -40,14 +42,18 @@ export const process = (cards: Card[]): Card[] => {
         const card = cards[i];
 
         for (let k = 0; k < card.overlap; k++) {
-            const foundCards = cards.filter(c => c.state === 'original' && c.id === i + k + 2)
-            if (foundCards.length > 0)
-                cards.push({ ...foundCards[0], state: 'copy' });
+            const foundCards = cards.filter(c => !c.processed && c.id === card.id + k + 1)
+            if (foundCards.length > 0){
+                const item = <Card>{ ...foundCards[0], state: 'copy', 
+                log: `${i} - card:${card.id}` };
+                cards.push(item);
+            }
         }
         card.processed = true;
-
+        
         i++;
     } while (cards.filter(c => !c.processed).length > 0);
+
 
     return cards;
 };
