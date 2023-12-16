@@ -37,3 +37,13 @@ findLocations(seeds: number[], maps: Map[]): number[] {
 }
 
 */
+
+interface MapRange {
+    from:number,
+    to:number,
+    len: number
+}
+
+export const createMapRange = (line: string): MapRange => {
+    return {from:50, to:98, len: 2};
+}

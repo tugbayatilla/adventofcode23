@@ -1,11 +1,12 @@
 import { expect } from "chai";
-import { DayAndPart } from ".";
+import { DayAndPart, createMapRange } from ".";
 
 
-describe(`${DayAndPart}: `, () => {
+describe(`${DayAndPart}: Create Range from a line`, () => {
   
-    it(`should `, () => {
-      expect(true).to.be.equal(true);
+    it(`should '50 98 2' `, () => {
+      expect(createMapRange('50 98 2')).to.be.deep.equal(
+        {from: 50, to: 98, len:2});
     });
   
 });
