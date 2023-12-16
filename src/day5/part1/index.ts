@@ -73,3 +73,11 @@ export const createMap = (lines: string[]): Map => {
 
     return map;
 }
+
+export const findMaps = (lines: string[]): Map[] => {
+    return [
+        { from: '', to: '', ranges: [] },
+        { from: '', to: '', ranges: [] }
+    ]
+}
+

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, createMap, createMapRange } from ".";
+import { DayAndPart, createMap, createMapRange, findMaps } from ".";
 
 
 describe(`${DayAndPart}: Create Range from a line`, () => {
@@ -48,6 +48,28 @@ describe(`${DayAndPart}: Create Map from lines`, () => {
     });
 
 
+  });
+
+});
+
+
+describe(`${DayAndPart}: finding maps`, () => {
+
+  const lines = [
+    'seeds: 79 14 55 13',
+    '',
+    'seed-to-soil map:',
+    '50 98 2',
+    '52 50 48',
+    '',
+    'soil-to-fertilizer map:',
+    '0 15 37',
+    '37 52 2',
+    '39 0 15',
+  ]
+
+  it(`should length be 2 `, () => {
+    expect(findMaps(lines).length).to.be.equal(2);
   });
 
 });
