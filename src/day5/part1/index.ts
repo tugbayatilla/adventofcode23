@@ -104,7 +104,18 @@ export const findMappingValue = (seed: number, map: Map): number => {
         if (isInRange[0]) {
             return range.dest + isInRange[1];
         }
-
+        
     }
     return seed;
+}
+
+export function findLocation(seed: number, maps: Map[]): number {
+    
+    let currentSeed = seed;
+    maps.forEach(map => {
+        const nextValue = findMappingValue(currentSeed, map);
+        console.log(`${currentSeed}->${nextValue} -- ${map.from}-${map.to}`);
+        currentSeed = nextValue;
+    });
+    return currentSeed;
 }

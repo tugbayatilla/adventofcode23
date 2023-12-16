@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange, findMappingValue } from ".";
+import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange, findMappingValue, SourceFolderPath, findLocation } from ".";
+import { read } from "../../read";
 
 
 describe(`${DayAndPart}: Create Range from a line`, () => {
@@ -115,6 +116,23 @@ describe(`${DayAndPart}: finding value 'seed to soil'`, () => {
     expect(findMappingValue(13, map)).to.be.equal(13);
   });
 
+
+
+});
+
+
+describe(`${DayAndPart}: using test data`, () => {
+
+  it.skip(`${DayAndPart}: Seed 79, soil 81, fertilizer 81, water 81, light 74, temperature 78, humidity 78, location 82`, () => {
+
+    return read(`${SourceFolderPath}test.data`)
+      .then(lines => findMaps(lines))
+      .then(maps => {
+        console.log(maps.map(m=> JSON.stringify(m)))
+        expect(findLocation(79, maps)).to.equal(82)
+      });
+
+  });
 
 
 });
