@@ -1,3 +1,4 @@
+import { findNumbers } from "../../day3/part1";
 
 const Day = "day5"; // <-- change this when you copy
 const Part = "part1"; // <-- change this when you copy
@@ -45,5 +46,6 @@ interface MapRange {
 }
 
 export const createMapRange = (line: string): MapRange => {
-    return {from:50, to:98, len: 2};
+    const numbers = findNumbers(line);
+    return {from:numbers[0], to:numbers[1], len: numbers[2]};
 }
