@@ -6,12 +6,12 @@ describe(`${DayAndPart}: Create Range from a line`, () => {
 
   it(`should '50 98 2' `, () => {
     expect(createMapRange('50 98 2')).to.be.deep.equal(
-      { from: 50, to: 98, len: 2 });
+      { src: 50, dest: 98, len: 2 });
   });
 
   it(`should '52 50 48' `, () => {
     expect(createMapRange('52 50 48')).to.be.deep.equal(
-      { from: 52, to: 50, len: 48 });
+      { src: 52, dest: 50, len: 48 });
   });
 
 });
@@ -39,8 +39,14 @@ describe(`${DayAndPart}: Create Map from lines`, () => {
 
     it(`should first 'range' be {src:50, dest:98, len:2}`, () => {
       expect(createMap(lines).ranges[0]).to.be.deep.contain(
-        { from: 50, to: 98, len: 2 });
+        { src: 50, dest: 98, len: 2 });
     });
+
+    it(`should second 'range' be {src:52, dest:50, len:48}`, () => {
+      expect(createMap(lines).ranges[1]).to.be.deep.contain(
+        { src: 52, dest: 50, len: 48 });
+    });
+
 
   });
 
