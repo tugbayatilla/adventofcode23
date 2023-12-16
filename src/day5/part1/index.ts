@@ -40,13 +40,13 @@ findLocations(seeds: number[], maps: Map[]): number[] {
 
 */
 
-interface MapRange {
+export interface MapRange {
     src: number,
     dest: number,
     len: number
 }
 
-interface Map {
+export interface Map {
     from: string,
     to: string,
     ranges: MapRange[]
@@ -75,9 +75,6 @@ export const createMap = (lines: string[]): Map => {
 }
 
 export const findMaps = (lines: string[]): Map[] => {
-    if (lines[lines.length] !== '') {
-        lines.push('');
-    }
     const mapsArray = lines.slice(2);
 
     let maps: Map[] = [];
@@ -90,6 +87,10 @@ export const findMaps = (lines: string[]): Map[] => {
             mapLines = [];
         }
     });
+    if (mapLines.length > 0) {
+        const map = createMap(mapLines);
+        maps.push(map);
+    }
 
 
     return maps;

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, createMap, createMapRange, findMaps } from ".";
+import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange } from ".";
 
 
 describe(`${DayAndPart}: Create Range from a line`, () => {
@@ -71,5 +71,18 @@ describe(`${DayAndPart}: finding maps`, () => {
   it(`should length be 2 `, () => {
     expect(findMaps(lines).length).to.be.equal(2);
   });
+
+  it(`should second map contain soil, fetrilier and ranges`, () => {
+    expect(findMaps(lines)[1]).to.be.deep.contain(<Map>{
+      from: 'soil',
+      to: 'fertilizer',
+      ranges: [
+        <MapRange> {src:0, dest: 15, len: 37},
+        <MapRange> {src:37, dest: 52, len: 2},
+        <MapRange> {src:39, dest: 0, len: 15}
+      ]
+    });
+  });
+
 
 });
