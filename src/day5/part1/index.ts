@@ -1,4 +1,5 @@
 import { findNumbers } from "../../findNumbers";
+import { inRange } from "../../range";
 
 
 const Day = "day5"; // <-- change this when you copy
@@ -54,7 +55,7 @@ export interface Map {
 
 export const createMapRange = (line: string): MapRange => {
     const numbers = findNumbers(line);
-    return { src: numbers[0], dest: numbers[1], len: numbers[2] };
+    return { src: numbers[1], dest: numbers[0], len: numbers[2] };
 }
 
 export const createMap = (lines: string[]): Map => {
@@ -98,5 +99,12 @@ export const findMaps = (lines: string[]): Map[] => {
 
 
 export const findMappingValue = (seed: number, map:Map): number => {
-    return 81;
+    for (const range of map.ranges) {
+        const isInRange = inRange(seed, range.src, range.src + range.len - 1);
+        if(isInRange[0]){
+            return range.dest + isInRange[1];
+        }
+        
+    }
+    return 14;
 }

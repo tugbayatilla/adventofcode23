@@ -6,12 +6,12 @@ describe(`${DayAndPart}: Create Range from a line`, () => {
 
   it(`should '50 98 2' `, () => {
     expect(createMapRange('50 98 2')).to.be.deep.equal(
-      { src: 50, dest: 98, len: 2 });
+      { src: 98, dest: 50, len: 2 });
   });
 
   it(`should '52 50 48' `, () => {
     expect(createMapRange('52 50 48')).to.be.deep.equal(
-      { src: 52, dest: 50, len: 48 });
+      { src: 50, dest: 52, len: 48 });
   });
 
 });
@@ -37,14 +37,14 @@ describe(`${DayAndPart}: Create Map from lines`, () => {
         { to: 'soil' });
     });
 
-    it(`should first 'range' be {src:50, dest:98, len:2}`, () => {
+    it(`should first 'range' be {src:98, dest:50, len:2}`, () => {
       expect(createMap(lines).ranges[0]).to.be.deep.contain(
-        { src: 50, dest: 98, len: 2 });
+        { src: 98, dest: 50, len: 2 });
     });
 
-    it(`should second 'range' be {src:52, dest:50, len:48}`, () => {
+    it(`should second 'range' be {src:50, dest:52, len:48}`, () => {
       expect(createMap(lines).ranges[1]).to.be.deep.contain(
-        { src: 52, dest: 50, len: 48 });
+        { src: 50, dest: 52, len: 48 });
     });
 
 
@@ -77,9 +77,9 @@ describe(`${DayAndPart}: finding maps`, () => {
       from: 'soil',
       to: 'fertilizer',
       ranges: [
-        <MapRange> {src:0, dest: 15, len: 37},
-        <MapRange> {src:37, dest: 52, len: 2},
-        <MapRange> {src:39, dest: 0, len: 15}
+        <MapRange> {src:15, dest: 0, len: 37},
+        <MapRange> {src:52, dest: 37, len: 2},
+        <MapRange> {src:0, dest: 39, len: 15}
       ]
     });
   });
@@ -94,13 +94,17 @@ describe(`${DayAndPart}: finding value 'seed to soil'`, () => {
     from: 'seed',
     to: 'soil',
     ranges: [
-      <MapRange> {src:50, dest: 98, len: 2},
-      <MapRange> {src:52, dest: 50, len: 48}
+      <MapRange> {src:98, dest: 50, len: 2},
+      <MapRange> {src:50, dest: 52, len: 48}
     ]
   }
 
   it(`Seed number 79 corresponds to soil number 81 `, () => {
     expect(findMappingValue(79, map)).to.be.equal(81);
+  });
+
+  it(`Seed number 14 corresponds to soil number 14 `, () => {
+    expect(findMappingValue(14, map)).to.be.equal(14);
   });
 
 });
