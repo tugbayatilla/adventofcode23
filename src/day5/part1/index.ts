@@ -40,21 +40,32 @@ findLocations(seeds: number[], maps: Map[]): number[] {
 */
 
 interface MapRange {
-    from:number,
-    to:number,
+    from: number,
+    to: number,
     len: number
 }
 
 interface Map {
-    from:string
+    from: string,
+    to: string
 }
 
 export const createMapRange = (line: string): MapRange => {
     const numbers = findNumbers(line);
-    return {from:numbers[0], to:numbers[1], len: numbers[2]};
+    return { from: numbers[0], to: numbers[1], len: numbers[2] };
 }
 
 export const createMap = (lines: string[]): Map => {
+    const mapLine = lines[0];
     
-    return {from: 'seed'};
+    const regex = new RegExp('(\\w+)-to-(\\w+)');
+    const matches = mapLine.match(regex);
+
+    const map: Map = { from: '', to: '' };
+    if (matches) {
+        map.from = matches[1];
+        map.to = matches[2];
+    }
+
+    return map;
 }

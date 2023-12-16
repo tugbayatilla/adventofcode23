@@ -32,6 +32,11 @@ describe(`${DayAndPart}: Create Map from lines`, () => {
         { from: 'seed' });
     });
 
+    it(`should 'to' be 'soil' `, () => {
+      expect(createMap(lines)).to.be.deep.contain(
+        { to: 'soil' });
+    });
+
   });
 
 });
