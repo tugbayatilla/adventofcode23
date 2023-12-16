@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange } from ".";
+import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange, findMappingValue } from ".";
 
 
 describe(`${DayAndPart}: Create Range from a line`, () => {
@@ -84,5 +84,23 @@ describe(`${DayAndPart}: finding maps`, () => {
     });
   });
 
+
+});
+
+
+describe(`${DayAndPart}: finding value 'seed to soil'`, () => {
+
+  const map: Map = {
+    from: 'seed',
+    to: 'soil',
+    ranges: [
+      <MapRange> {src:50, dest: 98, len: 2},
+      <MapRange> {src:52, dest: 50, len: 48}
+    ]
+  }
+
+  it(`Seed number 79 corresponds to soil number 81 `, () => {
+    expect(findMappingValue(79, map)).to.be.equal(81);
+  });
 
 });

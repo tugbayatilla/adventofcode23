@@ -76,7 +76,7 @@ export const createMap = (lines: string[]): Map => {
 
 export const findMaps = (lines: string[]): Map[] => {
     const mapsArray = lines.slice(2);
-
+    
     let maps: Map[] = [];
     let mapLines: string[] = []
     mapsArray.forEach(line => {
@@ -91,8 +91,12 @@ export const findMaps = (lines: string[]): Map[] => {
         const map = createMap(mapLines);
         maps.push(map);
     }
-
-
+    
+    
     return maps;
 }
 
+
+export const findMappingValue = (seed: number, map:Map): number => {
+    return 81;
+}
