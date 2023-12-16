@@ -1,0 +1,1 @@
+process.env.DayAndPart = 'day5(p1)';
