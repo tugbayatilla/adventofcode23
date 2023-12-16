@@ -1,4 +1,5 @@
-import { findNumbers } from "../../day3/part1";
+import { findNumbers } from "../../findNumbers";
+
 
 const Day = "day5"; // <-- change this when you copy
 const Part = "part1"; // <-- change this when you copy
