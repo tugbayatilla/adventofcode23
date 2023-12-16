@@ -47,7 +47,8 @@ interface MapRange {
 
 interface Map {
     from: string,
-    to: string
+    to: string,
+    ranges: MapRange[]
 }
 
 export const createMapRange = (line: string): MapRange => {
@@ -57,15 +58,17 @@ export const createMapRange = (line: string): MapRange => {
 
 export const createMap = (lines: string[]): Map => {
     const mapLine = lines[0];
-    
+
     const regex = new RegExp('(\\w+)-to-(\\w+)');
     const matches = mapLine.match(regex);
 
-    const map: Map = { from: '', to: '' };
+    const map: Map = { from: '', to: '', ranges: [] };
     if (matches) {
         map.from = matches[1];
         map.to = matches[2];
     }
+
+    lines.slice(1).map(line => map.ranges.push(createMapRange(line)));
 
     return map;
 }

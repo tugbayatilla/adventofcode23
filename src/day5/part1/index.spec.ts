@@ -37,6 +37,11 @@ describe(`${DayAndPart}: Create Map from lines`, () => {
         { to: 'soil' });
     });
 
+    it(`should first 'range' be {src:50, dest:98, len:2}`, () => {
+      expect(createMap(lines).ranges[0]).to.be.deep.contain(
+        { from: 50, to: 98, len: 2 });
+    });
+
   });
 
 });
