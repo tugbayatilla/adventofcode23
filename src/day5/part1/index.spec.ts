@@ -77,9 +77,9 @@ describe(`${DayAndPart}: finding maps`, () => {
       from: 'soil',
       to: 'fertilizer',
       ranges: [
-        <MapRange> {src:15, dest: 0, len: 37},
-        <MapRange> {src:52, dest: 37, len: 2},
-        <MapRange> {src:0, dest: 39, len: 15}
+        <MapRange>{ src: 15, dest: 0, len: 37 },
+        <MapRange>{ src: 52, dest: 37, len: 2 },
+        <MapRange>{ src: 0, dest: 39, len: 15 }
       ]
     });
   });
@@ -94,8 +94,8 @@ describe(`${DayAndPart}: finding value 'seed to soil'`, () => {
     from: 'seed',
     to: 'soil',
     ranges: [
-      <MapRange> {src:98, dest: 50, len: 2},
-      <MapRange> {src:50, dest: 52, len: 48}
+      <MapRange>{ src: 98, dest: 50, len: 2 },
+      <MapRange>{ src: 50, dest: 52, len: 48 }
     ]
   }
 
@@ -106,5 +106,15 @@ describe(`${DayAndPart}: finding value 'seed to soil'`, () => {
   it(`Seed number 14 corresponds to soil number 14 `, () => {
     expect(findMappingValue(14, map)).to.be.equal(14);
   });
+
+  it(`Seed number 55 corresponds to soil number 57 `, () => {
+    expect(findMappingValue(55, map)).to.be.equal(57);
+  });
+
+  it(`Seed number 13 corresponds to soil number 13 `, () => {
+    expect(findMappingValue(13, map)).to.be.equal(13);
+  });
+
+
 
 });
