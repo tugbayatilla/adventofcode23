@@ -45,7 +45,16 @@ interface MapRange {
     len: number
 }
 
+interface Map {
+    from:string
+}
+
 export const createMapRange = (line: string): MapRange => {
     const numbers = findNumbers(line);
     return {from:numbers[0], to:numbers[1], len: numbers[2]};
+}
+
+export const createMap = (lines: string[]): Map => {
+    
+    return {from: 'seed'};
 }
