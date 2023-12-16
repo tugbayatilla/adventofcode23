@@ -75,9 +75,23 @@ export const createMap = (lines: string[]): Map => {
 }
 
 export const findMaps = (lines: string[]): Map[] => {
-    return [
-        { from: '', to: '', ranges: [] },
-        { from: '', to: '', ranges: [] }
-    ]
+    if (lines[lines.length] !== '') {
+        lines.push('');
+    }
+    const mapsArray = lines.slice(2);
+
+    let maps: Map[] = [];
+    let mapLines: string[] = []
+    mapsArray.forEach(line => {
+        mapLines.push(line);
+        if (line === '') {
+            const map = createMap(mapLines);
+            maps.push(map);
+            mapLines = [];
+        }
+    });
+
+
+    return maps;
 }
 
