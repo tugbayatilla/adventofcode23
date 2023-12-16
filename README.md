@@ -14,6 +14,9 @@ tsc && ./dist/index.js
 
 # run tests
 npm run test
+
+# run folder
+npm run test-specific  src/day5/part1/*.spec.ts
 ```
 ## Day 1
 

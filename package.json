@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "test-specific": "mocha -r ts-node/register"
   },
   "devDependencies": {
     "@types/chai": "^4.3.9",
