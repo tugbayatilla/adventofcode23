@@ -32,5 +32,6 @@ export async function answer(filePath: string): Promise<number> {
   return read(filePath).then((lines) => sum(lines));
 }
 
+if(process.env.DayAndPart === 'day1(p1)')
 answer(`${SourceFolderPath}puzzle.data`)
 .then(answer=>console.log(answer))

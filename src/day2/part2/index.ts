@@ -42,5 +42,6 @@ export async function answer(filePath: string): Promise<number> {
   });
 }
 
+if(process.env.DayAndPart === 'Day2(p2)')
 answer(`${SourceFolderPath}puzzle.data`)
 .then(answer=> console.log(`${SourceFolderPath} - ${answer}`));

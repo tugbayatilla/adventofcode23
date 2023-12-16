@@ -164,6 +164,6 @@ export async function answer(filePath: string): Promise<number> {
 
   });
 }
-
+if(process.env.DayAndPart === DayAndPart)
 answer(`${SourceFolderPath}puzzle.data`)
 .then((sum)=>console.log(`${DayAndPart}: ${sum}`))

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Card, DayAndPart, SourceFolderPath, answer, convertToCards, createCard, process } from ".";
+import { Card, DayAndPart, SourceFolderPath, answer, convertToCards, createCard, processCards } from ".";
 import { read } from "../../read";
 
 
@@ -37,7 +37,7 @@ describe(`${DayAndPart}: process cards`, async () => {
       .then((lines) => {
 
         const cards = convertToCards(lines);
-        const processedCards = process(cards);
+        const processedCards = processCards(cards);
         return processedCards;
       });
   }

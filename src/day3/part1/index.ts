@@ -129,6 +129,7 @@ function getNumberIfNeighborHasSymbol(  lines: string[],  lineIndex: number,  nu
   return 0;
 }
 
+if(process.env.DayAndPart === 'day3(p1)')
 answer(`${SourceFolderPath}puzzle.data`)
   .then((answer) => console.log(`${SourceFolderPath}: ${answer}`))
 //  .then(() => write(`${SourceFolderPath}validNumbers.out`, allNumbers));

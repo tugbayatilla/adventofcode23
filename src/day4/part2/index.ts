@@ -39,7 +39,7 @@ export const convertToCards = (lines: string[]): Card[] => {
     return lines.map(line => createCard(line));
 };
 
-export const process = (cards: Card[]): Card[] => {
+export const processCards = (cards: Card[]): Card[] => {
 
     let i: number = 0;
     do {
@@ -63,12 +63,12 @@ export const process = (cards: Card[]): Card[] => {
 export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
         const cards = convertToCards(lines);
-        const processedCards = process(cards);
-        write(`${SourceFolderPath}test.out5`, processedCards.map(m=> JSON.stringify(m)))
+        const processedCards = processCards(cards);
         return processedCards.reduce((acc, crr)=> acc + crr.copy, 0);
     });
 }
 
 
+if(process.env.DayAndPart === DayAndPart)
 answer(`${SourceFolderPath}puzzle.data`)
 .then((sum)=>console.log(`${DayAndPart}: ${sum}`))
