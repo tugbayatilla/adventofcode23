@@ -117,5 +117,23 @@ Touch Time: 1h37m
 - Lots of unnecessary code and shame :)
 
 
+## Day 4
+
+### Part 1
+
+- The topic was quite easy but i had to read the text couple of times to understand
+- During the implementation, i mixed sorce and destination yet fortunatelly i corrected in early stages. 
+- i found the answer quickly.
+
+### Part 2
+
+- The implementation was quite straigt forward.
+- when i finish the first try, i put more items than the array can hold.
+- So i changed my design to read data on the fly with using `yield`.
+- In order to get the answer from the solution took almost 6 minutes (i did not calculated programatically but lets say almost)
+- this will be a great refactoring in terms of performance.
+
+
+
 
 
