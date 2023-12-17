@@ -13,7 +13,9 @@ describe(`${identity.show}: using test data`, () => {
 describe(`${identity.show}: finding seeds in ranges`, () => {
 
   it(`${identity.show}: should lenght be 27`, () => {
-    expect(getSeeds('seeds: 79 14 55 13').length).to.equal(27);
+    let len = 0;
+    for(let _ of getSeeds('seeds: 79 14 55 13')) len++;
+    expect(len).to.equal(27);
   });
 
 });

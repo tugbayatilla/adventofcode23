@@ -3,7 +3,7 @@ import { findNumbers } from "../../findNumbers";
 import { read } from "../../read";
 import { findLocation, findMaps } from "../part1";
 
-export const identity = new  Identity(5,2);
+export const identity = new Identity(5, 2);
 
 
 export async function answer(filePath: string): Promise<number> {
@@ -12,26 +12,32 @@ export async function answer(filePath: string): Promise<number> {
 
         const maps = findMaps(lines);
 
-        const locations = seeds.map(s => findLocation(s, maps));
+        let minLocation = 10000000;
+        for (const seed of seeds) {
 
-        return locations.sort((a, b) => a - b)[0];
+            const location = findLocation(seed, maps);
+            if (location < minLocation)
+                {
+                    minLocation = location;
+                    console.log(minLocation)
+                }
+        }
+
+        return minLocation;
     });
 }
 
 callAnswerIfSelected(identity, answer);
 
-export const getSeeds = (line: string): number[] => {
+export function* getSeeds(line: string): Generator<number> {
     const numberList = findNumbers(line);
-    let seeds: number[] = [];
 
-    for (let i = 0; i < numberList.length; i+=2) {
+    for (let i = 0; i < numberList.length; i += 2) {
         const start = numberList[i];
-        const len = numberList[i+1];
-        
+        const len = numberList[i + 1];
+
         for (let k = start; k < start + len; k++) {
-            seeds.push(k);
+            yield k;
         }
     }
-
-    return seeds;
 }
