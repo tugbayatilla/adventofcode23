@@ -12,15 +12,17 @@ export async function answer(filePath: string): Promise<number> {
 
         const maps = findMaps(lines);
 
-        let minLocation = 10000000;
+        console.log('maps and seeds found')
+
+        let minLocation = 63043399100;
         for (const seed of seeds) {
 
             const location = findLocation(seed, maps);
-            if (location < minLocation)
-                {
-                    minLocation = location;
-                    console.log(minLocation)
-                }
+
+            if (location < minLocation) {
+                console.log(`min location changed from ${minLocation} to ${location}`)
+                minLocation = location;
+            }
         }
 
         return minLocation;
