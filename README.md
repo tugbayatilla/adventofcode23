@@ -143,7 +143,10 @@ Touch Time: 1h37m
 - Solution is there. 5 min implemetation. ögggh, discusting...
 - lets go to part 2 to see what will happen.
 
+### Part 2
 
+- no test and worked again. I hated that, yet it was quick.
+- it took maybe 3-4 min to implement.
 
 
 
