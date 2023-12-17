@@ -1,6 +1,5 @@
 import { findNumbers } from "../../day3/part1";
 import { read } from "../../read";
-import { write } from "../../write";
 
 
 const Day = "day4"; // <-- change this when you copy

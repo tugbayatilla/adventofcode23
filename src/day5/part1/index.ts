@@ -124,7 +124,6 @@ export function findLocation(seed: number, maps: Map[]): number {
     let currentSeed = seed;
     maps.forEach(map => {
         const nextValue = findMappingValue(currentSeed, map);
-        console.log(`${currentSeed}->${nextValue} -- ${map.from}-${map.to}`);
         currentSeed = nextValue;
     });
     return currentSeed;
@@ -141,3 +140,8 @@ export async function answer(filePath: string): Promise<number> {
         return locations.sort((a, b) => a - b)[0];
     });
 }
+
+
+// if(process.env.DayAndPart === DayAndPart)
+answer(`${SourceFolderPath}puzzle.data`)
+.then((sum)=>console.log(`${DayAndPart}: ${sum}`))

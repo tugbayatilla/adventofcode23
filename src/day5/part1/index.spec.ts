@@ -126,7 +126,6 @@ describe(`${DayAndPart}: using test data`, () => {
     return read(`${SourceFolderPath}test.data`)
       .then(lines => findMaps(lines))
       .then(maps => {
-        //console.log(maps.map(m => JSON.stringify(m)))
         expect(findLocation(79, maps)).to.equal(82)
       });
 
@@ -146,12 +145,7 @@ describe(`${DayAndPart}: using test data`, () => {
 
     return read(`${SourceFolderPath}test.data`)
       .then(lines => {
-        console.log(lines)
         const maps = findMaps(lines);
-        
-        // console.log('-------maps----------')
-        // console.log(maps.map(m=> JSON.stringify(m)))
-
         return expect(maps[1]).to.deep.equal(expected)
       });
   });
