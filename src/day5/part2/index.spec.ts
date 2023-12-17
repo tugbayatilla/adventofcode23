@@ -13,7 +13,7 @@ describe.skip(`${identity.show}: using test data`, () => {
 describe(`${identity.show}: finding seeds in ranges`, () => {
 
   it(`${identity.show}: should lenght be 27`, () => {
-    expect(getSeeds('seeds: 79 14 55 13')).to.equal(27);
+    expect(getSeeds('seeds: 79 14 55 13').length).to.equal(27);
   });
 
 });

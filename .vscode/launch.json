@@ -5,7 +5,7 @@
             "type": "node-terminal",
             "name": "Run Script: test-specific d5p1",
             "request": "launch",
-            "command": "npm run test-specific src/day5/part1/*.spec.ts",
+            "command": "npm run test-specific src/day5/part2/*.spec.ts",
             "cwd": "${workspaceFolder}"
         }
     ]
