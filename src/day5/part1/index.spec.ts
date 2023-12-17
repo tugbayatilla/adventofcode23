@@ -58,11 +58,9 @@ describe(`${DayAndPart}: finding maps`, () => {
 
   const lines = [
     'seeds: 79 14 55 13',
-    '',
     'seed-to-soil map:',
     '50 98 2',
     '52 50 48',
-    '',
     'soil-to-fertilizer map:',
     '0 15 37',
     '37 52 2',
@@ -123,16 +121,39 @@ describe(`${DayAndPart}: finding value 'seed to soil'`, () => {
 
 describe(`${DayAndPart}: using test data`, () => {
 
-  it.skip(`${DayAndPart}: Seed 79, soil 81, fertilizer 81, water 81, light 74, temperature 78, humidity 78, location 82`, () => {
+  it(`${DayAndPart}: Seed 79, soil 81, fertilizer 81, water 81, light 74, temperature 78, humidity 78, location 82`, () => {
 
     return read(`${SourceFolderPath}test.data`)
       .then(lines => findMaps(lines))
       .then(maps => {
-        console.log(maps.map(m=> JSON.stringify(m)))
+        //console.log(maps.map(m => JSON.stringify(m)))
         expect(findLocation(79, maps)).to.equal(82)
       });
 
   });
 
+  it(`should second map contain soil, fetrilier and ranges`, () => {
 
+    const expected = <Map>{
+      from: 'soil',
+      to: 'fertilizer',
+      ranges: [
+        <MapRange>{ src: 15, dest: 0, len: 37 },
+        <MapRange>{ src: 52, dest: 37, len: 2 },
+        <MapRange>{ src: 0, dest: 39, len: 15 }
+      ]
+    };
+
+    return read(`${SourceFolderPath}test.data`)
+      .then(lines => {
+        console.log(lines)
+        const maps = findMaps(lines);
+        
+        // console.log('-------maps----------')
+        // console.log(maps.map(m=> JSON.stringify(m)))
+
+        return expect(maps[1]).to.deep.equal(expected)
+      });
+  });
 });
+

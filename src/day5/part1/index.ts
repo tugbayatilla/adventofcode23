@@ -65,6 +65,7 @@ export const createMap = (lines: string[]): Map => {
     const matches = mapLine.match(regex);
 
     const map: Map = { from: '', to: '', ranges: [] };
+    
     if (matches) {
         map.from = matches[1];
         map.to = matches[2];
@@ -76,22 +77,30 @@ export const createMap = (lines: string[]): Map => {
 }
 
 export const findMaps = (lines: string[]): Map[] => {
-    const mapsArray = lines.slice(2);
+    const mapsArray = lines.slice(1);
 
     let maps: Map[] = [];
     let mapLines: string[] = []
+
     mapsArray.forEach(line => {
-        mapLines.push(line);
-        if (line === '') {
-            const map = createMap(mapLines);
-            maps.push(map);
-            mapLines = [];
+
+        if (line.includes('map:')) {
+
+            if(mapLines.length > 0){
+                const map = createMap(mapLines);
+                maps.push(map);
+                mapLines = [];
+            }
         }
+
+        mapLines.push(line);
     });
-    if (mapLines.length > 0) {
+    if(mapLines.length > 0){
         const map = createMap(mapLines);
         maps.push(map);
+        mapLines = [];
     }
+
 
 
     return maps;
@@ -104,13 +113,13 @@ export const findMappingValue = (seed: number, map: Map): number => {
         if (isInRange[0]) {
             return range.dest + isInRange[1];
         }
-        
+
     }
     return seed;
 }
 
 export function findLocation(seed: number, maps: Map[]): number {
-    
+
     let currentSeed = seed;
     maps.forEach(map => {
         const nextValue = findMappingValue(currentSeed, map);
