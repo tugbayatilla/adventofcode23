@@ -1,11 +1,11 @@
 import { expect } from "chai";
 import { answer, getSeeds, identity } from ".";
 
-describe.skip(`${identity.show}: using test data`, () => {
+describe(`${identity.show}: using test data`, () => {
 
-  it(`${identity.show}: should test.data return 35`, () => {
+  it(`${identity.show}: should test.data return 46`, () => {
     return answer(identity.getTestPath())
-      .then((answer) => expect(answer).to.equal(35));
+      .then((answer) => expect(answer).to.equal(46));
   });
 
 });
