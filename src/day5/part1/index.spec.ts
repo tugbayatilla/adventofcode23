@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange, findMappingValue, SourceFolderPath, findLocation } from ".";
+import { DayAndPart, createMap, createMapRange, findMaps, Map, MapRange, findMappingValue, SourceFolderPath, findLocation, answer } from ".";
 import { read } from "../../read";
 
 
@@ -155,5 +155,12 @@ describe(`${DayAndPart}: using test data`, () => {
         return expect(maps[1]).to.deep.equal(expected)
       });
   });
+
+  it(`${DayAndPart}: should test.data return 35`, () => {
+    return answer(`${SourceFolderPath}test.data`)
+      .then((answer) => expect(answer).to.equal(35));
+  });
+
+
 });
 

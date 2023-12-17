@@ -1,5 +1,6 @@
 import { findNumbers } from "../../findNumbers";
 import { inRange } from "../../range";
+import { read } from "../../read";
 
 
 const Day = "day5"; // <-- change this when you copy
@@ -65,7 +66,7 @@ export const createMap = (lines: string[]): Map => {
     const matches = mapLine.match(regex);
 
     const map: Map = { from: '', to: '', ranges: [] };
-    
+
     if (matches) {
         map.from = matches[1];
         map.to = matches[2];
@@ -86,7 +87,7 @@ export const findMaps = (lines: string[]): Map[] => {
 
         if (line.includes('map:')) {
 
-            if(mapLines.length > 0){
+            if (mapLines.length > 0) {
                 const map = createMap(mapLines);
                 maps.push(map);
                 mapLines = [];
@@ -95,7 +96,7 @@ export const findMaps = (lines: string[]): Map[] => {
 
         mapLines.push(line);
     });
-    if(mapLines.length > 0){
+    if (mapLines.length > 0) {
         const map = createMap(mapLines);
         maps.push(map);
         mapLines = [];
@@ -127,4 +128,16 @@ export function findLocation(seed: number, maps: Map[]): number {
         currentSeed = nextValue;
     });
     return currentSeed;
+}
+
+export async function answer(filePath: string): Promise<number> {
+    return read(filePath).then((lines) => {
+        const seeds = findNumbers(lines[0]);
+
+        const maps = findMaps(lines);
+
+        const locations = seeds.map(s => findLocation(s, maps));
+
+        return locations.sort((a, b) => a - b)[0];
+    });
 }
