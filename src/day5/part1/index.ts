@@ -1,3 +1,4 @@
+import { Identity, callAnswerIfSelected } from "../../CurrentDayAndPart";
 import { findNumbers } from "../../findNumbers";
 import { inRange } from "../../range";
 import { read } from "../../read";
@@ -7,7 +8,7 @@ const Day = "day5"; // <-- change this when you copy
 const Part = "part1"; // <-- change this when you copy
 export const DayAndPart = `${Day}(${Part[0]}${Part[Part.length - 1]})`;
 export const SourceFolderPath = `./src/${Day}/${Part}/`;
-
+const identity: Identity = { day: 5, part: 1 }
 /*
 
 Almanac part 1 design
@@ -141,7 +142,4 @@ export async function answer(filePath: string): Promise<number> {
     });
 }
 
-
-// if(process.env.DayAndPart === DayAndPart)
-answer(`${SourceFolderPath}puzzle.data`)
-.then((sum)=>console.log(`${DayAndPart}: ${sum}`))
+callAnswerIfSelected(identity, answer);
