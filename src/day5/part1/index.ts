@@ -8,7 +8,7 @@ const Day = "day5"; // <-- change this when you copy
 const Part = "part1"; // <-- change this when you copy
 export const DayAndPart = `${Day}(${Part[0]}${Part[Part.length - 1]})`;
 export const SourceFolderPath = `./src/${Day}/${Part}/`;
-const identity: Identity = { day: 5, part: 1 }
+const identity = new Identity(5, 1);
 /*
 
 Almanac part 1 design

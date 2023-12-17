@@ -1,9 +1,13 @@
-process.env.DayAndPart = 'day5(p1)';
-const SelectedIdentities: Identity[] = [{ day: 5, part: 1 }];
-export type Identity = {
-    day: number,
-    part: number
+export class Identity {
+    
+    constructor(public day: number, public part: number) {}
+    show = (identity: Identity) : string => `d${identity.day}p${identity.part}`   
+    getTestPath = () : string => `./src/day${this.day}/part${this.part}/test.data`;
+    getPuzzlePath = () : string => `./src/day${this.day}/part${this.part}/puzzle.data`;
 }
+
+const SelectedIdentities: Identity[] = [new Identity(5,1)];
+
 export const isIdentitySelected = (identiy: Identity): boolean => {
     const identityJSON = JSON.stringify(identiy);
 
@@ -14,12 +18,12 @@ export const isIdentitySelected = (identiy: Identity): boolean => {
     return false;
 }
 
+
+
 export const callAnswerIfSelected = (identity: Identity, answer: (filePath: string) => Promise<number>): void => {
 
     if (isIdentitySelected(identity)){
-        const filePath = `./src/day${identity.day}/part${identity.part}/puzzle.data`;
-
-        answer(filePath)
-            .then((sum) => console.log(`(d${identity.day}p${identity.part}): ${sum}`))
+        answer(identity.getPuzzlePath())
+            .then((sum) => console.log(`(${identity.show}): ${sum}`))
     }
 }
