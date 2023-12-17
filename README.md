@@ -117,7 +117,7 @@ Touch Time: 1h37m
 - Lots of unnecessary code and shame :)
 
 
-## Day 4
+## Day 5
 
 ### Part 1
 
@@ -132,6 +132,16 @@ Touch Time: 1h37m
 - So i changed my design to read data on the fly with using `yield`.
 - In order to get the answer from the solution took almost 6 minutes (i did not calculated programatically but lets say almost)
 - this will be a great refactoring in terms of performance.
+
+
+## Day 6
+
+### Part 1
+
+- I read the text and made a design.
+- In the train, i though i can try just implementation with test. (experimental)
+- Solution is there. 5 min implemetation. ögggh, discusting...
+- lets go to part 2 to see what will happen.
 
 
 
