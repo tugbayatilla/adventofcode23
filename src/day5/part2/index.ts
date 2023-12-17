@@ -11,3 +11,7 @@ export async function answer(filePath: string): Promise<number> {
 }
 
 callAnswerIfSelected(identity, answer);
+
+export const getSeeds = (line: string): number[] => {
+    return [];
+}

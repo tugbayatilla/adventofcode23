@@ -1,7 +1,7 @@
 export class Identity {
     
     constructor(public day: number, public part: number) {}
-    show = (identity: Identity) : string => `d${identity.day}p${identity.part}`   
+    get show(): string { return `d${this.day}p${this.part}` }
     getTestPath = () : string => `./src/day${this.day}/part${this.part}/test.data`;
     getPuzzlePath = () : string => `./src/day${this.day}/part${this.part}/puzzle.data`;
 }
