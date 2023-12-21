@@ -34,33 +34,24 @@ export async function answer(filePath: string): Promise<number> {
 
         let countOfSteps = 0;
         let currentLocations: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
-        let consoleData: string[] = []
         let directionIndex = 0;
-        let currentNode: data | null = null;
 
         while (!currentLocations.every(p => p.endsWith('Z'))) {
+            
+            //console.log(currentLocations)
 
             if (directionIndex === directions.length)
                 directionIndex = 0;
             const direction = directions[directionIndex];
 
-            for (let i = 0; i < currentLocations.length; i++) {
-                //let currentLocation = currentLocations[i];
-                
-                currentNode = dataSet.find(p => p.name === currentLocations[i])!;
+            currentLocations = currentLocations.map(cl => dataSet.find(p => p.name === cl)!.direction[direction])
 
-                currentLocations[i] = currentNode?.direction[direction]!;
-
-                const message = `${JSON.stringify(currentNode)} - ${direction} - ${currentLocations[i]}`
-                consoleData.push(message);
-                console.log(message);
-            }
             countOfSteps++;
             directionIndex++;
+
+            if(countOfSteps%100000===0)
+                console.log(countOfSteps)
         }
-
-        write(`${filePath}.console.out`, consoleData);
-
 
         return countOfSteps;
     });
@@ -70,6 +61,6 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-    // answer(identity.getPuzzlePath())
-    //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
+    answer(identity.getPuzzlePath())
+        .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
