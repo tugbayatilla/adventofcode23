@@ -13,7 +13,7 @@ export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
 
         const directionsStr = lines[0];
-        const directions: number[] = [...directionsStr].map(p=> p === 'L' ? 0 : 1);
+        const directions: number[] = [...directionsStr].map(p => p === 'L' ? 0 : 1);
 
 
         const dataSet: data[] = [];
@@ -31,32 +31,34 @@ export async function answer(filePath: string): Promise<number> {
         });
 
         write(`${filePath}.out`, dataSet.map(p => JSON.stringify(p)));
-        
+
         let countOfSteps = 0;
-        let currentLocation: string = 'AAA';
+        let currentLocations: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
         let consoleData: string[] = []
         let directionIndex = 0;
-        let currentNode:data|null = null;
-        
-        while(currentLocation !== 'ZZZ') {
+        let currentNode: data | null = null;
 
-            if(directionIndex === directions.length)
+        while (!currentLocations.every(p => p.endsWith('Z'))) {
+
+            if (directionIndex === directions.length)
                 directionIndex = 0;
             const direction = directions[directionIndex];
 
-            currentNode = dataSet.find(p=>p.name === currentLocation)!;
-            
-            
-            currentLocation = currentNode?.direction[direction]!;
-            
-            const message = `${JSON.stringify(currentNode)} - ${direction} - ${currentLocation}`
-            consoleData.push(message);
-            console.log(message);
+            for (let i = 0; i < currentLocations.length; i++) {
+                //let currentLocation = currentLocations[i];
+                
+                currentNode = dataSet.find(p => p.name === currentLocations[i])!;
 
+                currentLocations[i] = currentNode?.direction[direction]!;
+
+                const message = `${JSON.stringify(currentNode)} - ${direction} - ${currentLocations[i]}`
+                consoleData.push(message);
+                console.log(message);
+            }
             countOfSteps++;
             directionIndex++;
         }
-        
+
         write(`${filePath}.console.out`, consoleData);
 
 
@@ -68,6 +70,6 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-    answer(identity.getPuzzlePath())
-        .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
+    // answer(identity.getPuzzlePath())
+    //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
