@@ -31,17 +31,33 @@ export async function answer(filePath: string): Promise<number> {
         });
 
         write(`${filePath}.out`, dataSet.map(p => JSON.stringify(p)));
-
+        
         let countOfSteps = 0;
         let currentLocation: string = 'AAA';
-        for (const direction of directions) {
-            const currentNode = dataSet.find(p=>p.name === currentLocation);
-            
-            if(currentNode?.name === 'ZZZ') break;
+        let consoleData: string[] = []
+        let directionIndex = 0;
+        let currentNode:data|null = null;
+        
+        while(currentLocation !== 'ZZZ') {
 
+            if(directionIndex === directions.length)
+                directionIndex = 0;
+            const direction = directions[directionIndex];
+
+            currentNode = dataSet.find(p=>p.name === currentLocation)!;
+            
+            
             currentLocation = currentNode?.direction[direction]!;
+            
+            const message = `${JSON.stringify(currentNode)} - ${direction} - ${currentLocation}`
+            consoleData.push(message);
+            console.log(message);
+
             countOfSteps++;
+            directionIndex++;
         }
+        
+        write(`${filePath}.console.out`, consoleData);
 
 
         return countOfSteps;
