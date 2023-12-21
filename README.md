@@ -161,4 +161,13 @@ Touch Time: 1h37m
 - I do not need motivation in life, I got dicipline yet this time motivation wins :)
 - no test, couple of implementation tries :)
 
+### Part 2
+
+- Continue without tests.
+- So far so good. it will be great refactoring :)
+- this time i try to make more commits while writing code without tests.
+- Ofcourse i just changed a little.
+- Next time i will create more commits like I am following TDD.
+- implementation time max 20 min :)
+
 
