@@ -1,0 +1,7 @@
+{"name":"AAA","direction":["BBB","CCC"]}
+{"name":"BBB","direction":["DDD","EEE"]}
+{"name":"CCC","direction":["ZZZ","GGG"]}
+{"name":"DDD","direction":["DDD","DDD"]}
+{"name":"EEE","direction":["EEE","EEE"]}
+{"name":"GGG","direction":["GGG","GGG"]}
+{"name":"ZZZ","direction":["ZZZ","ZZZ"]}
