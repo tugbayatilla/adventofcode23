@@ -19,9 +19,9 @@ export async function answer(filePath: string): Promise<number> {
             const bid = Number(lineSplit[1]);
 
         
-            const handLabelCount = findHandLabelCounts(hand);
+            const handCardCount = findHandCardCounts(hand);
 
-            let handPower = apple(handLabelCount);
+            let handPower = apple(handCardCount);
 
             let cardPowerStr = '9';
             [...hand].forEach((card) => {
@@ -63,34 +63,35 @@ export async function answer(filePath: string): Promise<number> {
     });
 }
 
-function apple(handLabelCount: [label: string, count: number][]) {
+function apple(handCardCount: [card: string, count: number][]) {
     
-    const fiveOfAKind = handLabelCount.filter(p => p[1] === 5);
+    const fiveOfAKind = handCardCount.filter(p => p[1] === 5);
     if (fiveOfAKind.length === 1) {
         return 1000000000000;
     }
-    const fourOfAKind = handLabelCount.filter(p => p[1] === 4);
+    const fourOfAKind = handCardCount.filter(p => p[1] === 4);
     if (fourOfAKind.length === 1) {
+
         return 900000000000;
     }
-    const fullHause2 = handLabelCount.filter(p => p[1] === 2);
-    const fullHause3 = handLabelCount.filter(p => p[1] === 3);
+    const fullHause2 = handCardCount.filter(p => p[1] === 2);
+    const fullHause3 = handCardCount.filter(p => p[1] === 3);
     if (fullHause2.length === 1 && fullHause3.length === 1) {
         return 800000000000;
     }
-    const threeOfAKind = handLabelCount.filter(p => p[1] === 3);
+    const threeOfAKind = handCardCount.filter(p => p[1] === 3);
     if (threeOfAKind.length === 1) {
         return 700000000000;
     }
-    const twoPairs = handLabelCount.filter(p => p[1] === 2);
+    const twoPairs = handCardCount.filter(p => p[1] === 2);
     if (twoPairs.length === 2) {
         return 600000000000;
     }
-    const onePair = handLabelCount.filter(p => p[1] === 2);
+    const onePair = handCardCount.filter(p => p[1] === 2);
     if (onePair.length === 1) {
         return 500000000000;
     }
-    const highNumber = handLabelCount.filter(p => p[1] === 1);
+    const highNumber = handCardCount.filter(p => p[1] === 1);
     if (highNumber.length === 5) {
         return 400000000000;
     }
@@ -98,14 +99,14 @@ function apple(handLabelCount: [label: string, count: number][]) {
     return -1;
 }
 
-function findHandLabelCounts(input: string): [label: string, count: number][] {
+function findHandCardCounts(input: string): [card: string, count: number][] {
     const counts: [string, number][] = [];
 
     [...input].forEach(char => {
 
-        let labelAndCount = counts.find(p => p[0] === char)
-        if (labelAndCount) {
-            labelAndCount[1]++;
+        let cardAndCount = counts.find(p => p[0] === char)
+        if (cardAndCount) {
+            cardAndCount[1]++;
         } else {
             counts.push([char, 1]);
         }
