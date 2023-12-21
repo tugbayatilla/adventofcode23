@@ -19,7 +19,7 @@ export async function answer(filePath: string): Promise<number> {
             const bid = Number(lineSplit[1]);
 
 
-            
+
             const handCardCount = findHandCardCounts(hand);
 
             let handPower = apple(handCardCount);
@@ -40,24 +40,24 @@ export async function answer(filePath: string): Promise<number> {
 
             handPower += Number(cardPowerStr);
 
-            console.log([hand, bid, handPower]);
+            //console.log([hand, bid, handPower]);
 
             handAndPower.push([hand, bid, handPower]);
 
         }
 
         const sortedHandAndPower = handAndPower.sort((a, b) => a[2] - b[2]); //desc
-        console.log('sorted');
-        console.log(sortedHandAndPower);
+        // console.log('sorted');
+        // console.log(sortedHandAndPower);
 
 
         let sum = 0;
         sortedHandAndPower.forEach((item, index) => {
             sum += item[1] * (index + 1)
-            console.log(`${item} - ${index + 1} -- ${sum}`)
+            //console.log(`${item} - ${index + 1} -- ${sum}`)
         });
 
-        write(`${identity.getTestPath()}.out`, sortedHandAndPower);
+        write(`${filePath}.out`, sortedHandAndPower);
 
         return sum;
     });
@@ -115,8 +115,10 @@ function findHandCardCounts(input: string): [card: string, count: number][] {
         let inputWithoutJ = input;
         // find highes number  
         const highestOccurance = counts.filter(p => p[0] !== 'J').sort((a, b) => b[1] - a[1])[0];
-        inputWithoutJ = inputWithoutJ.replace('J', highestOccurance[0]);
-        return findHandCardCounts(inputWithoutJ)
+        if (highestOccurance !== undefined) {
+            inputWithoutJ = inputWithoutJ.replace('J', highestOccurance[0]);
+            return findHandCardCounts(inputWithoutJ)
+        }
     }
 
     return counts;
@@ -126,6 +128,6 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-    // answer(identity.getPuzzlePath())
-    //     .then((sum) => console.log(`(${identity.show}): ${sum} puzzle`))
+    answer(identity.getPuzzlePath())
+        .then((sum) => console.log(`(${identity.show}): ${sum} puzzle`))
 }
