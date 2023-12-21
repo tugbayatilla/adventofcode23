@@ -6,6 +6,10 @@ export const identity = new Identity(8, 1);
 export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
 
+        const directionsStr = lines[0];
+        const directions: number[] = [...directionsStr].map(p=> p === 'L' ? 0 : 1);
+    
+
         return 0;
     });
 }
