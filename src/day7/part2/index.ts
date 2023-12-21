@@ -7,7 +7,7 @@ export const identity = new Identity(7, 2);
 
 
 const CARDS: string[] = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
-const CARDS_VALUES: number[] = [14, 13, 1, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+const CARDS_VALUES: number[] = [14, 13, 12, 1, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
 
@@ -18,7 +18,8 @@ export async function answer(filePath: string): Promise<number> {
             const hand = lineSplit[0];
             const bid = Number(lineSplit[1]);
 
-        
+
+            
             const handCardCount = findHandCardCounts(hand);
 
             let handPower = apple(handCardCount);
@@ -28,18 +29,17 @@ export async function answer(filePath: string): Promise<number> {
 
                 const cardIndex = CARDS.indexOf(card);
                 const getValue = CARDS_VALUES[cardIndex];
-                
+
                 cardPowerStr += (getValue < 10 ? '0' : '') + (getValue.toString())
             });
-            
-            if(cardPowerStr.length !== 11)
-            {
+
+            if (cardPowerStr.length !== 11) {
                 console.log(cardPowerStr)
                 throw Error('not 12!!!');
             }
 
             handPower += Number(cardPowerStr);
-            
+
             console.log([hand, bid, handPower]);
 
             handAndPower.push([hand, bid, handPower]);
@@ -57,21 +57,20 @@ export async function answer(filePath: string): Promise<number> {
             console.log(`${item} - ${index + 1} -- ${sum}`)
         });
 
-        write(`${identity.getPuzzlePath()}.out`, sortedHandAndPower);
+        write(`${identity.getTestPath()}.out`, sortedHandAndPower);
 
         return sum;
     });
 }
 
 function apple(handCardCount: [card: string, count: number][]) {
-    
+
     const fiveOfAKind = handCardCount.filter(p => p[1] === 5);
     if (fiveOfAKind.length === 1) {
         return 1000000000000;
     }
     const fourOfAKind = handCardCount.filter(p => p[1] === 4);
     if (fourOfAKind.length === 1) {
-
         return 900000000000;
     }
     const fullHause2 = handCardCount.filter(p => p[1] === 2);
@@ -112,6 +111,14 @@ function findHandCardCounts(input: string): [card: string, count: number][] {
         }
     });
 
+    if (input.includes('J')) {
+        let inputWithoutJ = input;
+        // find highes number  
+        const highestOccurance = counts.filter(p => p[0] !== 'J').sort((a, b) => b[1] - a[1])[0];
+        inputWithoutJ = inputWithoutJ.replace('J', highestOccurance[0]);
+        return findHandCardCounts(inputWithoutJ)
+    }
+
     return counts;
 }
 
@@ -119,6 +126,6 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-        answer(identity.getPuzzlePath())
-        .then((sum) => console.log(`(${identity.show}): ${sum} puzzle`))
+    // answer(identity.getPuzzlePath())
+    //     .then((sum) => console.log(`(${identity.show}): ${sum} puzzle`))
 }

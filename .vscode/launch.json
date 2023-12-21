@@ -3,9 +3,9 @@
     "configurations": [
         {
             "type": "node-terminal",
-            "name": "Run Script: test-specific d5p1",
+            "name": "Run Script: test-specific d7p2",
             "request": "launch",
-            "command": "npm run test-specific src/day7/part1/*.spec.ts",
+            "command": "npm run test-specific src/day7/part2/*.spec.ts",
             "cwd": "${workspaceFolder}"
         }
     ]
