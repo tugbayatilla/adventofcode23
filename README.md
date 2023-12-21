@@ -149,4 +149,16 @@ Touch Time: 1h37m
 - it took maybe 3-4 min to implement.
 
 
+## Day 7
+
+### Part 1
+
+- The new implementation technique is to write the code until I need a test
+- So with this new approach, I will merge the power of these two approaches, I hope :)
+- So far so good. I have implemented very straight forward until I encounter a problem.
+- I lost my focus and stopped playing with it
+- Recently, my friends mentioned about it again in Signal, then i got my motivation back.
+- I do not need motivation in life, I got dicipline yet this time motivation wins :)
+- no test, couple of implementation tries :)
+
 
