@@ -1,5 +1,6 @@
 import { Identity, isIdentitySelected } from "../../CurrentDayAndPart";
 import { read } from "../../read";
+import { write } from "../../write";
 
 export const identity = new Identity(7, 1);
 
@@ -53,17 +54,23 @@ export async function answer(filePath: string): Promise<number> {
 
             let handPower = apple(handLabelCount);
 
-            [...hand].forEach((card, index) => {
+            let cardPowerStr = '9';
+            [...hand].forEach((card) => {
 
                 const cardIndex = CARDS.indexOf(card);
                 const getValue = CARDS_VALUES[cardIndex];
-                // const cardLocationPower = getValue ** ([...hand].length - index) + (CARDS.length + [...hand].length - index);
-                const cardPosPower = [...hand].length - index;
-                const cardLocationPower = cardPosPower * getValue ** cardPosPower;
-
-                handPower += cardLocationPower;
+                
+                cardPowerStr += (getValue < 10 ? '0' : '') + (getValue.toString())
             });
+            
+            if(cardPowerStr.length !== 11)
+            {
+                console.log(cardPowerStr)
+                throw Error('not 12!!!');
+            }
 
+            handPower += Number(cardPowerStr);
+            
             console.log([hand, bid, handPower]);
 
             handAndPower.push([hand, bid, handPower]);
@@ -80,6 +87,8 @@ export async function answer(filePath: string): Promise<number> {
             sum += item[1] * (index + 1)
             console.log(`${item} - ${index + 1} -- ${sum}`)
         });
+
+        write(`${identity.getPuzzlePath()}.out`, sortedHandAndPower);
 
         return sum;
     });
