@@ -12,8 +12,8 @@ interface data {
 export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
 
-        //const directionsStr = lines[0];
-        //const directions: number[] = [...directionsStr].map(p=> p === 'L' ? 0 : 1);
+        const directionsStr = lines[0];
+        const directions: number[] = [...directionsStr].map(p=> p === 'L' ? 0 : 1);
 
 
         const dataSet: data[] = [];
@@ -32,9 +32,19 @@ export async function answer(filePath: string): Promise<number> {
 
         write(`${filePath}.out`, dataSet.map(p => JSON.stringify(p)));
 
+        let countOfSteps = 0;
+        let currentLocation: string = 'AAA';
+        for (const direction of directions) {
+            const currentNode = dataSet.find(p=>p.name === currentLocation);
+            
+            if(currentNode?.name === 'ZZZ') break;
+
+            currentLocation = currentNode?.direction[direction]!;
+            countOfSteps++;
+        }
 
 
-        return 0;
+        return countOfSteps;
     });
 }
 
