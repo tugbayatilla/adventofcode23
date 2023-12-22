@@ -2,8 +2,8 @@ export class Identity {
     
     constructor(public day: number, public part: number) {}
     get show(): string { return `d${this.day}p${this.part}` }
-    getTestPath = () : string => `./src/day${this.day}/part${this.part}/test.data`;
-    getPuzzlePath = () : string => `./src/day${this.day}/part${this.part}/puzzle.data`;
+    getTestPath = (subFolder:string='') : string => `./src/day${this.day}/part${this.part}/${subFolder}/test.data`;
+    getPuzzlePath = (subFolder:string='') : string => `./src/day${this.day}/part${this.part}/${subFolder}/puzzle.data`;
 }
 
 const SelectedIdentities: Identity[] = [new Identity(8,2)];

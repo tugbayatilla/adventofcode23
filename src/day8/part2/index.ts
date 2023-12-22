@@ -33,27 +33,45 @@ export async function answer(filePath: string): Promise<number> {
         write(`${filePath}.out`, dataSet.map(p => JSON.stringify(p)));
 
         let countOfSteps = 0;
-        let currentLocations: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
+        //let currentLocations: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
+        let currentLocationsBase: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
         let directionIndex = 0;
+        let logs: [label: string, count: number][] = [];
 
-        while (!currentLocations.every(p => p.endsWith('Z'))) {
-            
-            //console.log(currentLocations)
 
-            if (directionIndex === directions.length)
-                directionIndex = 0;
-            const direction = directions[directionIndex];
 
-            currentLocations = currentLocations.map(cl => dataSet.find(p => p.name === cl)!.direction[direction])
+        let totalCount = 0;
+        currentLocationsBase.forEach(loc => {
+            directionIndex = 0;
+            countOfSteps = 0;
 
-            countOfSteps++;
-            directionIndex++;
+            do {
+                let currentLoc = loc;
+                while (!currentLoc.endsWith('Z')) {
+                    if (directionIndex === directions.length)
+                        directionIndex = 0;
+                    const direction = directions[directionIndex];
 
-            if(countOfSteps%100000===0)
-                console.log(countOfSteps)
-        }
+                    currentLoc = dataSet.find(p => p.name === currentLoc)?.direction[direction]!;
 
-        return countOfSteps;
+                    countOfSteps++;
+                    directionIndex++;
+                }
+                const log = logs.find(p => p[0] === loc);
+                if (log)
+                    log[1] += countOfSteps;
+                else
+                    logs.push([loc, countOfSteps]);
+
+                totalCount++;
+            } while (!logs.every(([_, count]) => count === logs[0][1])) // every item count equal with first one
+
+
+        });
+
+        write(`${identity.getTestPath('log')}.log.out`, logs);
+
+        return totalCount;
     });
 }
 
@@ -61,6 +79,6 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-    answer(identity.getPuzzlePath())
-        .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
+    // answer(identity.getPuzzlePath())
+    //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
