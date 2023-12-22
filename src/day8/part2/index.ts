@@ -36,42 +36,30 @@ export async function answer(filePath: string): Promise<number> {
         //let currentLocations: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
         let currentLocationsBase: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
         let directionIndex = 0;
-        let logs: [label: string, count: number][] = [];
+        let log: [label: string, count: number][] = [];
 
-
-
-        let totalCount = 0;
         currentLocationsBase.forEach(loc => {
             directionIndex = 0;
             countOfSteps = 0;
 
-            do {
-                let currentLoc = loc;
-                while (!currentLoc.endsWith('Z')) {
-                    if (directionIndex === directions.length)
-                        directionIndex = 0;
-                    const direction = directions[directionIndex];
+            let currentLoc = loc;
+            while (!currentLoc.endsWith('Z')) {
+                if (directionIndex === directions.length)
+                    directionIndex = 0;
+                const direction = directions[directionIndex];
 
-                    currentLoc = dataSet.find(p => p.name === currentLoc)?.direction[direction]!;
+                currentLoc = dataSet.find(p => p.name === currentLoc)?.direction[direction]!;
 
-                    countOfSteps++;
-                    directionIndex++;
-                }
-                const log = logs.find(p => p[0] === loc);
-                if (log)
-                    log[1] += countOfSteps;
-                else
-                    logs.push([loc, countOfSteps]);
-
-                totalCount++;
-            } while (!logs.every(([_, count]) => count === logs[0][1])) // every item count equal with first one
-
+                countOfSteps++;
+                directionIndex++;
+            }
+            log.push([loc, countOfSteps]);
 
         });
 
-        write(`${identity.getTestPath('log')}.log.out`, logs);
+        write(`${identity.getTestPath('log')}.log.out`, log);
 
-        return totalCount;
+        return log.reduce((acc, crr)=> acc * crr[1], 1);
     });
 }
 

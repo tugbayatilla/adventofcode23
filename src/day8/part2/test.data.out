@@ -1,0 +1,8 @@
+{"name":"11A","direction":["11B","XXX"]}
+{"name":"11B","direction":["XXX","11Z"]}
+{"name":"11Z","direction":["11B","XXX"]}
+{"name":"22A","direction":["22B","XXX"]}
+{"name":"22B","direction":["22C","22C"]}
+{"name":"22C","direction":["22Z","22Z"]}
+{"name":"22Z","direction":["22B","22B"]}
+{"name":"XXX","direction":["XXX","XXX"]}
