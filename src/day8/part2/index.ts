@@ -1,4 +1,6 @@
 import { Identity, isIdentitySelected } from "../../CurrentDayAndPart";
+import { leastCommonMultiple } from "../../math";
+
 import { read } from "../../read";
 import { write } from "../../write";
 
@@ -30,10 +32,8 @@ export async function answer(filePath: string): Promise<number> {
             }
         });
 
-        write(`${filePath}.out`, dataSet.map(p => JSON.stringify(p)));
 
         let countOfSteps = 0;
-        //let currentLocations: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
         let currentLocationsBase: string[] = dataSet.filter(p => p.name.endsWith('A')).map(p => p.name);
         let directionIndex = 0;
         let log: [label: string, count: number][] = [];
@@ -57,9 +57,9 @@ export async function answer(filePath: string): Promise<number> {
 
         });
 
-        write(`${identity.getTestPath('log')}.log.out`, log);
+        write(`${filePath}.log.out`, log);
 
-        return log.reduce((acc, crr)=> acc * crr[1], 1);
+        return log.reduce((acc, crr)=> leastCommonMultiple(acc, crr[1]), 1);
     });
 }
 
@@ -67,6 +67,6 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-    // answer(identity.getPuzzlePath())
-    //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
+    answer(identity.getPuzzlePath())
+        .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
