@@ -171,3 +171,25 @@ Touch Time: 1h37m
 - implementation time max 20 min :)
 
 
+## Day 8
+
+### Part 1
+
+- Again i have started with tests. 
+- This time i wanted to force not to write tests.
+- In some point it worked.
+- Yet, i will find a way to merge these concepts in better way.
+
+### Part 2
+
+- I have implemented the the solution but it took so long to calculate.
+- I have waited for just a curiosity how long it might take.
+- It took forever.
+- So actually when i see that it is taking more than 10 sec, then it is something wrong.
+- Last night in my dream, i implemented the solution and this morning i tried.
+- damn, in 1 sec, it resolved. 
+- The idea behind the solution is, to find every node's min try count to find the answer.
+- Then i applied the math concept of 'least common multiple', Voila! the answer.
+- Unfortunately i do not have much time to focus on the other days
+- Lots of distractions and duties, yet no problem.
+- I love you guys so much, Leni and Kathi.
