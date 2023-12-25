@@ -18,3 +18,7 @@ if (isIdentitySelected(identity)) {
     // answer(identity.getPuzzlePath())
     //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
+
+export const predictNextValueInHistory = (line: string): number => {
+    return 0;
+}
