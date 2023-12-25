@@ -193,3 +193,15 @@ Touch Time: 1h37m
 - Unfortunately i do not have much time to focus on the other days
 - Lots of distractions and duties, yet no problem.
 - I love you guys so much, Leni and Kathi.
+
+
+## Day 9
+
+### Part 1
+
+- I have started with small test to implement main logic. 
+- The test was quite big but i wanted to see if this size is ok or not. 
+- It was quite good.
+- Easy to implement and finish.
+- At the end i realised that i missed the negative numbers yet it was easy to solve.
+
