@@ -1,5 +1,5 @@
 import { Identity, isIdentitySelected } from "../../CurrentDayAndPart";
-import { findNumbers } from "../../findNumbers";
+import { findSignedNumbers } from "../../findNumbers";
 import { read } from "../../read";
 import { write } from "../../write";
 
@@ -30,10 +30,11 @@ if (isIdentitySelected(identity)) {
     // answer(identity.getPuzzlePath())
     //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
+// 2573716094 to high
 
 export const predictNextValueInHistory = (line: string): number => {
 
-    const numbers = findNumbers(line);
+    const numbers = findSignedNumbers(line);
 
     let lastItems: number[] = [];
     let startList = [...numbers];
@@ -46,6 +47,7 @@ export const predictNextValueInHistory = (line: string): number => {
 
             subList.push(number2 - number1);
         }
+        console.log(subList)
         lastItems.push(startList[startList.length - 1]);
         startList = subList;
     } while (!startList.every(p => p === 0))
