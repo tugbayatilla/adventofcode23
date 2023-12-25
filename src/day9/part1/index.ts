@@ -1,13 +1,24 @@
 import { Identity, isIdentitySelected } from "../../CurrentDayAndPart";
 import { findNumbers } from "../../findNumbers";
 import { read } from "../../read";
+import { write } from "../../write";
 
 export const identity = new Identity(9, 1);
 
 
 export async function answer(filePath: string): Promise<number> {
     return read(filePath).then((lines) => {
-        return 0;
+        let logs: string[] = [];
+
+        const numbers = lines.map(line => {
+            const number = predictNextValueInHistory(line);
+            logs.push(`${line} : ${number}`);
+            return number;
+        });
+
+        write(`${filePath}.out`, logs.map(p => JSON.stringify(p)));
+
+        return numbers.reduce((a, c) => a + c, 0);
     });
 }
 
@@ -26,7 +37,7 @@ export const predictNextValueInHistory = (line: string): number => {
 
     let lastItems: number[] = [];
     let startList = [...numbers];
-    
+
     do {
         let subList: number[] = [];
         for (let i = 0; i < startList.length - 1; i++) {
@@ -39,5 +50,7 @@ export const predictNextValueInHistory = (line: string): number => {
         startList = subList;
     } while (!startList.every(p => p === 0))
 
-    return lastItems.reduce((a, c) => a + c, 0);
+    const result = lastItems.reduce((a, c) => a + c, 0);
+
+    return result;
 }
