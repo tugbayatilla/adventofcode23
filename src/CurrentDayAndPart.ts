@@ -6,7 +6,7 @@ export class Identity {
     getPuzzlePath = (subFolder:string='') : string => `./src/day${this.day}/part${this.part}/${subFolder}/puzzle.data`;
 }
 
-const SelectedIdentities: Identity[] = [new Identity(8,2)];
+const SelectedIdentities: Identity[] = [new Identity(9,1)];
 
 export const isIdentitySelected = (identiy: Identity): boolean => {
     const identityJSON = JSON.stringify(identiy);
