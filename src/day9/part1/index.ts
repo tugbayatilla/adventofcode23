@@ -27,8 +27,8 @@ if (isIdentitySelected(identity)) {
     answer(identity.getTestPath())
         .then((sum) => console.log(`(${identity.show}): ${sum} - test`))
 
-    // answer(identity.getPuzzlePath())
-    //     .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
+    answer(identity.getPuzzlePath())
+        .then((sum) => console.log(`(${identity.show}): ${sum} - puzzle`))
 }
 // 2573716094 to high
 
@@ -47,7 +47,6 @@ export const predictNextValueInHistory = (line: string): number => {
 
             subList.push(number2 - number1);
         }
-        console.log(subList)
         lastItems.push(startList[startList.length - 1]);
         startList = subList;
     } while (!startList.every(p => p === 0))
